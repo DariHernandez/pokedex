@@ -3,18 +3,21 @@
 const e = React.createElement;
 
 class Pokedex extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     search_value: "",
-  //   };
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      search_value: "",
+      is_writting: false,
+    };
+  }
 
-  // handleChangeSearch = (event) => {
-  //   this.setState({
-  //     search_value: event.target.value,
-  //   });
-  // };
+  handleChangeSearch (event) {
+    this.setState({
+      search_value: event.target.value,
+      is_writting: true
+    });
+    alert (event.target.value)
+  };
 
   // Main component
   render() {
@@ -33,8 +36,8 @@ class Pokedex extends React.Component {
         <main className="home">
           
               <SearchBar
-                // onChange={(event) => this.handleChangeSearch(event)}
-                // value={this.state.search_value}
+                onChange={(event) => this.handleChangeSearch(event)}
+                value={this.state.search_value}
               />
 
               <SearchButtons/>
@@ -59,12 +62,15 @@ class SearchBar extends React.Component {
           <h1 className="title">Find your <br/> favorite pokemon</h1>
           <label>
             <img src="./imgs/search.svg" alt="Serach icon"></img>
-            <input
-              type="search"
-              placeholder="Search pokemon"
+            <SearchBarInput 
               onChange={this.props.onChange}
               value={this.props.value}
-            ></input>
+            />
+            <SearchBarButton
+              onClick={() => alert("cliked")}
+              disabled={false}
+            />
+            
           </label>
         </div>
       </section> 
@@ -72,13 +78,35 @@ class SearchBar extends React.Component {
   }
 }
 
+function SearchBarInput (props) {
+  return (
+    <input
+      type="search"
+      placeholder="Search pokemon"
+      onChange={props.onChange}
+      value={props.value}
+    ></input>
+  )
+}
+
+function SearchBarButton (props) {
+  return (
+    <input
+      type="button"
+      value="search"
+      onClick={props.onClick}
+      disabled={props.disabled}
+    ></input>
+  )
+}
+
 class SearchButtons extends React.Component {
   render () {
     return (
       <section className="search-buttons">
-        <div class="separator">
+        <div className="separator">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <path d="M0,0V7.23C0,65.52,268.63,112.77,600,112.77S1200,65.52,1200,7.23V0Z" class="shape-fill"></path>
+              <path d="M0,0V7.23C0,65.52,268.63,112.77,600,112.77S1200,65.52,1200,7.23V0Z" className="shape-fill"></path>
             </svg>
         </div>
         <div className="buttons regular-width">

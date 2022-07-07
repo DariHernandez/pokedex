@@ -13,30 +13,35 @@ var e = React.createElement;
 var Pokedex = function (_React$Component) {
   _inherits(Pokedex, _React$Component);
 
-  function Pokedex() {
+  function Pokedex(props) {
     _classCallCheck(this, Pokedex);
 
-    return _possibleConstructorReturn(this, (Pokedex.__proto__ || Object.getPrototypeOf(Pokedex)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Pokedex.__proto__ || Object.getPrototypeOf(Pokedex)).call(this, props));
+
+    _this.state = {
+      search_value: "",
+      is_writting: false
+    };
+    return _this;
   }
 
   _createClass(Pokedex, [{
+    key: "handleChangeSearch",
+    value: function handleChangeSearch(event) {
+      this.setState({
+        search_value: event.target.value,
+        is_writting: true
+      });
+      alert(event.target.value);
+    }
+  }, {
     key: "render",
 
-    // constructor(props) {
-    //   super(props);
-    //   this.state = {
-    //     search_value: "",
-    //   };
-    // }
-
-    // handleChangeSearch = (event) => {
-    //   this.setState({
-    //     search_value: event.target.value,
-    //   });
-    // };
 
     // Main component
     value: function render() {
+      var _this2 = this;
+
       return React.createElement(
         "div",
         { className: "pokedex" },
@@ -57,10 +62,12 @@ var Pokedex = function (_React$Component) {
         React.createElement(
           "main",
           { className: "home" },
-          React.createElement(SearchBar
-          // onChange={(event) => this.handleChangeSearch(event)}
-          // value={this.state.search_value}
-          , null),
+          React.createElement(SearchBar, {
+            onChange: function onChange(event) {
+              return _this2.handleChangeSearch(event);
+            },
+            value: this.state.search_value
+          }),
           React.createElement(SearchButtons, null)
         )
       );
@@ -105,11 +112,15 @@ var SearchBar = function (_React$Component2) {
             "label",
             null,
             React.createElement("img", { src: "./imgs/search.svg", alt: "Serach icon" }),
-            React.createElement("input", {
-              type: "search",
-              placeholder: "Search pokemon",
+            React.createElement(SearchBarInput, {
               onChange: this.props.onChange,
               value: this.props.value
+            }),
+            React.createElement(SearchBarButton, {
+              onClick: function onClick() {
+                return alert("cliked");
+              },
+              disabled: false
             })
           )
         )
@@ -119,6 +130,24 @@ var SearchBar = function (_React$Component2) {
 
   return SearchBar;
 }(React.Component);
+
+function SearchBarInput(props) {
+  return React.createElement("input", {
+    type: "search",
+    placeholder: "Search pokemon",
+    onChange: props.onChange,
+    value: props.value
+  });
+}
+
+function SearchBarButton(props) {
+  return React.createElement("input", {
+    type: "button",
+    value: "search",
+    onClick: props.onClick,
+    disabled: props.disabled
+  });
+}
 
 var SearchButtons = function (_React$Component3) {
   _inherits(SearchButtons, _React$Component3);
@@ -137,11 +166,11 @@ var SearchButtons = function (_React$Component3) {
         { className: "search-buttons" },
         React.createElement(
           "div",
-          { "class": "separator" },
+          { className: "separator" },
           React.createElement(
             "svg",
             { "data-name": "Layer 1", xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 1200 120", preserveAspectRatio: "none" },
-            React.createElement("path", { d: "M0,0V7.23C0,65.52,268.63,112.77,600,112.77S1200,65.52,1200,7.23V0Z", "class": "shape-fill" })
+            React.createElement("path", { d: "M0,0V7.23C0,65.52,268.63,112.77,600,112.77S1200,65.52,1200,7.23V0Z", className: "shape-fill" })
           )
         ),
         React.createElement(
