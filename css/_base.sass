@@ -2,6 +2,7 @@ $color_a: #EB1D36
 $color_b: #A2B5BB
 $color_c: #CFD2CF
 $color_d: #F5EDDC
+$font-size-base: 16px
     
 html
     margin: 0
@@ -28,10 +29,10 @@ body
         height: 100%
 
 p
-    font-size: 16px
+    font-size: $font-size-base
 
     &.small
-        font-size: 15px
+        font-size: calc($font-size-base - 2px)
 
 .hide
     display: none !important
