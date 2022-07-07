@@ -19,21 +19,23 @@ class Pokedex extends React.Component {
   // Main component
   render() {
     return (
-      <div class="pokedex">
+      <div className="pokedex">
 
         {/* Render header */}
-        <header>
+        <header className="home main-area">
           <img src="./imgs/pokeball.svg" alt="app logo"></img>
-          <h2>Pokedex</h2>
+          <h2 className="title">Pokedex</h2>
         </header>
 
         {/* Render main */}
         <main>
-          <h1>Find your favorite pokemon</h1>
-          <SearchBar
-            // onChange={(event) => this.handleChangeSearch(event)}
-            // value={this.state.search_value}
-          />
+          <section className="search main-area">
+            <h1>Find your favorite pokemon</h1>
+            <SearchBar
+              // onChange={(event) => this.handleChangeSearch(event)}
+              // value={this.state.search_value}
+            />
+          </section> 
         </main>
       </div>
     );

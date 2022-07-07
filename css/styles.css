@@ -7,8 +7,8 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-color: #fff;
-  font-family: "regular-font", sans-serif;
+  background-color: #F5EDDC;
+  font-family: "Baloo 2", cursive;
 }
 
 .wrapper-img {
@@ -26,10 +26,10 @@ body {
 }
 
 p {
-  font-size: 18px;
+  font-size: 16px;
 }
 p.small {
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .hide {
@@ -38,22 +38,18 @@ p.small {
 
 a {
   text-decoration: none;
-  color: #fff;
+  color: #EB1D36;
 }
 
-.regular-width {
+.main-area {
   max-width: 1000px;
   margin: 0 auto;
-}
-
-.full-width {
-  max-width: 100%;
-  margin: 0 auto;
+  padding: 0 10px;
 }
 
 h1, h2, h3, h4, h5, h6, .title {
-  font-family: "title-font", cursive;
-  color: #fff;
+  color: #A2B5BB;
+  font-weight: bold;
 }
 
 *:focus {
@@ -70,6 +66,26 @@ h1, h2, h3, h4, h5, h6, .title {
 
 .btn {
   display: inline-block;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+header.home {
+  background-color: #EB1D36;
+}
+header.home img {
+  width: 30px;
+  height: 30px;
+  opacity: 0.4;
+  transform: rotateZ(-25deg);
+}
+header.home .title {
+  font-size: 18px;
+  color: #F5EDDC;
+  margin-left: 20px;
 }
 
 /*# sourceMappingURL=styles.css.map */

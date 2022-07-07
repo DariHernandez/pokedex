@@ -39,14 +39,14 @@ var Pokedex = function (_React$Component) {
     value: function render() {
       return React.createElement(
         "div",
-        { "class": "pokedex" },
+        { className: "pokedex" },
         React.createElement(
           "header",
-          null,
+          { className: "home main-area" },
           React.createElement("img", { src: "./imgs/pokeball.svg", alt: "app logo" }),
           React.createElement(
             "h2",
-            null,
+            { className: "title" },
             "Pokedex"
           )
         ),
@@ -54,14 +54,18 @@ var Pokedex = function (_React$Component) {
           "main",
           null,
           React.createElement(
-            "h1",
-            null,
-            "Find your favorite pokemon"
-          ),
-          React.createElement(SearchBar
-          // onChange={(event) => this.handleChangeSearch(event)}
-          // value={this.state.search_value}
-          , null)
+            "section",
+            { className: "search main-area" },
+            React.createElement(
+              "h1",
+              null,
+              "Find your favorite pokemon"
+            ),
+            React.createElement(SearchBar
+            // onChange={(event) => this.handleChangeSearch(event)}
+            // value={this.state.search_value}
+            , null)
+          )
         )
       );
     }
