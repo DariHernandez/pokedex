@@ -78,6 +78,33 @@ main.home
         align-items: center
         justify-content: center
         flex-direction: column
+        position: relative
+        padding-top: 60px
 
-        button
+        .separator
+            position: absolute
+            top: 0
+            left: 0
             width: 100%
+            overflow: hidden
+            line-height: 0
+            transform: rotate(180deg)
+        
+
+            svg 
+                position: relative
+                display: block
+                width: calc(100% + 1.3px)
+                height: 150px
+            
+
+            .shape-fill 
+                fill: #EB1D36
+            
+
+            @media (max-width: 767px) 
+                svg 
+                    width: calc(100% + 1.3px)
+                    height: 64px
+                
+            

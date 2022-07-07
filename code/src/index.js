@@ -72,10 +72,15 @@ class SearchBar extends React.Component {
 class SearchButtons extends React.Component {
   render () {
     return (
-      <section className="search-buttons">
+      <section className="search-buttons regular-width">
+        <div class="separator">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M600,112.77C268.63,112.77,0,65.52,0,7.23V120H1200V7.23C1200,65.52,931.37,112.77,600,112.77Z" class="shape-fill"></path>
+            </svg>
+        </div>
         <SearchButton value="search" pokecolor="grass"/>
-        <SearchButton value="location"/>
-        <SearchButton value="moves and habilities"/>
+        <SearchButton value="location" pokecolor="fire"/>
+        <SearchButton value="moves and habilities" pokecolor="water"/>
       </section>
     )
   }
@@ -86,7 +91,10 @@ class SearchButton extends React.Component {
     return (
       <button className="btn round" pokecolor={this.props.pokecolor}>
         {this.props.value}
-        <img src={this.props.value.replaceAll (" ", "-") + ".svg"}/>
+        <img 
+          src={"./imgs/" + this.props.value.replaceAll (" ", "-") + "-btn.svg"}
+          className="regular"
+          />
       </button>
     )
   }

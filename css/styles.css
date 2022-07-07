@@ -67,6 +67,8 @@ h1, h2, h3, h4, h5, h6, .title {
 
 .btn {
   display: inline-block;
+  transition-duration: 0.5s;
+  cursor: pointer;
 }
 .btn.round {
   font-size: 16px;
@@ -77,77 +79,82 @@ h1, h2, h3, h4, h5, h6, .title {
   justify-content: space-between;
   padding: 12px 20px;
   background-color: red;
+  width: 100%;
+  text-transform: capitalize;
+  font-weight: bold;
+  box-shadow: 5px 5px 17px -6px rgba(0, 0, 0, 0.6);
+  margin: 8px 0;
 }
-[pokecolor=bug] {
-  background-color: #a4b7a9 !important;
+.btn.round img.regular {
+  width: 25px;
+  height: 25px;
+  filter: invert(100%);
+  opacity: 0.5;
 }
-
-[pokecolor=dark] {
-  background-color: #9b9c9b !important;
+.btn.round:hover {
+  box-shadow: 5px 5px 17px -6px rgb(0, 0, 0);
+  padding-left: 40px;
 }
-
-[pokecolor=dragon] {
-  background-color: #b4d1d5 !important;
-}
-
-[pokecolor=electric] {
-  background-color: #f4f4aa !important;
-}
-
-[pokecolor=fairy] {
-  background-color: #d5a3b4 !important;
-}
-
-[pokecolor=fighting] {
-  background-color: #d6b3a7 !important;
+.btn.round:active {
+  box-shadow: inset 5px 5px 28px 1px rgba(0, 0, 0, 0.29);
 }
 
-[pokecolor=fire] {
-  background-color: #dda5a7 !important;
+[pokecolor] {
+  color: #F5EDDC;
 }
-
-[pokecolor=flying] {
-  background-color: #b7c2cb !important;
+[pokecolor][pokecolor=bug] {
+  background-color: #859d8b !important;
 }
-
-[pokecolor=ghost] {
-  background-color: #adadc4 !important;
+[pokecolor][pokecolor=dark] {
+  background-color: #707a70 !important;
 }
-
-[pokecolor=grass] {
-  background-color: #a1cab1 !important;
+[pokecolor][pokecolor=dragon] {
+  background-color: #88acb1 !important;
 }
-
-[pokecolor=ground] {
-  background-color: #ddc6ab !important;
+[pokecolor][pokecolor=electric] {
+  background-color: #cdcd7c !important;
 }
-
-[pokecolor=ice] {
-  background-color: #cfedfb !important;
+[pokecolor][pokecolor=fairy] {
+  background-color: #bb8496 !important;
 }
-
-[pokecolor=normal] {
-  background-color: #c7babd !important;
+[pokecolor][pokecolor=fighting] {
+  background-color: #b0887b !important;
 }
-
-[pokecolor=poison] {
-  background-color: #bfabcf !important;
+[pokecolor][pokecolor=fire] {
+  background-color: #aa7374 !important;
 }
-
-[pokecolor=psyhic] {
-  background-color: #dbaac4 !important;
+[pokecolor][pokecolor=flying] {
+  background-color: #8594a0 !important;
 }
-
-[pokecolor=rock] {
-  background-color: #b6a39d !important;
+[pokecolor][pokecolor=ghost] {
+  background-color: #8686a4 !important;
 }
-
-[pokecolor=steel] {
-  background-color: #bfc8c5 !important;
+[pokecolor][pokecolor=grass] {
+  background-color: #77a689 !important;
 }
-
-[pokecolor=water] {
-  background-color: #a1baf !important;
+[pokecolor][pokecolor=ground] {
+  background-color: #bfa383 !important;
+}
+[pokecolor][pokecolor=ice] {
+  background-color: #9ac1d4 !important;
+}
+[pokecolor][pokecolor=normal] {
+  background-color: #9e868c !important;
+}
+[pokecolor][pokecolor=poison] {
+  background-color: #957ca9 !important;
+}
+[pokecolor][pokecolor=psyhic] {
+  background-color: #b67d9b !important;
+}
+[pokecolor][pokecolor=rock] {
+  background-color: #907a74 !important;
+}
+[pokecolor][pokecolor=steel] {
+  background-color: #90a59e !important;
+}
+[pokecolor][pokecolor=water] {
+  background-color: #7c97d4 !important;
 }
 
 header.home {
@@ -249,9 +256,32 @@ main.home section.search-buttons {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  position: relative;
+  padding-top: 60px;
 }
-main.home section.search-buttons button {
+main.home section.search-buttons .separator {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+main.home section.search-buttons .separator svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 150px;
+}
+main.home section.search-buttons .separator .shape-fill {
+  fill: #EB1D36;
+}
+@media (max-width: 767px) {
+  main.home section.search-buttons .separator svg {
+    width: calc(100% + 1.3px);
+    height: 64px;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

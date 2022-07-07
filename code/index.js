@@ -130,10 +130,19 @@ var SearchButtons = function (_React$Component3) {
     value: function render() {
       return React.createElement(
         "section",
-        { className: "search-buttons" },
+        { className: "search-buttons regular-width" },
+        React.createElement(
+          "div",
+          { "class": "separator" },
+          React.createElement(
+            "svg",
+            { "data-name": "Layer 1", xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 1200 120", preserveAspectRatio: "none" },
+            React.createElement("path", { d: "M600,112.77C268.63,112.77,0,65.52,0,7.23V120H1200V7.23C1200,65.52,931.37,112.77,600,112.77Z", "class": "shape-fill" })
+          )
+        ),
         React.createElement(SearchButton, { value: "search", pokecolor: "grass" }),
-        React.createElement(SearchButton, { value: "location" }),
-        React.createElement(SearchButton, { value: "moves and habilities" })
+        React.createElement(SearchButton, { value: "location", pokecolor: "fire" }),
+        React.createElement(SearchButton, { value: "moves and habilities", pokecolor: "water" })
       );
     }
   }]);
@@ -157,7 +166,10 @@ var SearchButton = function (_React$Component4) {
         "button",
         { className: "btn round", pokecolor: this.props.pokecolor },
         this.props.value,
-        React.createElement("img", { src: this.props.value.replaceAll(" ", "-") + ".svg" })
+        React.createElement("img", {
+          src: "./imgs/" + this.props.value.replaceAll(" ", "-") + "-btn.svg",
+          className: "regular"
+        })
       );
     }
   }]);

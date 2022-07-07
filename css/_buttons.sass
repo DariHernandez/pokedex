@@ -1,5 +1,7 @@
 .btn
     display: inline-block
+    transition-duration: 0.5s
+    cursor: pointer
 
     &.round 
         font-size: $font-size-base
@@ -10,7 +12,22 @@
         justify-content: space-between
         padding: 12px 20px
         background-color: red
-        
+        width: 100%
+        text-transform: capitalize
+        font-weight: bold
+        box-shadow: 5px 5px 17px -6px rgba(0,0,0,0.60)
+        margin: 8px 0
+
+        img.regular
+            width: 25px
+            height: 25px
+            filter: invert(100%)
+            opacity: 0.5
+    
         &:hover
+            box-shadow: 5px 5px 17px -6px rgba(0,0,0,1)
+            padding-left: 40px
+
 
         &:active
+            box-shadow: inset 5px 5px 28px 1px rgba(0,0,0,0.29)
