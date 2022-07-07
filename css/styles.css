@@ -68,6 +68,87 @@ h1, h2, h3, h4, h5, h6, .title {
 .btn {
   display: inline-block;
 }
+.btn.round {
+  font-size: 16px;
+  border-radius: 50px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background-color: red;
+}
+[pokecolor=bug] {
+  background-color: #a4b7a9 !important;
+}
+
+[pokecolor=dark] {
+  background-color: #9b9c9b !important;
+}
+
+[pokecolor=dragon] {
+  background-color: #b4d1d5 !important;
+}
+
+[pokecolor=electric] {
+  background-color: #f4f4aa !important;
+}
+
+[pokecolor=fairy] {
+  background-color: #d5a3b4 !important;
+}
+
+[pokecolor=fighting] {
+  background-color: #d6b3a7 !important;
+}
+
+[pokecolor=fire] {
+  background-color: #dda5a7 !important;
+}
+
+[pokecolor=flying] {
+  background-color: #b7c2cb !important;
+}
+
+[pokecolor=ghost] {
+  background-color: #adadc4 !important;
+}
+
+[pokecolor=grass] {
+  background-color: #a1cab1 !important;
+}
+
+[pokecolor=ground] {
+  background-color: #ddc6ab !important;
+}
+
+[pokecolor=ice] {
+  background-color: #cfedfb !important;
+}
+
+[pokecolor=normal] {
+  background-color: #c7babd !important;
+}
+
+[pokecolor=poison] {
+  background-color: #bfabcf !important;
+}
+
+[pokecolor=psyhic] {
+  background-color: #dbaac4 !important;
+}
+
+[pokecolor=rock] {
+  background-color: #b6a39d !important;
+}
+
+[pokecolor=steel] {
+  background-color: #bfc8c5 !important;
+}
+
+[pokecolor=water] {
+  background-color: #a1baf !important;
+}
 
 header.home {
   background-color: #EB1D36;
@@ -91,12 +172,12 @@ header.home .content .title {
   line-height: 60px;
 }
 
-main.home section.search {
+main.home section.search-bar {
   background-color: #EB1D36;
   position: relative;
   overflow: hidden;
 }
-main.home section.search .bg-img {
+main.home section.search-bar .bg-img {
   position: absolute;
   width: 90%;
   height: auto;
@@ -108,29 +189,29 @@ main.home section.search .bg-img {
   margin: 0 auto;
   text-align: center;
 }
-main.home section.search .content {
+main.home section.search-bar .content {
   position: relative;
   z-index: 1;
   padding-top: 50px;
   padding-bottom: 130px;
 }
-main.home section.search .content .title {
+main.home section.search-bar .content .title {
   font-size: 32px;
   line-height: 37px;
   color: #F5EDDC;
 }
-main.home section.search .content label {
+main.home section.search-bar .content label {
   width: 100%;
   position: relative;
 }
-main.home section.search .content label img {
+main.home section.search-bar .content label img {
   position: absolute;
   top: 0;
   left: 15px;
   width: 20px;
   height: 20px;
 }
-main.home section.search .content label input {
+main.home section.search-bar .content label input {
   padding: 12px;
   padding-left: 50px;
   padding-right: 20px;
@@ -139,7 +220,7 @@ main.home section.search .content label input {
   border-radius: 50px;
   border: none;
 }
-main.home section.search .divider {
+main.home section.search-bar .divider {
   position: absolute;
   top: 0;
   left: 0;
@@ -148,20 +229,29 @@ main.home section.search .divider {
   line-height: 0;
   transform: rotate(180deg);
 }
-main.home section.search .divider svg {
+main.home section.search-bar .divider svg {
   position: relative;
   display: block;
   width: calc(100% + 1.3px);
   height: 150px;
 }
-main.home section.search .divider .shape-fill {
+main.home section.search-bar .divider .shape-fill {
   fill: #EB1D36;
 }
 @media (max-width: 767px) {
-  main.home section.search .divider svg {
+  main.home section.search-bar .divider svg {
     width: calc(100% + 1.3px);
     height: 70px;
   }
+}
+main.home section.search-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+main.home section.search-buttons button {
+  width: 100%;
 }
 
 /*# sourceMappingURL=styles.css.map */

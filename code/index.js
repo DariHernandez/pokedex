@@ -85,7 +85,7 @@ var SearchBar = function (_React$Component2) {
       // Search bar html
       return React.createElement(
         "section",
-        { className: "search" },
+        { className: "search-bar" },
         React.createElement("img", { src: "./imgs/pokeball.svg", alt: "pokeball background image", className: "bg-img" }),
         React.createElement(
           "div",
@@ -130,8 +130,8 @@ var SearchButtons = function (_React$Component3) {
     value: function render() {
       return React.createElement(
         "section",
-        { className: "SearchButtons" },
-        React.createElement(SearchButton, { value: "search" }),
+        { className: "search-buttons" },
+        React.createElement(SearchButton, { value: "search", pokecolor: "grass" }),
         React.createElement(SearchButton, { value: "location" }),
         React.createElement(SearchButton, { value: "moves and habilities" })
       );
@@ -141,16 +141,33 @@ var SearchButtons = function (_React$Component3) {
   return SearchButtons;
 }(React.Component);
 
-function SearchButton(props) {
-  return React.createElement(
-    "button",
-    null,
-    props.value,
-    React.createElement("img", { src: props.value.replaceAll(" ", "-") + ".svg" })
-  );
-}
+var SearchButton = function (_React$Component4) {
+  _inherits(SearchButton, _React$Component4);
+
+  function SearchButton() {
+    _classCallCheck(this, SearchButton);
+
+    return _possibleConstructorReturn(this, (SearchButton.__proto__ || Object.getPrototypeOf(SearchButton)).apply(this, arguments));
+  }
+
+  _createClass(SearchButton, [{
+    key: "render",
+    value: function render() {
+      return React.createElement(
+        "button",
+        { className: "btn round", pokecolor: this.props.pokecolor },
+        this.props.value,
+        React.createElement("img", { src: this.props.value.replaceAll(" ", "-") + ".svg" })
+      );
+    }
+  }]);
+
+  return SearchButton;
+}(React.Component);
 
 // render button
+
+
 var domContainer = document.querySelector("#root");
 var root = ReactDOM.createRoot(domContainer);
 root.render(e(Pokedex));
