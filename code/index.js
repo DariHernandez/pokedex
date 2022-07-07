@@ -42,37 +42,26 @@ var Pokedex = function (_React$Component) {
         { className: "pokedex" },
         React.createElement(
           "header",
-          { className: "home main-area" },
-          React.createElement("img", { src: "./imgs/pokeball.svg", alt: "app logo" }),
+          { className: "home" },
           React.createElement(
-            "h2",
-            { className: "title" },
-            "Pokedex"
+            "div",
+            { className: "content regular-width" },
+            React.createElement("img", { src: "./imgs/pokeball.svg", alt: "app logo" }),
+            React.createElement(
+              "h2",
+              { className: "title" },
+              "Pokedex"
+            )
           )
         ),
         React.createElement(
           "main",
           { className: "home" },
-          React.createElement(
-            "section",
-            { className: "search main-area" },
-            React.createElement("img", { src: "./imgs/pokeball.svg", alt: "pokeball background image", className: "bg-img" }),
-            React.createElement(
-              "div",
-              { className: "content" },
-              React.createElement(
-                "h1",
-                { className: "title" },
-                "Find your ",
-                React.createElement("br", null),
-                " favorite pokemon"
-              ),
-              React.createElement(SearchBar
-              // onChange={(event) => this.handleChangeSearch(event)}
-              // value={this.state.search_value}
-              , null)
-            )
-          )
+          React.createElement(SearchBar
+          // onChange={(event) => this.handleChangeSearch(event)}
+          // value={this.state.search_value}
+          , null),
+          React.createElement(SearchButtons, null)
         )
       );
     }
@@ -95,19 +84,30 @@ var SearchBar = function (_React$Component2) {
     value: function render() {
       // Search bar html
       return React.createElement(
-        "label",
-        null,
-        React.createElement("img", { src: "./imgs/search.svg", alt: "Serach icon" }),
-        React.createElement("input", {
-          type: "search",
-          placeholder: "Search pokemon",
-          onChange: this.props.onChange,
-          value: this.props.value
-        }),
+        "section",
+        { className: "search" },
+        React.createElement("img", { src: "./imgs/pokeball.svg", alt: "pokeball background image", className: "bg-img" }),
         React.createElement(
-          "p",
-          null,
-          this.props.value
+          "div",
+          { className: "content regular-width" },
+          React.createElement(
+            "h1",
+            { className: "title" },
+            "Find your ",
+            React.createElement("br", null),
+            " favorite pokemon"
+          ),
+          React.createElement(
+            "label",
+            null,
+            React.createElement("img", { src: "./imgs/search.svg", alt: "Serach icon" }),
+            React.createElement("input", {
+              type: "search",
+              placeholder: "Search pokemon",
+              onChange: this.props.onChange,
+              value: this.props.value
+            })
+          )
         )
       );
     }
@@ -116,9 +116,41 @@ var SearchBar = function (_React$Component2) {
   return SearchBar;
 }(React.Component);
 
+var SearchButtons = function (_React$Component3) {
+  _inherits(SearchButtons, _React$Component3);
+
+  function SearchButtons() {
+    _classCallCheck(this, SearchButtons);
+
+    return _possibleConstructorReturn(this, (SearchButtons.__proto__ || Object.getPrototypeOf(SearchButtons)).apply(this, arguments));
+  }
+
+  _createClass(SearchButtons, [{
+    key: "render",
+    value: function render() {
+      return React.createElement(
+        "section",
+        { className: "SearchButtons" },
+        React.createElement(SearchButton, { value: "search" }),
+        React.createElement(SearchButton, { value: "location" }),
+        React.createElement(SearchButton, { value: "moves and habilities" })
+      );
+    }
+  }]);
+
+  return SearchButtons;
+}(React.Component);
+
+function SearchButton(props) {
+  return React.createElement(
+    "button",
+    null,
+    props.value,
+    React.createElement("img", { src: props.value.replaceAll(" ", "-") + ".svg" })
+  );
+}
+
 // render button
-
-
 var domContainer = document.querySelector("#root");
 var root = ReactDOM.createRoot(domContainer);
 root.render(e(Pokedex));

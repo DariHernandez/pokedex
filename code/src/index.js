@@ -22,23 +22,23 @@ class Pokedex extends React.Component {
       <div className="pokedex">
 
         {/* Render header */}
-        <header className="home main-area">
-          <img src="./imgs/pokeball.svg" alt="app logo"></img>
-          <h2 className="title">Pokedex</h2>
+        <header className="home">
+          <div className="content regular-width">
+            <img src="./imgs/pokeball.svg" alt="app logo"></img>
+            <h2 className="title">Pokedex</h2>
+          </div>
         </header>
 
         {/* Render main */}
         <main className="home">
-          <section className="search main-area">
-            <img src="./imgs/pokeball.svg" alt="pokeball background image" className="bg-img"></img>
-            <div className="content">
-              <h1 className="title">Find your <br></br> favorite pokemon</h1>
+          
               <SearchBar
                 // onChange={(event) => this.handleChangeSearch(event)}
                 // value={this.state.search_value}
               />
-            </div>
-          </section> 
+
+              <SearchButtons/>
+            
         </main>
       </div>
     );
@@ -50,18 +50,44 @@ class SearchBar extends React.Component {
   render() {
     // Search bar html
     return (
-      <label>
-        <img src="./imgs/search.svg" alt="Serach icon"></img>
-        <input
-          type="search"
-          placeholder="Search pokemon"
-          onChange={this.props.onChange}
-          value={this.props.value}
-        ></input>
-        <p>{this.props.value}</p>
-      </label>
+      <section className="search">
+        <img src="./imgs/pokeball.svg" alt="pokeball background image" className="bg-img"></img>
+        <div className="content regular-width">
+          <h1 className="title">Find your <br/> favorite pokemon</h1>
+          <label>
+            <img src="./imgs/search.svg" alt="Serach icon"></img>
+            <input
+              type="search"
+              placeholder="Search pokemon"
+              onChange={this.props.onChange}
+              value={this.props.value}
+            ></input>
+          </label>
+        </div>
+      </section> 
     );
   }
+}
+
+class SearchButtons extends React.Component {
+  render () {
+    return (
+      <section className="SearchButtons">
+        <SearchButton value="search"/>
+        <SearchButton value="location"/>
+        <SearchButton value="moves and habilities"/>
+      </section>
+    )
+  }
+}
+
+function SearchButton (props) {
+  return (
+    <button>
+      {props.value}
+      <img src={props.value.replaceAll (" ", "-") + ".svg"}/>
+    </button>
+  )
 }
 
 // render button

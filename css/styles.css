@@ -41,7 +41,8 @@ a {
   color: #EB1D36;
 }
 
-.main-area {
+.regular-width {
+  width: calc(100% - 20px);
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 10px;
@@ -68,21 +69,21 @@ h1, h2, h3, h4, h5, h6, .title {
   display: inline-block;
 }
 
-header {
+header.home {
+  background-color: #EB1D36;
+}
+header.home .content {
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
-header.home {
-  background-color: #EB1D36;
-}
-header.home img {
+header.home .content img {
   width: 30px;
   height: 30px;
   opacity: 0.4;
   transform: rotateZ(-25deg);
 }
-header.home .title {
+header.home .content .title {
   font-size: 20px;
   color: #F5EDDC;
   margin: 0;
