@@ -183,24 +183,33 @@ main.home section.search-bar {
   background-color: #EB1D36;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-main.home section.search-bar .bg-img {
+main.home section.search-bar .bg-img-wrapper {
   position: absolute;
-  width: 90%;
-  height: auto;
-  opacity: 0.05;
+  width: 100%;
+  height: 100%;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  margin: 0 auto;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main.home section.search-bar .bg-img-wrapper .bg-img {
+  opacity: 0.05;
+  width: 90%;
+  height: auto;
 }
 main.home section.search-bar .content {
   position: relative;
   z-index: 1;
-  padding-top: 50px;
-  padding-bottom: 130px;
+  padding-top: 120px;
+  padding-bottom: 160px;
 }
 main.home section.search-bar .content .title {
   font-size: 32px;
@@ -227,41 +236,16 @@ main.home section.search-bar .content label input {
   border-radius: 50px;
   border: none;
 }
-main.home section.search-bar .divider {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-  transform: rotate(180deg);
-}
-main.home section.search-bar .divider svg {
-  position: relative;
-  display: block;
-  width: calc(100% + 1.3px);
-  height: 150px;
-}
-main.home section.search-bar .divider .shape-fill {
-  fill: #EB1D36;
-}
-@media (max-width: 767px) {
-  main.home section.search-bar .divider svg {
-    width: calc(100% + 1.3px);
-    height: 70px;
-  }
-}
 main.home section.search-buttons {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   position: relative;
-  padding-top: 60px;
 }
 main.home section.search-buttons .separator {
   position: absolute;
-  top: 0;
+  top: -63px;
   left: 0;
   width: 100%;
   overflow: hidden;
@@ -275,7 +259,7 @@ main.home section.search-buttons .separator svg {
   height: 150px;
 }
 main.home section.search-buttons .separator .shape-fill {
-  fill: #EB1D36;
+  fill: #F5EDDC;
 }
 @media (max-width: 767px) {
   main.home section.search-buttons .separator svg {

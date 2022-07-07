@@ -51,7 +51,10 @@ class SearchBar extends React.Component {
     // Search bar html
     return (
       <section className="search-bar">
-        <img src="./imgs/pokeball.svg" alt="pokeball background image" className="bg-img"></img>
+        <div className="bg-img-wrapper">
+          <img src="./imgs/pokeball.svg" alt="pokeball background image" className="bg-img"></img>
+        </div>
+        
         <div className="content regular-width">
           <h1 className="title">Find your <br/> favorite pokemon</h1>
           <label>
@@ -72,15 +75,17 @@ class SearchBar extends React.Component {
 class SearchButtons extends React.Component {
   render () {
     return (
-      <section className="search-buttons regular-width">
+      <section className="search-buttons">
         <div class="separator">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M600,112.77C268.63,112.77,0,65.52,0,7.23V120H1200V7.23C1200,65.52,931.37,112.77,600,112.77Z" class="shape-fill"></path>
+              <path d="M0,0V7.23C0,65.52,268.63,112.77,600,112.77S1200,65.52,1200,7.23V0Z" class="shape-fill"></path>
             </svg>
         </div>
-        <SearchButton value="search" pokecolor="grass"/>
-        <SearchButton value="location" pokecolor="fire"/>
-        <SearchButton value="moves and habilities" pokecolor="water"/>
+        <div className="buttons regular-width">
+          <SearchButton value="search" pokecolor="grass"/>
+          <SearchButton value="location" pokecolor="fire"/>
+          <SearchButton value="moves and habilities" pokecolor="water"/>
+        </div>
       </section>
     )
   }

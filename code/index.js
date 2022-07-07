@@ -86,7 +86,11 @@ var SearchBar = function (_React$Component2) {
       return React.createElement(
         "section",
         { className: "search-bar" },
-        React.createElement("img", { src: "./imgs/pokeball.svg", alt: "pokeball background image", className: "bg-img" }),
+        React.createElement(
+          "div",
+          { className: "bg-img-wrapper" },
+          React.createElement("img", { src: "./imgs/pokeball.svg", alt: "pokeball background image", className: "bg-img" })
+        ),
         React.createElement(
           "div",
           { className: "content regular-width" },
@@ -130,19 +134,23 @@ var SearchButtons = function (_React$Component3) {
     value: function render() {
       return React.createElement(
         "section",
-        { className: "search-buttons regular-width" },
+        { className: "search-buttons" },
         React.createElement(
           "div",
           { "class": "separator" },
           React.createElement(
             "svg",
             { "data-name": "Layer 1", xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 1200 120", preserveAspectRatio: "none" },
-            React.createElement("path", { d: "M600,112.77C268.63,112.77,0,65.52,0,7.23V120H1200V7.23C1200,65.52,931.37,112.77,600,112.77Z", "class": "shape-fill" })
+            React.createElement("path", { d: "M0,0V7.23C0,65.52,268.63,112.77,600,112.77S1200,65.52,1200,7.23V0Z", "class": "shape-fill" })
           )
         ),
-        React.createElement(SearchButton, { value: "search", pokecolor: "grass" }),
-        React.createElement(SearchButton, { value: "location", pokecolor: "fire" }),
-        React.createElement(SearchButton, { value: "moves and habilities", pokecolor: "water" })
+        React.createElement(
+          "div",
+          { className: "buttons regular-width" },
+          React.createElement(SearchButton, { value: "search", pokecolor: "grass" }),
+          React.createElement(SearchButton, { value: "location", pokecolor: "fire" }),
+          React.createElement(SearchButton, { value: "moves and habilities", pokecolor: "water" })
+        )
       );
     }
   }]);
