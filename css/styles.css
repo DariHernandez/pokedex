@@ -98,6 +98,9 @@ h1, h2, h3, h4, h5, h6, .title {
 .btn.round:active {
   box-shadow: inset 5px 5px 28px 1px rgba(0, 0, 0, 0.29);
 }
+.btn.round[disabled], .btn.round.disabled {
+  box-shadow: none;
+}
 
 [pokecolor] {
   color: #F5EDDC;
@@ -219,22 +222,36 @@ main.home section.search-bar .content .title {
 main.home section.search-bar .content label {
   width: 100%;
   position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
 }
 main.home section.search-bar .content label img {
   position: absolute;
-  top: 0;
+  top: 10px;
   left: 15px;
   width: 20px;
   height: 20px;
 }
 main.home section.search-bar .content label input {
   padding: 12px;
-  padding-left: 50px;
-  padding-right: 20px;
-  width: 100%;
   font-size: 16px;
   border-radius: 50px;
   border: none;
+}
+main.home section.search-bar .content label input[type=search] {
+  width: 100%;
+  padding-left: 50px;
+  padding-right: 20px;
+  background-color: #F5EDDC;
+}
+main.home section.search-bar .content label input[type=button] {
+  width: 60%;
+  background-color: #CFD2CF;
+  margin-top: 15px;
+  text-align: center;
+  display: block;
 }
 main.home section.search-buttons {
   display: flex;

@@ -96,6 +96,7 @@ function SearchBarButton (props) {
       value="search"
       onClick={props.onClick}
       disabled={props.disabled}
+      className="btn round"
     ></input>
   )
 }

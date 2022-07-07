@@ -145,7 +145,8 @@ function SearchBarButton(props) {
     type: "button",
     value: "search",
     onClick: props.onClick,
-    disabled: props.disabled
+    disabled: props.disabled,
+    className: "btn round"
   });
 }
 

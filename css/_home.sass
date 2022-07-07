@@ -40,22 +40,39 @@ main.home
             label
                 width: 100%
                 position: relative
+                display: flex
+                align-items: flex-start
+                justify-content: center
+                flex-direction: column
 
                 img
                     position: absolute
-                    top: 0
+                    top: 10px
                     left: 15px
                     width: 20px
                     height: 20px
 
                 input
                     padding: 12px
-                    padding-left: 50px
-                    padding-right: 20px
-                    width: 100%
                     font-size: $font-size-base
                     border-radius: 50px
                     border: none
+
+                    &[type="search"]
+                        width: 100%
+                        padding-left: 50px
+                        padding-right: 20px
+                        background-color: $color-d
+
+                    &[type="button"]
+                        width: 60%
+                        background-color: $color-c
+                        margin-top: 15px
+                        text-align: center
+                        display: block
+
+
+
 
     
     section.search-buttons
