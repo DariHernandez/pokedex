@@ -13,37 +13,57 @@ var e = React.createElement;
 var Pokedex = function (_React$Component) {
   _inherits(Pokedex, _React$Component);
 
-  function Pokedex(props) {
+  function Pokedex() {
     _classCallCheck(this, Pokedex);
 
-    var _this = _possibleConstructorReturn(this, (Pokedex.__proto__ || Object.getPrototypeOf(Pokedex)).call(this, props));
-
-    _this.handleChangeSearch = function (event) {
-      _this.setState({
-        search_value: event.target.value
-      });
-    };
-
-    _this.state = {
-      search_value: ""
-    };
-    return _this;
+    return _possibleConstructorReturn(this, (Pokedex.__proto__ || Object.getPrototypeOf(Pokedex)).apply(this, arguments));
   }
 
   _createClass(Pokedex, [{
     key: "render",
 
+    // constructor(props) {
+    //   super(props);
+    //   this.state = {
+    //     search_value: "",
+    //   };
+    // }
+
+    // handleChangeSearch = (event) => {
+    //   this.setState({
+    //     search_value: event.target.value,
+    //   });
+    // };
 
     // Main component
     value: function render() {
-      var _this2 = this;
-
-      return React.createElement(SearchBar, {
-        onChange: function onChange(event) {
-          return _this2.handleChangeSearch(event);
-        },
-        value: this.state.search_value
-      });
+      return React.createElement(
+        "div",
+        { "class": "pokedex" },
+        React.createElement(
+          "header",
+          null,
+          React.createElement("img", { src: "./imgs/pokeball.svg", alt: "app logo" }),
+          React.createElement(
+            "h2",
+            null,
+            "Pokedex"
+          )
+        ),
+        React.createElement(
+          "main",
+          null,
+          React.createElement(
+            "h1",
+            null,
+            "Find your favorite pokemon"
+          ),
+          React.createElement(SearchBar
+          // onChange={(event) => this.handleChangeSearch(event)}
+          // value={this.state.search_value}
+          , null)
+        )
+      );
     }
   }]);
 
@@ -88,6 +108,6 @@ var SearchBar = function (_React$Component2) {
 // render button
 
 
-var domContainer = document.querySelector("#like_button_container");
+var domContainer = document.querySelector("#root");
 var root = ReactDOM.createRoot(domContainer);
 root.render(e(Pokedex));
