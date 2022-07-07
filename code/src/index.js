@@ -1,23 +1,20 @@
 "use strict"
 
-const e = React.createElement;
+const e = React.createElement
 
 class Pokedex extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       search_value: "",
-      is_writting: false,
-    };
+    }
   }
 
   handleChangeSearch (event) {
     this.setState({
       search_value: event.target.value,
-      is_writting: true
-    });
-    alert (event.target.value)
-  };
+    })
+  }
 
   // Main component
   render() {
@@ -44,7 +41,7 @@ class Pokedex extends React.Component {
             
         </main>
       </div>
-    );
+    )
   }
 }
 
@@ -68,13 +65,13 @@ class SearchBar extends React.Component {
             />
             <SearchBarButton
               onClick={() => alert("cliked")}
-              disabled={false}
+              disabled={this.props.value.length > 0 ? false : true}
             />
             
           </label>
         </div>
       </section> 
-    );
+    )
   }
 }
 
@@ -135,6 +132,6 @@ class SearchButton extends React.Component {
 }
 
 // render button
-const domContainer = document.querySelector("#root");
-const root = ReactDOM.createRoot(domContainer);
-root.render(e(Pokedex));
+const domContainer = document.querySelector("#root")
+const root = ReactDOM.createRoot(domContainer)
+root.render(e(Pokedex))

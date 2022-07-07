@@ -19,8 +19,7 @@ var Pokedex = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Pokedex.__proto__ || Object.getPrototypeOf(Pokedex)).call(this, props));
 
     _this.state = {
-      search_value: "",
-      is_writting: false
+      search_value: ""
     };
     return _this;
   }
@@ -29,16 +28,14 @@ var Pokedex = function (_React$Component) {
     key: "handleChangeSearch",
     value: function handleChangeSearch(event) {
       this.setState({
-        search_value: event.target.value,
-        is_writting: true
+        search_value: event.target.value
       });
-      alert(event.target.value);
     }
-  }, {
-    key: "render",
-
 
     // Main component
+
+  }, {
+    key: "render",
     value: function render() {
       var _this2 = this;
 
@@ -120,7 +117,7 @@ var SearchBar = function (_React$Component2) {
               onClick: function onClick() {
                 return alert("cliked");
               },
-              disabled: false
+              disabled: this.props.value.length > 0 ? false : true
             })
           )
         )
