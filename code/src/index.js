@@ -1,3 +1,5 @@
+import {get_pokedex} from "./pokeapi.js"
+
 "use strict"
 
 const e = React.createElement
@@ -7,7 +9,20 @@ class Pokedex extends React.Component {
     super(props)
     this.state = {
       search_value: "",
+      pokedex_data: {},
     }
+  }
+
+  componentDidMount () {
+    // Get main data from api
+    get_pokedex (this.updatePokedex)
+  }
+
+  updatePokedex = (api_data) => {
+    // Save main date in status
+    this.setState ({
+      pokedex_data: api_data,
+    })
   }
 
   handleChangeSearch (event) {
