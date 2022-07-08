@@ -92,6 +92,8 @@ h1, h2, h3, h4, h5, h6, .title {
 }
 .btn.round:hover {
   box-shadow: 5px 5px 17px -6px rgb(0, 0, 0);
+}
+.btn.round:hover.animate {
   padding-left: 40px;
 }
 .btn.round:active {

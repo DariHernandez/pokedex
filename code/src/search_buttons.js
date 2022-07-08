@@ -17,7 +17,7 @@ export function SearchButtons (props) {
   
   function SearchButton (props) {
     return (
-      <button className="btn round" pokecolor={props.pokecolor}>
+      <button className="btn round animate" pokecolor={props.pokecolor}>
         {props.value}
         <img 
           src={"./imgs/" + props.value.replaceAll (" ", "-") + "-btn.svg"}
