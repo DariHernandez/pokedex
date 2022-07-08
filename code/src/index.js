@@ -1,4 +1,6 @@
 import {get_pokedex} from "./pokeapi.js"
+import {SearchButtons} from "./search_buttons.js"
+import {SearchBar} from "./search_bar.js"
 
 "use strict"
 
@@ -112,11 +114,12 @@ function MainHome (props) {
   return (
     <main className={props.current_screen.replace(" ", "-")}>
           
-      <SearchBarHome
-        onChange={(event) => props.handleChangeSearch(event)}
-        onClick={() => props.handleClickSearch()}
-        value={props.search_value}
-        sectionTitle = {props.current_screen}
+      <SearchBar
+        handleChangeSearch={props.handleChangeSearch}
+        handleClickSearch={props.handleClickSearch}
+        search_value={props.search_value}
+        current_screen = {props.current_screen}
+        handleClickGoBack={props.handleClickGoBack}
       />
 
       <SearchButtons/>
@@ -129,125 +132,15 @@ function MainSearch (props) {
   return (
     <main className={props.current_screen.replace(" ", "-")}>
           
-      <SearchBarType
-        onChange={(event) => props.handleChangeSearch(event)}
-        onClick={() => props.handleClickSearch()}
-        value={props.search_value}
-        sectionTitle = {props.current_screen}
+      <SearchBar
+        handleChangeSearch={props.handleChangeSearch}
+        handleClickSearch={props.handleClickSearch}
+        search_value={props.search_value}
+        current_screen = {props.current_screen}
         handleClickGoBack={props.handleClickGoBack}
       />
 
     </main>
-  )
-}
-
-
-function SearchBarHome (props) {
-  // Search bar html
-  return (
-    <section className="search-bar">
-      <div className="bg-img-wrapper">
-        <img src="./imgs/pokeball.svg" alt="pokeball background image" className="bg-img"></img>
-      </div>
-
-      <div className="content regular-width">
-        <h1 className="title">Find your <br/> favorite pokemon</h1>
-        <label>
-          <img src="./imgs/search.svg" alt="Serach icon"></img>
-          <SearchBarInput 
-            onChange={props.onChange}
-            value={props.value}
-          />
-          <SearchBarButton
-            onClick={props.onClick}
-            disabled={props.value.length > 0 ? false : true}
-          />
-          
-        </label>
-      </div>
-    </section> 
-  )
-}
-
-function SearchBarType (props) {
-  // Search bar html
-  return (
-    <section className="search-bar">
-      <div className="content regular-width">
-        <SearchBarGoBack
-          sectionTitle = {props.sectionTitle}
-          onClick={props.handleClickGoBack}
-        />
-        <label>
-          <img src="./imgs/search.svg" alt="Serach icon"></img>
-          <SearchBarInput 
-            onChange={props.onChange}
-            value={props.value}
-          />            
-        </label>
-      </div>
-    </section> 
-  )
-}
-
-function SearchBarInput (props) {
-  return (
-    <input
-      type="search"
-      placeholder="Search pokemon"
-      onChange={props.onChange}
-      value={props.value}
-    ></input>
-  )
-}
-
-function SearchBarButton (props) {
-  return (
-    <input
-      type="button"
-      value="search"
-      onClick={props.onClick}
-      disabled={props.disabled}
-      className="btn round"
-    ></input>
-  )
-}
-
-function SearchBarGoBack (props) {
-  return (
-    <div className="return" onClick={props.onClick}>
-      <img src="./imgs/arrow.svg" alt="go back icon" className="return-icon"/>
-      <h2 className="section-title">{props.sectionTitle}</h2>
-    </div>
-  )
-}
-
-function SearchButtons (props) {
-  return (
-    <section className="search-buttons">
-      <div className="separator">
-          <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M0,0V7.23C0,65.52,268.63,112.77,600,112.77S1200,65.52,1200,7.23V0Z" className="shape-fill"></path>
-          </svg>
-      </div>
-      <div className="buttons regular-width">
-        <SearchButton value="search" pokecolor="grass"/>
-        <SearchButton value="location" pokecolor="fire"/>
-        <SearchButton value="moves and habilities" pokecolor="water"/>
-      </div>
-    </section>
-  )
-}
-
-function SearchButton (props) {
-  return (
-    <button className="btn round" pokecolor={props.pokecolor}>
-      {props.value}
-      <img 
-        src={"./imgs/" + props.value.replaceAll (" ", "-") + "-btn.svg"}
-        className="regular"
-        />
-    </button>
   )
 }
 
