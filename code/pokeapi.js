@@ -1,11 +1,8 @@
 export function get_pokedex (done_function) {
+    // Get data from api
     fetch ("https://pokeapi.co/api/v2/pokedex/1/")
     .then ((response) => response.json())
-    .then(data => done_function(data))
+
+    // Send data to function
+    .then(data => done_function(data.pokemon_entries))
 }
-
-// function done_function (data) {
-//     console.log (data)
-// }
-
-// get_pokedex (done_function)

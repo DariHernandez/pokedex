@@ -23,13 +23,14 @@ var Pokedex = function (_React$Component) {
     _this.updatePokedex = function (api_data) {
       // Save main date in status
       _this.setState({
-        pokedex_data: api_data
+        pokemons: api_data
       });
     };
 
     _this.state = {
       search_value: "",
-      pokedex_data: {}
+      pokemons: [],
+      found_pokemons: []
     };
     return _this;
   }
@@ -43,8 +44,17 @@ var Pokedex = function (_React$Component) {
   }, {
     key: "handleChangeSearch",
     value: function handleChangeSearch(event) {
+
+      var search_value = event.target.value;
+      var pokemons = this.state.pokemons;
+
+      var found_pokemons = pokemons.filter(function (pokemon) {
+        return pokemon.pokemon_species.name.includes(search_value);
+      });
+
       this.setState({
-        search_value: event.target.value
+        search_value: search_value,
+        found_pokemons: found_pokemons
       });
     }
 

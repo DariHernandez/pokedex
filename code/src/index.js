@@ -9,7 +9,8 @@ class Pokedex extends React.Component {
     super(props)
     this.state = {
       search_value: "",
-      pokedex_data: {},
+      pokemons: [],
+      found_pokemons: [],
     }
   }
 
@@ -21,14 +22,24 @@ class Pokedex extends React.Component {
   updatePokedex = (api_data) => {
     // Save main date in status
     this.setState ({
-      pokedex_data: api_data,
+      pokemons: api_data,
     })
   }
 
   handleChangeSearch (event) {
-    this.setState({
-      search_value: event.target.value,
+
+    const search_value = event.target.value
+    const pokemons = this.state.pokemons
+    
+    let found_pokemons = pokemons.filter ((pokemon) => {
+      return pokemon.pokemon_species.name.includes (search_value)
     })
+    
+    this.setState({
+      search_value: search_value,
+      found_pokemons: found_pokemons,
+    }) 
+    
   }
 
   // Main component
