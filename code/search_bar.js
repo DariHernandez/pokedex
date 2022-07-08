@@ -74,7 +74,7 @@ function SearchBarType(props) {
         React.createElement("img", { src: "./imgs/search.svg", alt: "Serach icon" }),
         React.createElement(SearchBarInput, {
           onChange: props.handleChangeSearch,
-          value: props.value
+          value: props.search_value
         })
       )
     )

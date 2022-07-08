@@ -63,7 +63,7 @@ function SearchBarType (props) {
             <img src="./imgs/search.svg" alt="Serach icon"></img>
             <SearchBarInput 
               onChange={props.handleChangeSearch}
-              value={props.value}
+              value={props.search_value}
             />            
           </label>
         </div>
