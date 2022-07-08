@@ -30,7 +30,8 @@ var Pokedex = function (_React$Component) {
     _this.state = {
       search_value: "",
       pokemons: [],
-      found_pokemons: []
+      found_pokemons: [],
+      current_screen: "home"
     };
     return _this;
   }
@@ -57,6 +58,14 @@ var Pokedex = function (_React$Component) {
         found_pokemons: found_pokemons
       });
     }
+  }, {
+    key: "handleClickSearch",
+    value: function handleClickSearch() {
+      console.log("all types");
+      this.setState({
+        current_screen: "all types"
+      });
+    }
 
     // Main component
 
@@ -65,6 +74,7 @@ var Pokedex = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
+      // Selet main section
       return React.createElement(
         "div",
         { className: "pokedex" },
@@ -82,17 +92,16 @@ var Pokedex = function (_React$Component) {
             )
           )
         ),
-        React.createElement(
-          "main",
-          { className: "home" },
-          React.createElement(SearchBar, {
-            onChange: function onChange(event) {
-              return _this2.handleChangeSearch(event);
-            },
-            value: this.state.search_value
-          }),
-          React.createElement(SearchButtons, null)
-        )
+        React.createElement(Main, {
+          current_screen: this.state.current_screen,
+          search_value: this.state.search_value,
+          handleChangeSearch: function handleChangeSearch(event) {
+            return _this2.handleChangeSearch(event);
+          },
+          handleClickSearch: function handleClickSearch() {
+            return _this2.handleClickSearch();
+          }
+        })
       );
     }
   }]);
@@ -100,16 +109,84 @@ var Pokedex = function (_React$Component) {
   return Pokedex;
 }(React.Component);
 
-var SearchBar = function (_React$Component2) {
-  _inherits(SearchBar, _React$Component2);
+var Main = function (_React$Component2) {
+  _inherits(Main, _React$Component2);
 
-  function SearchBar() {
-    _classCallCheck(this, SearchBar);
+  function Main() {
+    _classCallCheck(this, Main);
 
-    return _possibleConstructorReturn(this, (SearchBar.__proto__ || Object.getPrototypeOf(SearchBar)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).apply(this, arguments));
   }
 
-  _createClass(SearchBar, [{
+  _createClass(Main, [{
+    key: "render",
+    value: function render() {
+      if (this.props.current_screen == "home") {
+        return React.createElement(MainHome, {
+          current_screen: this.props.current_screen,
+          search_value: this.props.search_value,
+          handleChangeSearch: this.props.handleChangeSearch,
+          handleClickSearch: this.props.handleClickSearch
+        });
+      } else if (this.props.current_screen == "all types") {
+        return React.createElement(MainSearch, {
+          current_screen: this.props.current_screen,
+          search_value: this.props.search_value,
+          handleChangeSearch: this.props.handleChangeSearch,
+          handleClickSearch: this.props.handleClickSearch
+        });
+      }
+    }
+  }]);
+
+  return Main;
+}(React.Component);
+
+function MainHome(props) {
+  return React.createElement(
+    "main",
+    { className: props.current_screen.replace(" ", "-") },
+    React.createElement(SearchBarHome, {
+      onChange: function onChange(event) {
+        return props.handleChangeSearch(event);
+      },
+      onClick: function onClick() {
+        return props.handleClickSearch();
+      },
+      value: props.search_value,
+      sectionTitle: props.current_screen
+    }),
+    React.createElement(SearchButtons, null)
+  );
+}
+
+function MainSearch(props) {
+  return React.createElement(
+    "main",
+    { className: props.current_screen.replace(" ", "-") },
+    React.createElement(SearchBarType, {
+      onChange: function onChange(event) {
+        return props.handleChangeSearch(event);
+      },
+      onClick: function onClick() {
+        return props.handleClickSearch();
+      },
+      value: props.search_value,
+      sectionTitle: props.current_screen
+    })
+  );
+}
+
+var SearchBarHome = function (_React$Component3) {
+  _inherits(SearchBarHome, _React$Component3);
+
+  function SearchBarHome() {
+    _classCallCheck(this, SearchBarHome);
+
+    return _possibleConstructorReturn(this, (SearchBarHome.__proto__ || Object.getPrototypeOf(SearchBarHome)).apply(this, arguments));
+  }
+
+  _createClass(SearchBarHome, [{
     key: "render",
     value: function render() {
       // Search bar html
@@ -140,9 +217,7 @@ var SearchBar = function (_React$Component2) {
               value: this.props.value
             }),
             React.createElement(SearchBarButton, {
-              onClick: function onClick() {
-                return alert("cliked");
-              },
+              onClick: this.props.onClick,
               disabled: this.props.value.length > 0 ? false : true
             })
           )
@@ -151,7 +226,53 @@ var SearchBar = function (_React$Component2) {
     }
   }]);
 
-  return SearchBar;
+  return SearchBarHome;
+}(React.Component);
+
+var SearchBarType = function (_React$Component4) {
+  _inherits(SearchBarType, _React$Component4);
+
+  function SearchBarType() {
+    _classCallCheck(this, SearchBarType);
+
+    return _possibleConstructorReturn(this, (SearchBarType.__proto__ || Object.getPrototypeOf(SearchBarType)).apply(this, arguments));
+  }
+
+  _createClass(SearchBarType, [{
+    key: "render",
+    value: function render() {
+      // Search bar html
+      return React.createElement(
+        "section",
+        { className: "search-bar" },
+        React.createElement(
+          "div",
+          { className: "content regular-width" },
+          React.createElement(
+            "button",
+            { className: "return" },
+            React.createElement("img", { src: "./imgs/arrow.svg", alt: "go back icon", className: "return-icon" }),
+            React.createElement(
+              "h2",
+              { className: "section-title" },
+              this.props.sectionTitle
+            )
+          ),
+          React.createElement(
+            "label",
+            null,
+            React.createElement("img", { src: "./imgs/search.svg", alt: "Serach icon" }),
+            React.createElement(SearchBarInput, {
+              onChange: this.props.onChange,
+              value: this.props.value
+            })
+          )
+        )
+      );
+    }
+  }]);
+
+  return SearchBarType;
 }(React.Component);
 
 function SearchBarInput(props) {
@@ -173,8 +294,8 @@ function SearchBarButton(props) {
   });
 }
 
-var SearchButtons = function (_React$Component3) {
-  _inherits(SearchButtons, _React$Component3);
+var SearchButtons = function (_React$Component5) {
+  _inherits(SearchButtons, _React$Component5);
 
   function SearchButtons() {
     _classCallCheck(this, SearchButtons);
@@ -211,8 +332,8 @@ var SearchButtons = function (_React$Component3) {
   return SearchButtons;
 }(React.Component);
 
-var SearchButton = function (_React$Component4) {
-  _inherits(SearchButton, _React$Component4);
+var SearchButton = function (_React$Component6) {
+  _inherits(SearchButton, _React$Component6);
 
   function SearchButton() {
     _classCallCheck(this, SearchButton);

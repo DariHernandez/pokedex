@@ -1,0 +1,34 @@
+main.home
+    section.search-buttons
+        display: flex
+        align-items: center
+        justify-content: center
+        flex-direction: column
+        position: relative
+
+        .separator
+            position: absolute
+            top: -63px
+            left: 0
+            width: 100%
+            overflow: hidden
+            line-height: 0
+            transform: rotate(180deg)
+        
+
+            svg 
+                position: relative
+                display: block
+                width: calc(100% + 1.3px)
+                height: 150px
+            
+
+            .shape-fill 
+                fill: $color-d
+            
+
+            @media (max-width: 767px) 
+                svg 
+                    width: calc(100% + 1.3px)
+                    height: 64px
+                

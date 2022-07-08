@@ -11,6 +11,7 @@ class Pokedex extends React.Component {
       search_value: "",
       pokemons: [],
       found_pokemons: [],
+      current_screen: "home"
     }
   }
 
@@ -38,12 +39,20 @@ class Pokedex extends React.Component {
     this.setState({
       search_value: search_value,
       found_pokemons: found_pokemons,
-    }) 
-    
+    })
+
+  }
+
+  handleClickSearch () {
+    console.log ("all types")
+    this.setState({
+      current_screen: "all types",
+    })
   }
 
   // Main component
   render() {
+    // Selet main section
     return (
       <div className="pokedex">
 
@@ -56,23 +65,72 @@ class Pokedex extends React.Component {
         </header>
 
         {/* Render main */}
-        <main className="home">
-          
-              <SearchBar
-                onChange={(event) => this.handleChangeSearch(event)}
-                value={this.state.search_value}
-              />
-
-              <SearchButtons/>
-            
-        </main>
+        <Main
+          current_screen = {this.state.current_screen}
+          search_value={this.state.search_value}
+          handleChangeSearch ={(event) => (this.handleChangeSearch(event))}
+          handleClickSearch={() => this.handleClickSearch()}
+        />
+        
       </div>
     )
   }
 }
 
+class Main extends React.Component {
+  render () {
+    if (this.props.current_screen == "home") {
+      return <MainHome
+        current_screen = {this.props.current_screen}
+        search_value={this.props.search_value}
+        handleChangeSearch ={this.props.handleChangeSearch}
+        handleClickSearch={this.props.handleClickSearch}
+      />
+    } else if (this.props.current_screen == "all types") {
+      return <MainSearch
+        current_screen = {this.props.current_screen}
+        search_value={this.props.search_value}
+        handleChangeSearch ={this.props.handleChangeSearch}
+        handleClickSearch={this.props.handleClickSearch}
+      />
+    }
+  }
+}
 
-class SearchBar extends React.Component {
+function MainHome (props) {
+  return (
+    <main className={props.current_screen.replace(" ", "-")}>
+          
+      <SearchBarHome
+        onChange={(event) => props.handleChangeSearch(event)}
+        onClick={() => props.handleClickSearch()}
+        value={props.search_value}
+        sectionTitle = {props.current_screen}
+      />
+
+      <SearchButtons/>
+
+    </main>
+  )
+}
+
+function MainSearch (props) {
+  return (
+    <main className={props.current_screen.replace(" ", "-")}>
+          
+      <SearchBarType
+        onChange={(event) => props.handleChangeSearch(event)}
+        onClick={() => props.handleClickSearch()}
+        value={props.search_value}
+        sectionTitle = {props.current_screen}
+      />
+
+    </main>
+  )
+}
+
+
+class SearchBarHome extends React.Component {
   render() {
     // Search bar html
     return (
@@ -80,7 +138,7 @@ class SearchBar extends React.Component {
         <div className="bg-img-wrapper">
           <img src="./imgs/pokeball.svg" alt="pokeball background image" className="bg-img"></img>
         </div>
-        
+
         <div className="content regular-width">
           <h1 className="title">Find your <br/> favorite pokemon</h1>
           <label>
@@ -90,10 +148,33 @@ class SearchBar extends React.Component {
               value={this.props.value}
             />
             <SearchBarButton
-              onClick={() => alert("cliked")}
+              onClick={this.props.onClick}
               disabled={this.props.value.length > 0 ? false : true}
             />
             
+          </label>
+        </div>
+      </section> 
+    )
+  }
+}
+
+class SearchBarType extends React.Component {
+  render() {
+    // Search bar html
+    return (
+      <section className="search-bar">
+        <div className="content regular-width">
+          <button className="return">
+            <img src="./imgs/arrow.svg" alt="go back icon" className="return-icon"></img>
+            <h2 className="section-title">{this.props.sectionTitle}</h2>
+          </button>
+          <label>
+            <img src="./imgs/search.svg" alt="Serach icon"></img>
+            <SearchBarInput 
+              onChange={this.props.onChange}
+              value={this.props.value}
+            />            
           </label>
         </div>
       </section> 

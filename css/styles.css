@@ -78,7 +78,6 @@ h1, h2, h3, h4, h5, h6, .title {
   align-items: center;
   justify-content: space-between;
   padding: 12px 20px;
-  background-color: red;
   width: 100%;
   text-transform: capitalize;
   font-weight: bold;
@@ -162,6 +161,7 @@ h1, h2, h3, h4, h5, h6, .title {
 
 header.home {
   background-color: #EB1D36;
+  padding: 10px 0;
 }
 header.home .content {
   display: flex;
@@ -176,14 +176,49 @@ header.home .content img {
 }
 header.home .content .title {
   font-size: 20px;
-  color: #F5EDDC;
+  color: #A2B5BB;
   margin: 0;
   margin-left: 20px;
-  line-height: 60px;
 }
 
-main.home section.search-bar {
+main section.search-bar {
   background-color: #EB1D36;
+}
+main label {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+}
+main label img {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  width: 20px;
+  height: 20px;
+}
+main label input {
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 50px;
+  border: none;
+}
+main label input[type=search] {
+  width: 100%;
+  padding-left: 50px;
+  padding-right: 20px;
+  background-color: #F5EDDC;
+}
+main label input[type=button].btn.round {
+  width: 60%;
+  background-color: #CFD2CF;
+  margin-top: 15px;
+  text-align: center;
+  display: block;
+}
+main.home section.search-bar {
   position: relative;
   overflow: hidden;
   display: flex;
@@ -219,40 +254,35 @@ main.home section.search-bar .content .title {
   line-height: 37px;
   color: #F5EDDC;
 }
-main.home section.search-bar .content label {
-  width: 100%;
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  flex-direction: column;
+main.all-types section.search-bar {
+  padding-bottom: 20px;
 }
-main.home section.search-bar .content label img {
-  position: absolute;
-  top: 10px;
-  left: 15px;
-  width: 20px;
-  height: 20px;
-}
-main.home section.search-bar .content label input {
-  padding: 12px;
-  font-size: 16px;
-  border-radius: 50px;
+main.all-types section.search-bar .content .return {
+  background: none;
   border: none;
-}
-main.home section.search-bar .content label input[type=search] {
+  height: 25px;
+  margin-top: 10px;
   width: 100%;
-  padding-left: 50px;
-  padding-right: 20px;
-  background-color: #F5EDDC;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0;
+  height: 60px;
 }
-main.home section.search-bar .content label input[type=button] {
-  width: 60%;
-  background-color: #CFD2CF;
-  margin-top: 15px;
-  text-align: center;
-  display: block;
+main.all-types section.search-bar .content .return img {
+  width: auto;
+  height: 25px;
 }
+main.all-types section.search-bar .content .return .section-title {
+  display: inline-block;
+  font-size: 24px;
+  line-height: auto;
+  color: #F5EDDC;
+  text-transform: capitalize;
+  margin: 0;
+  margin-left: 10px;
+}
+
 main.home section.search-buttons {
   display: flex;
   align-items: center;
