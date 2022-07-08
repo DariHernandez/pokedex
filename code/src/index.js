@@ -11,7 +11,8 @@ class Pokedex extends React.Component {
       search_value: "",
       pokemons: [],
       found_pokemons: [],
-      current_screen: "home"
+      current_screen: "home",
+      last_screen: ""
     }
   }
 
@@ -44,9 +45,19 @@ class Pokedex extends React.Component {
   }
 
   handleClickSearch () {
-    console.log ("all types")
+    // Go to search all types screen
     this.setState({
       current_screen: "all types",
+      last_screen: "home",
+    })
+  }
+
+  handleClickGoBack () {
+    // Go back to last screen
+    const last_screen = this.state.last_screen
+    this.setState({
+      current_screen: last_screen,
+      last_screen: "",
     })
   }
 
@@ -70,6 +81,7 @@ class Pokedex extends React.Component {
           search_value={this.state.search_value}
           handleChangeSearch ={(event) => (this.handleChangeSearch(event))}
           handleClickSearch={() => this.handleClickSearch()}
+          handleClickGoBack={() => this.handleClickGoBack()}
         />
         
       </div>
@@ -92,6 +104,7 @@ class Main extends React.Component {
         search_value={this.props.search_value}
         handleChangeSearch ={this.props.handleChangeSearch}
         handleClickSearch={this.props.handleClickSearch}
+        handleClickGoBack={this.props.handleClickGoBack}
       />
     }
   }
@@ -123,6 +136,7 @@ function MainSearch (props) {
         onClick={() => props.handleClickSearch()}
         value={props.search_value}
         sectionTitle = {props.current_screen}
+        handleClickGoBack={props.handleClickGoBack}
       />
 
     </main>
@@ -165,10 +179,10 @@ class SearchBarType extends React.Component {
     return (
       <section className="search-bar">
         <div className="content regular-width">
-          <button className="return">
-            <img src="./imgs/arrow.svg" alt="go back icon" className="return-icon"></img>
-            <h2 className="section-title">{this.props.sectionTitle}</h2>
-          </button>
+          <SearchBarGoBack
+            sectionTitle = {this.props.sectionTitle}
+            onClick={this.props.handleClickGoBack}
+          />
           <label>
             <img src="./imgs/search.svg" alt="Serach icon"></img>
             <SearchBarInput 
@@ -202,6 +216,15 @@ function SearchBarButton (props) {
       disabled={props.disabled}
       className="btn round"
     ></input>
+  )
+}
+
+function SearchBarGoBack (props) {
+  return (
+    <div className="return" onClick={props.onClick}>
+      <img src="./imgs/arrow.svg" alt="go back icon" className="return-icon"/>
+      <h2 className="section-title">{props.sectionTitle}</h2>
+    </div>
   )
 }
 

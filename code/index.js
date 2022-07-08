@@ -31,7 +31,8 @@ var Pokedex = function (_React$Component) {
       search_value: "",
       pokemons: [],
       found_pokemons: [],
-      current_screen: "home"
+      current_screen: "home",
+      last_screen: ""
     };
     return _this;
   }
@@ -61,9 +62,20 @@ var Pokedex = function (_React$Component) {
   }, {
     key: "handleClickSearch",
     value: function handleClickSearch() {
-      console.log("all types");
+      // Go to search all types screen
       this.setState({
-        current_screen: "all types"
+        current_screen: "all types",
+        last_screen: "home"
+      });
+    }
+  }, {
+    key: "handleClickGoBack",
+    value: function handleClickGoBack() {
+      // Go back to last screen
+      var last_screen = this.state.last_screen;
+      this.setState({
+        current_screen: last_screen,
+        last_screen: ""
       });
     }
 
@@ -100,6 +112,9 @@ var Pokedex = function (_React$Component) {
           },
           handleClickSearch: function handleClickSearch() {
             return _this2.handleClickSearch();
+          },
+          handleClickGoBack: function handleClickGoBack() {
+            return _this2.handleClickGoBack();
           }
         })
       );
@@ -133,7 +148,8 @@ var Main = function (_React$Component2) {
           current_screen: this.props.current_screen,
           search_value: this.props.search_value,
           handleChangeSearch: this.props.handleChangeSearch,
-          handleClickSearch: this.props.handleClickSearch
+          handleClickSearch: this.props.handleClickSearch,
+          handleClickGoBack: this.props.handleClickGoBack
         });
       }
     }
@@ -172,7 +188,8 @@ function MainSearch(props) {
         return props.handleClickSearch();
       },
       value: props.search_value,
-      sectionTitle: props.current_screen
+      sectionTitle: props.current_screen,
+      handleClickGoBack: props.handleClickGoBack
     })
   );
 }
@@ -248,16 +265,10 @@ var SearchBarType = function (_React$Component4) {
         React.createElement(
           "div",
           { className: "content regular-width" },
-          React.createElement(
-            "button",
-            { className: "return" },
-            React.createElement("img", { src: "./imgs/arrow.svg", alt: "go back icon", className: "return-icon" }),
-            React.createElement(
-              "h2",
-              { className: "section-title" },
-              this.props.sectionTitle
-            )
-          ),
+          React.createElement(SearchBarGoBack, {
+            sectionTitle: this.props.sectionTitle,
+            onClick: this.props.handleClickGoBack
+          }),
           React.createElement(
             "label",
             null,
@@ -292,6 +303,19 @@ function SearchBarButton(props) {
     disabled: props.disabled,
     className: "btn round"
   });
+}
+
+function SearchBarGoBack(props) {
+  return React.createElement(
+    "div",
+    { className: "return", onClick: props.onClick },
+    React.createElement("img", { src: "./imgs/arrow.svg", alt: "go back icon", className: "return-icon" }),
+    React.createElement(
+      "h2",
+      { className: "section-title" },
+      props.sectionTitle
+    )
+  );
 }
 
 var SearchButtons = function (_React$Component5) {
