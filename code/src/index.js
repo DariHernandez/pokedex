@@ -89,24 +89,22 @@ class Pokedex extends React.Component {
   }
 }
 
-class Main extends React.Component {
-  render () {
-    if (this.props.current_screen == "home") {
-      return <MainHome
-        current_screen = {this.props.current_screen}
-        search_value={this.props.search_value}
-        handleChangeSearch ={this.props.handleChangeSearch}
-        handleClickSearch={this.props.handleClickSearch}
-      />
-    } else if (this.props.current_screen == "all types") {
-      return <MainSearch
-        current_screen = {this.props.current_screen}
-        search_value={this.props.search_value}
-        handleChangeSearch ={this.props.handleChangeSearch}
-        handleClickSearch={this.props.handleClickSearch}
-        handleClickGoBack={this.props.handleClickGoBack}
-      />
-    }
+function Main (props) {
+  if (props.current_screen == "home") {
+    return <MainHome
+      current_screen = {props.current_screen}
+      search_value={props.search_value}
+      handleChangeSearch ={props.handleChangeSearch}
+      handleClickSearch={props.handleClickSearch}
+    />
+  } else if (props.current_screen == "all types") {
+    return <MainSearch
+      current_screen = {props.current_screen}
+      search_value={props.search_value}
+      handleChangeSearch ={props.handleChangeSearch}
+      handleClickSearch={props.handleClickSearch}
+      handleClickGoBack={props.handleClickGoBack}
+    />
   }
 }
 
@@ -144,56 +142,52 @@ function MainSearch (props) {
 }
 
 
-class SearchBarHome extends React.Component {
-  render() {
-    // Search bar html
-    return (
-      <section className="search-bar">
-        <div className="bg-img-wrapper">
-          <img src="./imgs/pokeball.svg" alt="pokeball background image" className="bg-img"></img>
-        </div>
+function SearchBarHome (props) {
+  // Search bar html
+  return (
+    <section className="search-bar">
+      <div className="bg-img-wrapper">
+        <img src="./imgs/pokeball.svg" alt="pokeball background image" className="bg-img"></img>
+      </div>
 
-        <div className="content regular-width">
-          <h1 className="title">Find your <br/> favorite pokemon</h1>
-          <label>
-            <img src="./imgs/search.svg" alt="Serach icon"></img>
-            <SearchBarInput 
-              onChange={this.props.onChange}
-              value={this.props.value}
-            />
-            <SearchBarButton
-              onClick={this.props.onClick}
-              disabled={this.props.value.length > 0 ? false : true}
-            />
-            
-          </label>
-        </div>
-      </section> 
-    )
-  }
+      <div className="content regular-width">
+        <h1 className="title">Find your <br/> favorite pokemon</h1>
+        <label>
+          <img src="./imgs/search.svg" alt="Serach icon"></img>
+          <SearchBarInput 
+            onChange={props.onChange}
+            value={props.value}
+          />
+          <SearchBarButton
+            onClick={props.onClick}
+            disabled={props.value.length > 0 ? false : true}
+          />
+          
+        </label>
+      </div>
+    </section> 
+  )
 }
 
-class SearchBarType extends React.Component {
-  render() {
-    // Search bar html
-    return (
-      <section className="search-bar">
-        <div className="content regular-width">
-          <SearchBarGoBack
-            sectionTitle = {this.props.sectionTitle}
-            onClick={this.props.handleClickGoBack}
-          />
-          <label>
-            <img src="./imgs/search.svg" alt="Serach icon"></img>
-            <SearchBarInput 
-              onChange={this.props.onChange}
-              value={this.props.value}
-            />            
-          </label>
-        </div>
-      </section> 
-    )
-  }
+function SearchBarType (props) {
+  // Search bar html
+  return (
+    <section className="search-bar">
+      <div className="content regular-width">
+        <SearchBarGoBack
+          sectionTitle = {props.sectionTitle}
+          onClick={props.handleClickGoBack}
+        />
+        <label>
+          <img src="./imgs/search.svg" alt="Serach icon"></img>
+          <SearchBarInput 
+            onChange={props.onChange}
+            value={props.value}
+          />            
+        </label>
+      </div>
+    </section> 
+  )
 }
 
 function SearchBarInput (props) {
@@ -228,37 +222,33 @@ function SearchBarGoBack (props) {
   )
 }
 
-class SearchButtons extends React.Component {
-  render () {
-    return (
-      <section className="search-buttons">
-        <div className="separator">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <path d="M0,0V7.23C0,65.52,268.63,112.77,600,112.77S1200,65.52,1200,7.23V0Z" className="shape-fill"></path>
-            </svg>
-        </div>
-        <div className="buttons regular-width">
-          <SearchButton value="search" pokecolor="grass"/>
-          <SearchButton value="location" pokecolor="fire"/>
-          <SearchButton value="moves and habilities" pokecolor="water"/>
-        </div>
-      </section>
-    )
-  }
+function SearchButtons (props) {
+  return (
+    <section className="search-buttons">
+      <div className="separator">
+          <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,0V7.23C0,65.52,268.63,112.77,600,112.77S1200,65.52,1200,7.23V0Z" className="shape-fill"></path>
+          </svg>
+      </div>
+      <div className="buttons regular-width">
+        <SearchButton value="search" pokecolor="grass"/>
+        <SearchButton value="location" pokecolor="fire"/>
+        <SearchButton value="moves and habilities" pokecolor="water"/>
+      </div>
+    </section>
+  )
 }
 
-class SearchButton extends React.Component {
-  render () {
-    return (
-      <button className="btn round" pokecolor={this.props.pokecolor}>
-        {this.props.value}
-        <img 
-          src={"./imgs/" + this.props.value.replaceAll (" ", "-") + "-btn.svg"}
-          className="regular"
-          />
-      </button>
-    )
-  }
+function SearchButton (props) {
+  return (
+    <button className="btn round" pokecolor={props.pokecolor}>
+      {props.value}
+      <img 
+        src={"./imgs/" + props.value.replaceAll (" ", "-") + "-btn.svg"}
+        className="regular"
+        />
+    </button>
+  )
 }
 
 // render button
