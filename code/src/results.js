@@ -51,7 +51,7 @@ class Card extends React.Component {
 
         } else {
             // Render default image
-            image = "./imgs/pokeball-loading.svg"
+            image = "./imgs/loading.gif"
             pokemon_image = <img src={image} alt="loading image"/>
 
             // Normal as default pokemon type

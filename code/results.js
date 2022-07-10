@@ -89,7 +89,7 @@ var Card = function (_React$Component) {
                 pokemon_type = this.state.pokemonData.types[0].type.name;
             } else {
                 // Render default image
-                image = "./imgs/pokeball-loading.svg";
+                image = "./imgs/loading.gif";
                 pokemon_image = React.createElement("img", { src: image, alt: "loading image" });
 
                 // Normal as default pokemon type
