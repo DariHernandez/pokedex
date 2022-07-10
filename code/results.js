@@ -10,6 +10,7 @@ import { get_pokemon } from "./pokeapi.js";
 
 export function ResultsGrid(props) {
 
+    // Create a card for each pokemon
     var cards = [];
     var _iteratorNormalCompletion = true;
     var _didIteratorError = false;
@@ -36,11 +37,32 @@ export function ResultsGrid(props) {
         }
     }
 
-    return React.createElement(
-        "section",
-        { className: "results-grid" },
-        cards
-    );
+    if (cards.length > 0) {
+        // Render pokemons
+        return React.createElement(
+            "section",
+            { className: "results-grid" },
+            cards
+        );
+    } else {
+        // Render error screen
+        var kaomojis = ["ಠ_ಠ", "ಠ▃ಠ", "ノಠ_ಠノ", "(┳◇┳)", "(ó﹏ò｡)", "(;´д｀)", "（￣s￣；"];
+        var kaomoji = kaomojis[Math.floor(Math.random() * kaomojis.length)];
+        return React.createElement(
+            "section",
+            { className: "results-grid error" },
+            React.createElement(
+                "div",
+                { className: "kaomoji" },
+                kaomoji
+            ),
+            React.createElement(
+                "h3",
+                null,
+                "Not pokemon found"
+            )
+        );
+    }
 }
 
 var Card = function (_React$Component) {

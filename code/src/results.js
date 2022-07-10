@@ -2,15 +2,32 @@ import {get_pokemon} from "./pokeapi.js"
 
 export function ResultsGrid (props) {
 
+    // Create a card for each pokemon
     let cards = []
     for (const pokemon_data of props.pokemons) {
         cards.push (<Card pokemon={pokemon_data} key={pokemon_data.entry_number.toString()}/>)
     }
-    return (
-        <section className="results-grid">
-            {cards}
-        </section>
-    )
+
+    if (cards.length > 0) {
+        // Render pokemons
+        return (
+            <section className="results-grid">
+                {cards}
+            </section>
+        )
+    } else {
+        // Render error screen
+        const kaomojis = ["ಠ_ಠ", "ಠ▃ಠ", "ノಠ_ಠノ", "(┳◇┳)", "(ó﹏ò｡)", "(;´д｀)", "（￣s￣；", ]
+        const kaomoji = kaomojis[Math.floor(Math.random() * kaomojis.length)]
+        return (
+            <section className="results-grid error">
+                <div className="kaomoji">
+                    {kaomoji}
+                </div>
+                <h3>Not pokemon found</h3>
+            </section>
+        )
+    }
 }
 
 class Card extends React.Component {

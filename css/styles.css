@@ -322,6 +322,21 @@ section.results-grid {
   grid-template-columns: repeat(2, 1fr);
   gap: 15px;
 }
+section.results-grid.error {
+  display: block;
+}
+section.results-grid h3 {
+  width: 100%;
+  height: auto;
+  text-align: center;
+  color: #496870;
+}
+section.results-grid .kaomoji {
+  font-size: 80px;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
 section.results-grid .card {
   display: flex;
   align-items: flex-end;
@@ -342,12 +357,6 @@ section.results-grid .card img {
   width: 100%;
   height: auto;
   margin: 10px 0;
-}
-section.results-grid .card h3 {
-  width: 100%;
-  height: auto;
-  text-align: center;
-  color: #496870;
 }
 
 /*# sourceMappingURL=styles.css.map */

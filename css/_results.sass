@@ -3,6 +3,21 @@ section.results-grid
     grid-template-columns: repeat(2, 1fr)
     gap: 15px
 
+    &.error
+        display: block
+
+    h3
+        width: 100%
+        height: auto
+        text-align: center
+        color: $color-b
+
+    .kaomoji
+        font-size: 80px
+        width: 100%
+        text-align: center
+        margin-top: 30px
+
     .card
         display: flex
         align-items: flex-end
@@ -23,9 +38,3 @@ section.results-grid
             width: 100%
             height: auto
             margin: 10px 0
-
-        h3
-            width: 100%
-            height: auto
-            text-align: center
-            color: $color-b
