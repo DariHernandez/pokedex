@@ -1,17 +1,23 @@
-export function get_pokedex (doneFunction) {
+export function get_pokedex(doneFunction) {
     // Get data from api
-    fetch ("https://pokeapi.co/api/v2/pokedex/1/")
-    .then ((response) => response.json())
+    fetch("https://pokeapi.co/api/v2/pokedex/1/").then(function (response) {
+        return response.json();
+    })
 
     // Send data to function
-    .then(data => doneFunction(data.pokemon_entries))
+    .then(function (data) {
+        return doneFunction(data.pokemon_entries);
+    });
 }
 
-export function get_pokemon (doneFunction, number) {
+export function get_pokemon(doneFunction, number) {
     // Get data from api
-    fetch (`https://pokeapi.co/api/v2/pokemon/${number}/`)
-    .then ((response) => response.json())
+    fetch("https://pokeapi.co/api/v2/pokemon/" + number + "/").then(function (response) {
+        return response.json();
+    })
 
     // Send data to function
-    .then(data => doneFunction(data))
+    .then(function (data) {
+        return doneFunction(data);
+    });
 }

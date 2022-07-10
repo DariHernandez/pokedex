@@ -50,6 +50,10 @@ class Pokedex extends React.Component {
       return pokemon.pokemon_species.name.includes (this.state.search_value)
     })
 
+    if (found_pokemons.length > 12) {
+      found_pokemons = found_pokemons.slice(0,12)
+    }
+
     // Go to search all types screen
     this.setState({
       current_screen: "all types",
