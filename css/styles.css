@@ -49,7 +49,7 @@ a {
 }
 
 h1, h2, h3, h4, h5, h6, .title {
-  color: #A2B5BB;
+  color: #F5EDDC;
   font-weight: bold;
 }
 
@@ -107,58 +107,58 @@ h1, h2, h3, h4, h5, h6, .title {
   color: #F5EDDC;
 }
 [pokecolor][pokecolor=bug] {
-  background-color: #859d8b !important;
+  background-color: rgba(28, 75, 39, 0.5) !important;
 }
 [pokecolor][pokecolor=dark] {
-  background-color: #707a70 !important;
+  background-color: rgba(4, 7, 6, 0.5) !important;
 }
 [pokecolor][pokecolor=dragon] {
-  background-color: #88acb1 !important;
+  background-color: rgba(68, 139, 149, 0.5) !important;
 }
 [pokecolor][pokecolor=electric] {
-  background-color: #cdcd7c !important;
+  background-color: rgba(204, 204, 37, 0.5) !important;
 }
 [pokecolor][pokecolor=fairy] {
-  background-color: #bb8496 !important;
+  background-color: rgba(234, 19, 105, 0.5) !important;
 }
 [pokecolor][pokecolor=fighting] {
-  background-color: #b0887b !important;
+  background-color: rgba(153, 64, 37, 0.5) !important;
 }
 [pokecolor][pokecolor=fire] {
-  background-color: #aa7374 !important;
+  background-color: rgba(171, 31, 35, 0.5) !important;
 }
 [pokecolor][pokecolor=flying] {
-  background-color: #8594a0 !important;
+  background-color: rgba(74, 103, 125, 0.5) !important;
 }
 [pokecolor][pokecolor=ghost] {
-  background-color: #8686a4 !important;
+  background-color: rgba(51, 51, 107, 0.5) !important;
 }
 [pokecolor][pokecolor=grass] {
-  background-color: #77a689 !important;
+  background-color: rgba(17, 123, 58, 0.5) !important;
 }
 [pokecolor][pokecolor=ground] {
-  background-color: #bfa383 !important;
+  background-color: rgba(169, 112, 44, 0.5) !important;
 }
 [pokecolor][pokecolor=ice] {
-  background-color: #9ac1d4 !important;
+  background-color: rgba(134, 210, 245, 0.5) !important;
 }
 [pokecolor][pokecolor=normal] {
-  background-color: #9e868c !important;
+  background-color: rgba(117, 81, 91, 0.5) !important;
 }
 [pokecolor][pokecolor=poison] {
-  background-color: #957ca9 !important;
+  background-color: rgba(94, 45, 136, 0.5) !important;
 }
 [pokecolor][pokecolor=psychic] {
-  background-color: #b76d95 !important;
+  background-color: rgba(164, 42, 108, 0.5) !important;
 }
 [pokecolor][pokecolor=rock] {
-  background-color: #907a74 !important;
+  background-color: rgba(72, 24, 11, 0.5) !important;
 }
 [pokecolor][pokecolor=steel] {
-  background-color: #90a59e !important;
+  background-color: rgba(95, 117, 109, 0.5) !important;
 }
 [pokecolor][pokecolor=water] {
-  background-color: #7c97d4 !important;
+  background-color: rgba(21, 82, 226, 0.5) !important;
 }
 
 header.home {
@@ -169,16 +169,16 @@ header.home .content {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  opacity: 0.4;
 }
 header.home .content img {
   width: 30px;
   height: 30px;
-  opacity: 0.4;
   transform: rotateZ(-25deg);
 }
 header.home .content .title {
   font-size: 20px;
-  color: #A2B5BB;
+  color: #F5EDDC;
   margin: 0;
   margin-left: 20px;
 }
@@ -329,6 +329,7 @@ section.results-grid .card {
   flex-direction: column;
   width: 100%;
   padding: 0;
+  cursor: pointer;
 }
 section.results-grid .card .pokemonCode {
   padding: 5px 15px;
@@ -346,6 +347,7 @@ section.results-grid .card h3 {
   width: 100%;
   height: auto;
   text-align: center;
+  color: #496870;
 }
 
 /*# sourceMappingURL=styles.css.map */
