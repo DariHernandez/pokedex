@@ -72,7 +72,7 @@ h1, h2, h3, h4, h5, h6, .title {
 }
 .btn.round {
   font-size: 16px;
-  border-radius: 50px;
+  border-radius: 30px;
   border: none;
   display: flex;
   align-items: center;
@@ -315,6 +315,37 @@ main.home section.search-buttons .separator .shape-fill {
     width: calc(100% + 1.3px);
     height: 64px;
   }
+}
+
+section.results-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+section.results-grid .card {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 0;
+}
+section.results-grid .card .pokemonCode {
+  padding: 5px 15px;
+  padding-right: 30px;
+  border-radius: 5px;
+  border-top-right-radius: 30px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+section.results-grid .card img {
+  width: 100%;
+  height: auto;
+  margin: 10px 0;
+}
+section.results-grid .card h3 {
+  width: 100%;
+  height: auto;
+  text-align: center;
 }
 
 /*# sourceMappingURL=styles.css.map */

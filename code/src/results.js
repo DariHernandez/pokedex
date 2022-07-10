@@ -37,25 +37,34 @@ class Card extends React.Component {
 
     render () {
 
-        
-
         // Check if image is loaded from api
-        let pokemon_image
         let image
-        if (this.state.pokemonData.sprites) {
-            // render pokemon image
-            pokemon_image = this.state.pokemonData.sprites.front_default
-            image = <img src={pokemon_image} alt="{this.state.pokemonName} image"/>
+        let pokemon_image
+        let pokemon_type
+        if (this.state.pokemonData.sprites && this.state.pokemonData.types) {
+            // Render pokemon image
+            image = this.state.pokemonData.sprites.front_default
+            pokemon_image = <img src={image} alt="{this.state.pokemonName} image"/>
+
+            // Render pokemon code color
+            pokemon_type = this.state.pokemonData.types[0].type.name
+
         } else {
             // Render default image
-            pokemon_image = "./imgs/pokeball.svg"
-            image = <img src={pokemon_image} alt="loading image"/>
+            image = "./imgs/pokeball.svg"
+            pokemon_image = <img src={image} alt="loading image"/>
+
+            // Normal as default pokemon type
+            pokemon_type = "normal"
         }
 
         return (
-            <article className="card">
-                <span className="pokemonCode">#{this.state.pokemonCode}</span>
-                {image}
+            <article className="card btn round">
+                <span 
+                    className="pokemonCode"
+                    pokecolor={pokemon_type}
+                    >#{this.state.pokemonCode}</span>
+                {pokemon_image}
                 <h3>{this.state.pokemonName}</h3>
             </article>
         )

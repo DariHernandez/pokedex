@@ -77,28 +77,38 @@ var Card = function (_React$Component) {
         value: function render() {
 
             // Check if image is loaded from api
-            var pokemon_image = void 0;
             var image = void 0;
-            if (this.state.pokemonData.sprites) {
-                // render pokemon image
-                pokemon_image = this.state.pokemonData.sprites.front_default;
-                image = React.createElement("img", { src: pokemon_image, alt: "{this.state.pokemonName} image" });
+            var pokemon_image = void 0;
+            var pokemon_type = void 0;
+            if (this.state.pokemonData.sprites && this.state.pokemonData.types) {
+                // Render pokemon image
+                image = this.state.pokemonData.sprites.front_default;
+                pokemon_image = React.createElement("img", { src: image, alt: "{this.state.pokemonName} image" });
+
+                // Render pokemon code color
+                pokemon_type = this.state.pokemonData.types[0].type.name;
             } else {
                 // Render default image
-                pokemon_image = "./imgs/pokeball.svg";
-                image = React.createElement("img", { src: pokemon_image, alt: "loading image" });
+                image = "./imgs/pokeball.svg";
+                pokemon_image = React.createElement("img", { src: image, alt: "loading image" });
+
+                // Normal as default pokemon type
+                pokemon_type = "normal";
             }
 
             return React.createElement(
                 "article",
-                { className: "card" },
+                { className: "card btn round" },
                 React.createElement(
                     "span",
-                    { className: "pokemonCode" },
+                    {
+                        className: "pokemonCode",
+                        pokecolor: pokemon_type
+                    },
                     "#",
                     this.state.pokemonCode
                 ),
-                image,
+                pokemon_image,
                 React.createElement(
                     "h3",
                     null,
