@@ -1,0 +1,20 @@
+.paginator
+    display: flex
+    align-items: center
+    justify-content: center
+
+    li
+        list-style: none
+        padding: 10px
+        cursor: pointer
+
+        &:last-child
+            img
+                transform: rotateZ(180deg)
+
+        &.page
+            padding-bottom: 20px
+
+        &.disabled
+            opacity: 0.5
+            cursor: not-allowed

@@ -25,12 +25,18 @@ export class Paginator extends React.Component {
                     <img src="./imgs/arrow-dark.svg"/>
                 </li>
             )
+        } else {
+            buttons.push (
+                <li key="back" className="disabled">
+                    <img src="./imgs/arrow-dark.svg"/>
+                </li>
+            )
         }
     
         // Current page
         buttons.push (
-            <li key="current">
-                Page {currentPage}
+            <li key="current" className="page">
+                Page {currentPage} / {totalPages}
             </li>
         )
     
@@ -41,7 +47,13 @@ export class Paginator extends React.Component {
                     <img src="./imgs/arrow-dark.svg"/>
                 </li>
             )
-        }    
+        } else {
+            buttons.push (
+                <li key="next" className="disabled">
+                    <img src="./imgs/arrow-dark.svg"/>
+                </li>
+            )
+        }   
     
         return (
             <ul className="paginator">
@@ -49,5 +61,4 @@ export class Paginator extends React.Component {
             </ul>
         )
     }
-
 }

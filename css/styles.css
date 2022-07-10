@@ -359,4 +359,25 @@ section.results-grid .card img {
   margin: 10px 0;
 }
 
+.paginator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.paginator li {
+  list-style: none;
+  padding: 10px;
+  cursor: pointer;
+}
+.paginator li:last-child img {
+  transform: rotateZ(180deg);
+}
+.paginator li.page {
+  padding-bottom: 20px;
+}
+.paginator li.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 /*# sourceMappingURL=styles.css.map */

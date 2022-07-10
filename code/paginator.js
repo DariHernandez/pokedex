@@ -35,14 +35,22 @@ export var Paginator = function (_React$Component) {
                     { onClick: this.props.clickBackPage, key: "back" },
                     React.createElement("img", { src: "./imgs/arrow-dark.svg" })
                 ));
+            } else {
+                buttons.push(React.createElement(
+                    "li",
+                    { key: "back", className: "disabled" },
+                    React.createElement("img", { src: "./imgs/arrow-dark.svg" })
+                ));
             }
 
             // Current page
             buttons.push(React.createElement(
                 "li",
-                { key: "current" },
+                { key: "current", className: "page" },
                 "Page ",
-                currentPage
+                currentPage,
+                " / ",
+                totalPages
             ));
 
             // Add next button
@@ -50,6 +58,12 @@ export var Paginator = function (_React$Component) {
                 buttons.push(React.createElement(
                     "li",
                     { onClick: this.props.clickNextPage, key: "next" },
+                    React.createElement("img", { src: "./imgs/arrow-dark.svg" })
+                ));
+            } else {
+                buttons.push(React.createElement(
+                    "li",
+                    { key: "next", className: "disabled" },
                     React.createElement("img", { src: "./imgs/arrow-dark.svg" })
                 ));
             }
