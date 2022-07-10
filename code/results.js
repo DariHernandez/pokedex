@@ -41,7 +41,7 @@ export function ResultsGrid(props) {
         // Render pokemons
         return React.createElement(
             "section",
-            { className: "results-grid" },
+            { className: "results-grid regular-width" },
             cards
         );
     } else {
@@ -50,7 +50,7 @@ export function ResultsGrid(props) {
         var kaomoji = kaomojis[Math.floor(Math.random() * kaomojis.length)];
         return React.createElement(
             "section",
-            { className: "results-grid error" },
+            { className: "results-grid error regular-width" },
             React.createElement(
                 "div",
                 { className: "kaomoji" },

@@ -2,6 +2,7 @@ import {get_pokedex} from "./pokeapi.js"
 import {SearchButtons} from "./search_buttons.js"
 import {SearchBar} from "./search_bar.js"
 import {ResultsGrid} from "./results.js"
+import {Paginator} from "./paginator.js"
 
 "use strict"
 
@@ -15,7 +16,9 @@ class Pokedex extends React.Component {
       pokemons: [],
       foundPokemons: [],
       currentScreen: "home",
-      lastScreen: ""
+      lastScreen: "",
+      currentPage: 1,
+      totalPages: 1,
     }
   }
 
@@ -31,6 +34,41 @@ class Pokedex extends React.Component {
     })
   }
 
+  updateResults (searchValue=null, currentPage=1) {
+    // Update the results to show in the current page
+
+    // Get state variables
+    const pokemons = this.state.pokemons
+    if (searchValue == null) {
+      searchValue = this.state.searchValue
+    }
+
+    // Filter pokemons
+    let foundPokemons = pokemons.filter ((pokemon) => {
+      return pokemon.pokemon_species.name.includes (searchValue)
+    })
+
+    // Calculate number of result pages
+    const totalPages = Math.ceil(foundPokemons.length / 12)
+
+    // Get pokemons for current page
+    if (foundPokemons.length > 12) {
+      const pokemon_position = currentPage * 12
+      foundPokemons = foundPokemons.slice(pokemon_position - 12 , pokemon_position)
+    }
+
+    // Go to search all types screen
+    this.setState({
+      currentScreen: "all types",
+      lastScreen: "home",
+      foundPokemons: foundPokemons,
+      searchValue: searchValue,  
+      currentPage: currentPage,
+      totalPages: totalPages
+    })
+
+  }
+
   handleChangeSearch (event) {
 
     // Save search value
@@ -43,34 +81,13 @@ class Pokedex extends React.Component {
         searchValue: searchValue,
       })
     } else {
-      this.handleClickSearch (searchValue)
+      this.updateResults (searchValue)
     }
     
   }
 
-  handleClickSearch (searchValueManual=null) {
-
-    // Get state variables
-    const pokemons = this.state.pokemons
-    const searchValue = searchValueManual != null ? searchValueManual : this.state.searchValue
-
-    // Filter pokemons
-    let foundPokemons = pokemons.filter ((pokemon) => {
-      return pokemon.pokemon_species.name.includes (searchValue)
-    })
-
-    if (foundPokemons.length > 12) {
-      foundPokemons = foundPokemons.slice(0,12)
-    }
-
-    // Go to search all types screen
-    this.setState({
-      currentScreen: "all types",
-      lastScreen: "home",
-      foundPokemons: foundPokemons,
-      searchValue: searchValue
-      
-    })
+  handleClickSearch () {
+    this.updateResults ()
 
   }
 
@@ -81,6 +98,18 @@ class Pokedex extends React.Component {
       currentScreen: lastScreen,
       lastScreen: "",
     })
+  }
+
+  handleClickNextPage () {
+    let currentPage = this.state.currentPage
+    currentPage++
+    this.updateResults(null, currentPage)
+  }
+  
+  handleClickBackPage () {
+    let currentPage = this.state.currentPage
+    currentPage--
+    this.updateResults(null, currentPage)
   }
 
   // Main component
@@ -107,6 +136,11 @@ class Pokedex extends React.Component {
           handleClickSearch={() => this.handleClickSearch()}
           handleClickGoBack={() => this.handleClickGoBack()}
           foundPokemons={this.state.foundPokemons}
+          currentPage={this.state.currentPage}
+          totalPages={this.state.totalPages}
+          handleClickNextPage={() => this.handleClickNextPage()}
+          handleClickBackPage={() => this.handleClickBackPage()}
+          pokemonsNum={this.state.foundPokemons.length}
         />
         
       </div>
@@ -130,6 +164,11 @@ function Main (props) {
       handleClickSearch={props.handleClickSearch}
       handleClickGoBack={props.handleClickGoBack}
       foundPokemons={props.foundPokemons}
+      currentPage={props.currentPage}
+      totalPages={props.totalPages}
+      handleClickNextPage={props.handleClickNextPage}
+      handleClickBackPage={props.handleClickBackPage}
+      pokemonsNum={props.pokemonsNum}
     />
   }
 }
@@ -164,9 +203,25 @@ function MainSearch (props) {
         handleClickGoBack={props.handleClickGoBack}
       />
 
+      <Paginator
+        currentPage={props.currentPage}
+        totalPages={props.totalPages}
+        pokemonsNum={props.pokemonsNum}
+        clickNextPage={props.handleClickNextPage}
+        clickBackPage={props.handleClickBackPage}
+      />
+
       <ResultsGrid
         pokemons={props.foundPokemons}
       /> 
+
+      <Paginator
+        currentPage={props.currentPage}
+        totalPages={props.totalPages}
+        pokemonsNum={props.pokemonsNum}
+        clickNextPage={props.handleClickNextPage}
+        clickBackPage={props.handleClickBackPage}
+      />
 
     </main>
   )

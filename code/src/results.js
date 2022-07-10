@@ -11,7 +11,7 @@ export function ResultsGrid (props) {
     if (cards.length > 0) {
         // Render pokemons
         return (
-            <section className="results-grid">
+            <section className="results-grid regular-width">
                 {cards}
             </section>
         )
@@ -20,7 +20,7 @@ export function ResultsGrid (props) {
         const kaomojis = ["ಠ_ಠ", "ಠ▃ಠ", "ノಠ_ಠノ", "(┳◇┳)", "(ó﹏ò｡)", "(;´д｀)", "（￣s￣；", ]
         const kaomoji = kaomojis[Math.floor(Math.random() * kaomojis.length)]
         return (
-            <section className="results-grid error">
+            <section className="results-grid error regular-width">
                 <div className="kaomoji">
                     {kaomoji}
                 </div>

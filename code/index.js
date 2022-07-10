@@ -10,6 +10,7 @@ import { get_pokedex } from "./pokeapi.js";
 import { SearchButtons } from "./search_buttons.js";
 import { SearchBar } from "./search_bar.js";
 import { ResultsGrid } from "./results.js";
+import { Paginator } from "./paginator.js";
 
 "use strict";
 
@@ -35,7 +36,9 @@ var Pokedex = function (_React$Component) {
       pokemons: [],
       foundPokemons: [],
       currentScreen: "home",
-      lastScreen: ""
+      lastScreen: "",
+      currentPage: 1,
+      totalPages: 1
     };
     return _this;
   }
@@ -45,6 +48,44 @@ var Pokedex = function (_React$Component) {
     value: function componentDidMount() {
       // Get main data from api
       get_pokedex(this.updatePokedex);
+    }
+  }, {
+    key: "updateResults",
+    value: function updateResults() {
+      var searchValue = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      var currentPage = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+
+      // Update the results to show in the current page
+
+      // Get state variables
+      var pokemons = this.state.pokemons;
+      if (searchValue == null) {
+        searchValue = this.state.searchValue;
+      }
+
+      // Filter pokemons
+      var foundPokemons = pokemons.filter(function (pokemon) {
+        return pokemon.pokemon_species.name.includes(searchValue);
+      });
+
+      // Calculate number of result pages
+      var totalPages = Math.ceil(foundPokemons.length / 12);
+
+      // Get pokemons for current page
+      if (foundPokemons.length > 12) {
+        var pokemon_position = currentPage * 12;
+        foundPokemons = foundPokemons.slice(pokemon_position - 12, pokemon_position);
+      }
+
+      // Go to search all types screen
+      this.setState({
+        currentScreen: "all types",
+        lastScreen: "home",
+        foundPokemons: foundPokemons,
+        searchValue: searchValue,
+        currentPage: currentPage,
+        totalPages: totalPages
+      });
     }
   }, {
     key: "handleChangeSearch",
@@ -59,36 +100,13 @@ var Pokedex = function (_React$Component) {
           searchValue: searchValue
         });
       } else {
-        this.handleClickSearch(searchValue);
+        this.updateResults(searchValue);
       }
     }
   }, {
     key: "handleClickSearch",
     value: function handleClickSearch() {
-      var searchValueManual = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-
-
-      // Get state variables
-      var pokemons = this.state.pokemons;
-      var searchValue = searchValueManual != null ? searchValueManual : this.state.searchValue;
-
-      // Filter pokemons
-      var foundPokemons = pokemons.filter(function (pokemon) {
-        return pokemon.pokemon_species.name.includes(searchValue);
-      });
-
-      if (foundPokemons.length > 12) {
-        foundPokemons = foundPokemons.slice(0, 12);
-      }
-
-      // Go to search all types screen
-      this.setState({
-        currentScreen: "all types",
-        lastScreen: "home",
-        foundPokemons: foundPokemons,
-        searchValue: searchValue
-
-      });
+      this.updateResults();
     }
   }, {
     key: "handleClickGoBack",
@@ -99,6 +117,20 @@ var Pokedex = function (_React$Component) {
         currentScreen: lastScreen,
         lastScreen: ""
       });
+    }
+  }, {
+    key: "handleClickNextPage",
+    value: function handleClickNextPage() {
+      var currentPage = this.state.currentPage;
+      currentPage++;
+      this.updateResults(null, currentPage);
+    }
+  }, {
+    key: "handleClickBackPage",
+    value: function handleClickBackPage() {
+      var currentPage = this.state.currentPage;
+      currentPage--;
+      this.updateResults(null, currentPage);
     }
 
     // Main component
@@ -138,7 +170,16 @@ var Pokedex = function (_React$Component) {
           handleClickGoBack: function handleClickGoBack() {
             return _this2.handleClickGoBack();
           },
-          foundPokemons: this.state.foundPokemons
+          foundPokemons: this.state.foundPokemons,
+          currentPage: this.state.currentPage,
+          totalPages: this.state.totalPages,
+          handleClickNextPage: function handleClickNextPage() {
+            return _this2.handleClickNextPage();
+          },
+          handleClickBackPage: function handleClickBackPage() {
+            return _this2.handleClickBackPage();
+          },
+          pokemonsNum: this.state.foundPokemons.length
         })
       );
     }
@@ -162,7 +203,12 @@ function Main(props) {
       handleChangeSearch: props.handleChangeSearch,
       handleClickSearch: props.handleClickSearch,
       handleClickGoBack: props.handleClickGoBack,
-      foundPokemons: props.foundPokemons
+      foundPokemons: props.foundPokemons,
+      currentPage: props.currentPage,
+      totalPages: props.totalPages,
+      handleClickNextPage: props.handleClickNextPage,
+      handleClickBackPage: props.handleClickBackPage,
+      pokemonsNum: props.pokemonsNum
     });
   }
 }
@@ -193,8 +239,22 @@ function MainSearch(props) {
       currentScreen: props.currentScreen,
       handleClickGoBack: props.handleClickGoBack
     }),
+    React.createElement(Paginator, {
+      currentPage: props.currentPage,
+      totalPages: props.totalPages,
+      pokemonsNum: props.pokemonsNum,
+      clickNextPage: props.handleClickNextPage,
+      clickBackPage: props.handleClickBackPage
+    }),
     React.createElement(ResultsGrid, {
       pokemons: props.foundPokemons
+    }),
+    React.createElement(Paginator, {
+      currentPage: props.currentPage,
+      totalPages: props.totalPages,
+      pokemonsNum: props.pokemonsNum,
+      clickNextPage: props.handleClickNextPage,
+      clickBackPage: props.handleClickBackPage
     })
   );
 }
