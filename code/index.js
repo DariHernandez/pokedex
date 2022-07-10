@@ -31,11 +31,11 @@ var Pokedex = function (_React$Component) {
     };
 
     _this.state = {
-      search_value: "",
+      searchValue: "",
       pokemons: [],
-      found_pokemons: [],
-      current_screen: "home",
-      last_screen: ""
+      foundPokemons: [],
+      currentScreen: "home",
+      lastScreen: ""
     };
     return _this;
   }
@@ -50,43 +50,54 @@ var Pokedex = function (_React$Component) {
     key: "handleChangeSearch",
     value: function handleChangeSearch(event) {
 
-      var search_value = event.target.value;
+      // Save search value
+      var searchValue = event.target.value;
 
-      this.setState({
-        search_value: search_value
-      });
+      // Update results when edit text in results page
+      if (this.state.currentScreen == "home") {
+        this.setState({
+          searchValue: searchValue
+        });
+      } else {
+        this.handleClickSearch(searchValue);
+      }
     }
   }, {
     key: "handleClickSearch",
     value: function handleClickSearch() {
-      var _this2 = this;
+      var searchValueManual = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
+
+      // Get state variables
       var pokemons = this.state.pokemons;
+      var searchValue = searchValueManual != null ? searchValueManual : this.state.searchValue;
 
       // Filter pokemons
-      var found_pokemons = pokemons.filter(function (pokemon) {
-        return pokemon.pokemon_species.name.includes(_this2.state.search_value);
+      var foundPokemons = pokemons.filter(function (pokemon) {
+        return pokemon.pokemon_species.name.includes(searchValue);
       });
 
-      if (found_pokemons.length > 12) {
-        found_pokemons = found_pokemons.slice(0, 12);
+      if (foundPokemons.length > 12) {
+        foundPokemons = foundPokemons.slice(0, 12);
       }
 
       // Go to search all types screen
       this.setState({
-        current_screen: "all types",
-        last_screen: "home",
-        found_pokemons: found_pokemons
+        currentScreen: "all types",
+        lastScreen: "home",
+        foundPokemons: foundPokemons,
+        searchValue: searchValue
+
       });
     }
   }, {
     key: "handleClickGoBack",
     value: function handleClickGoBack() {
       // Go back to last screen
-      var last_screen = this.state.last_screen;
+      var lastScreen = this.state.lastScreen;
       this.setState({
-        current_screen: last_screen,
-        last_screen: ""
+        currentScreen: lastScreen,
+        lastScreen: ""
       });
     }
 
@@ -95,7 +106,7 @@ var Pokedex = function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this2 = this;
 
       // Selet main section
       return React.createElement(
@@ -116,18 +127,18 @@ var Pokedex = function (_React$Component) {
           )
         ),
         React.createElement(Main, {
-          current_screen: this.state.current_screen,
-          search_value: this.state.search_value,
+          currentScreen: this.state.currentScreen,
+          searchValue: this.state.searchValue,
           handleChangeSearch: function handleChangeSearch(event) {
-            return _this3.handleChangeSearch(event);
+            return _this2.handleChangeSearch(event);
           },
           handleClickSearch: function handleClickSearch() {
-            return _this3.handleClickSearch();
+            return _this2.handleClickSearch();
           },
           handleClickGoBack: function handleClickGoBack() {
-            return _this3.handleClickGoBack();
+            return _this2.handleClickGoBack();
           },
-          found_pokemons: this.state.found_pokemons
+          foundPokemons: this.state.foundPokemons
         })
       );
     }
@@ -137,21 +148,21 @@ var Pokedex = function (_React$Component) {
 }(React.Component);
 
 function Main(props) {
-  if (props.current_screen == "home") {
+  if (props.currentScreen == "home") {
     return React.createElement(MainHome, {
-      current_screen: props.current_screen,
-      search_value: props.search_value,
+      currentScreen: props.currentScreen,
+      searchValue: props.searchValue,
       handleChangeSearch: props.handleChangeSearch,
       handleClickSearch: props.handleClickSearch
     });
-  } else if (props.current_screen == "all types") {
+  } else if (props.currentScreen == "all types") {
     return React.createElement(MainSearch, {
-      current_screen: props.current_screen,
-      search_value: props.search_value,
+      currentScreen: props.currentScreen,
+      searchValue: props.searchValue,
       handleChangeSearch: props.handleChangeSearch,
       handleClickSearch: props.handleClickSearch,
       handleClickGoBack: props.handleClickGoBack,
-      found_pokemons: props.found_pokemons
+      foundPokemons: props.foundPokemons
     });
   }
 }
@@ -159,12 +170,12 @@ function Main(props) {
 function MainHome(props) {
   return React.createElement(
     "main",
-    { className: props.current_screen.replace(" ", "-") },
+    { className: props.currentScreen.replace(" ", "-") },
     React.createElement(SearchBar, {
       handleChangeSearch: props.handleChangeSearch,
       handleClickSearch: props.handleClickSearch,
-      search_value: props.search_value,
-      current_screen: props.current_screen,
+      searchValue: props.searchValue,
+      currentScreen: props.currentScreen,
       handleClickGoBack: props.handleClickGoBack
     }),
     React.createElement(SearchButtons, null)
@@ -174,16 +185,16 @@ function MainHome(props) {
 function MainSearch(props) {
   return React.createElement(
     "main",
-    { className: props.current_screen.replace(" ", "-") },
+    { className: props.currentScreen.replace(" ", "-") },
     React.createElement(SearchBar, {
       handleChangeSearch: props.handleChangeSearch,
       handleClickSearch: props.handleClickSearch,
-      search_value: props.search_value,
-      current_screen: props.current_screen,
+      searchValue: props.searchValue,
+      currentScreen: props.currentScreen,
       handleClickGoBack: props.handleClickGoBack
     }),
     React.createElement(ResultsGrid, {
-      pokemons: props.found_pokemons
+      pokemons: props.foundPokemons
     })
   );
 }

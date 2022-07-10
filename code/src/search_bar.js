@@ -1,11 +1,11 @@
 export function SearchBar (props) {
-    if (props.current_screen == "home") {
+    if (props.currentScreen == "home") {
         return (
             <SearchBarHome 
                 handleChangeSearch={props.handleChangeSearch}
                 handleClickSearch={props.handleClickSearch}
-                search_value={props.search_value}
-                sectionTitle = {props.current_screen}
+                searchValue={props.searchValue}
+                sectionTitle = {props.currentScreen}
                 handleClickGoBack={props.handleClickGoBack}
             />
         )
@@ -14,8 +14,8 @@ export function SearchBar (props) {
             <SearchBarType 
                 handleChangeSearch={props.handleChangeSearch}
                 handleClickSearch={props.handleClickSearch}
-                search_value={props.search_value}
-                sectionTitle = {props.current_screen}
+                searchValue={props.searchValue}
+                sectionTitle = {props.currentScreen}
                 handleClickGoBack={props.handleClickGoBack}
             />
         )
@@ -37,11 +37,11 @@ function SearchBarHome (props) {
             <img src="./imgs/search.svg" alt="Serach icon"></img>
             <SearchBarInput 
               onChange={props.handleChangeSearch}
-              value={props.search_value}
+              value={props.searchValue}
             />
             <SearchBarButton
               onClick={props.handleClickSearch}
-              disabled={props.search_value.length > 0 ? false : true}
+              disabled={props.searchValue.length > 0 ? false : true}
             />
             
           </label>
@@ -63,7 +63,7 @@ function SearchBarType (props) {
             <img src="./imgs/search.svg" alt="Serach icon"></img>
             <SearchBarInput 
               onChange={props.handleChangeSearch}
-              value={props.search_value}
+              value={props.searchValue}
             />            
           </label>
         </div>

@@ -11,11 +11,11 @@ class Pokedex extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      search_value: "",
+      searchValue: "",
       pokemons: [],
-      found_pokemons: [],
-      current_screen: "home",
-      last_screen: ""
+      foundPokemons: [],
+      currentScreen: "home",
+      lastScreen: ""
     }
   }
 
@@ -33,42 +33,53 @@ class Pokedex extends React.Component {
 
   handleChangeSearch (event) {
 
-    const search_value = event.target.value
-    
-    this.setState({
-      search_value: search_value,
-    })
+    // Save search value
+    const searchValue = event.target.value
 
+
+    // Update results when edit text in results page
+    if (this.state.currentScreen == "home") {
+      this.setState({
+        searchValue: searchValue,
+      })
+    } else {
+      this.handleClickSearch (searchValue)
+    }
+    
   }
 
-  handleClickSearch () {
+  handleClickSearch (searchValueManual=null) {
 
+    // Get state variables
     const pokemons = this.state.pokemons
+    const searchValue = searchValueManual != null ? searchValueManual : this.state.searchValue
 
     // Filter pokemons
-    let found_pokemons = pokemons.filter ((pokemon) => {
-      return pokemon.pokemon_species.name.includes (this.state.search_value)
+    let foundPokemons = pokemons.filter ((pokemon) => {
+      return pokemon.pokemon_species.name.includes (searchValue)
     })
 
-    if (found_pokemons.length > 12) {
-      found_pokemons = found_pokemons.slice(0,12)
+    if (foundPokemons.length > 12) {
+      foundPokemons = foundPokemons.slice(0,12)
     }
 
     // Go to search all types screen
     this.setState({
-      current_screen: "all types",
-      last_screen: "home",
-      found_pokemons: found_pokemons,
+      currentScreen: "all types",
+      lastScreen: "home",
+      foundPokemons: foundPokemons,
+      searchValue: searchValue
+      
     })
 
   }
 
   handleClickGoBack () {
     // Go back to last screen
-    const last_screen = this.state.last_screen
+    const lastScreen = this.state.lastScreen
     this.setState({
-      current_screen: last_screen,
-      last_screen: "",
+      currentScreen: lastScreen,
+      lastScreen: "",
     })
   }
 
@@ -90,12 +101,12 @@ class Pokedex extends React.Component {
 
         {/* Render main */}
         <Main
-          current_screen = {this.state.current_screen}
-          search_value={this.state.search_value}
+          currentScreen = {this.state.currentScreen}
+          searchValue={this.state.searchValue}
           handleChangeSearch ={(event) => (this.handleChangeSearch(event))}
           handleClickSearch={() => this.handleClickSearch()}
           handleClickGoBack={() => this.handleClickGoBack()}
-          found_pokemons={this.state.found_pokemons}
+          foundPokemons={this.state.foundPokemons}
         />
         
       </div>
@@ -104,34 +115,34 @@ class Pokedex extends React.Component {
 }
 
 function Main (props) {
-  if (props.current_screen == "home") {
+  if (props.currentScreen == "home") {
     return <MainHome
-      current_screen = {props.current_screen}
-      search_value={props.search_value}
+      currentScreen = {props.currentScreen}
+      searchValue={props.searchValue}
       handleChangeSearch ={props.handleChangeSearch}
       handleClickSearch={props.handleClickSearch}
     />
-  } else if (props.current_screen == "all types") {
+  } else if (props.currentScreen == "all types") {
     return <MainSearch
-      current_screen = {props.current_screen}
-      search_value={props.search_value}
+      currentScreen = {props.currentScreen}
+      searchValue={props.searchValue}
       handleChangeSearch ={props.handleChangeSearch}
       handleClickSearch={props.handleClickSearch}
       handleClickGoBack={props.handleClickGoBack}
-      found_pokemons={props.found_pokemons}
+      foundPokemons={props.foundPokemons}
     />
   }
 }
 
 function MainHome (props) {
   return (
-    <main className={props.current_screen.replace(" ", "-")}>
+    <main className={props.currentScreen.replace(" ", "-")}>
           
       <SearchBar
         handleChangeSearch={props.handleChangeSearch}
         handleClickSearch={props.handleClickSearch}
-        search_value={props.search_value}
-        current_screen = {props.current_screen}
+        searchValue={props.searchValue}
+        currentScreen = {props.currentScreen}
         handleClickGoBack={props.handleClickGoBack}
       />
 
@@ -143,18 +154,18 @@ function MainHome (props) {
 
 function MainSearch (props) {
   return (
-    <main className={props.current_screen.replace(" ", "-")}>
+    <main className={props.currentScreen.replace(" ", "-")}>
           
       <SearchBar
         handleChangeSearch={props.handleChangeSearch}
         handleClickSearch={props.handleClickSearch}
-        search_value={props.search_value}
-        current_screen = {props.current_screen}
+        searchValue={props.searchValue}
+        currentScreen = {props.currentScreen}
         handleClickGoBack={props.handleClickGoBack}
       />
 
       <ResultsGrid
-        pokemons={props.found_pokemons}
+        pokemons={props.foundPokemons}
       /> 
 
     </main>
