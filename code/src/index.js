@@ -1,6 +1,7 @@
 import {get_pokedex} from "./pokeapi.js"
 import {SearchButtons} from "./search_buttons.js"
 import {SearchBar} from "./search_bar.js"
+import {ResultsGrid} from "./results.js"
 
 "use strict"
 
@@ -33,25 +34,29 @@ class Pokedex extends React.Component {
   handleChangeSearch (event) {
 
     const search_value = event.target.value
-    const pokemons = this.state.pokemons
-    
-    let found_pokemons = pokemons.filter ((pokemon) => {
-      return pokemon.pokemon_species.name.includes (search_value)
-    })
     
     this.setState({
       search_value: search_value,
-      found_pokemons: found_pokemons,
     })
 
   }
 
   handleClickSearch () {
+
+    const pokemons = this.state.pokemons
+
+    // Filter pokemons
+    let found_pokemons = pokemons.filter ((pokemon) => {
+      return pokemon.pokemon_species.name.includes (this.state.search_value)
+    })
+
     // Go to search all types screen
     this.setState({
       current_screen: "all types",
       last_screen: "home",
+      found_pokemons: found_pokemons,
     })
+
   }
 
   handleClickGoBack () {
@@ -65,6 +70,7 @@ class Pokedex extends React.Component {
 
   // Main component
   render() {
+
     // Selet main section
     return (
       <div className="pokedex">
@@ -77,6 +83,7 @@ class Pokedex extends React.Component {
           </div>
         </header>
 
+
         {/* Render main */}
         <Main
           current_screen = {this.state.current_screen}
@@ -84,6 +91,7 @@ class Pokedex extends React.Component {
           handleChangeSearch ={(event) => (this.handleChangeSearch(event))}
           handleClickSearch={() => this.handleClickSearch()}
           handleClickGoBack={() => this.handleClickGoBack()}
+          found_pokemons={this.state.found_pokemons}
         />
         
       </div>
@@ -106,6 +114,7 @@ function Main (props) {
       handleChangeSearch ={props.handleChangeSearch}
       handleClickSearch={props.handleClickSearch}
       handleClickGoBack={props.handleClickGoBack}
+      found_pokemons={props.found_pokemons}
     />
   }
 }
@@ -139,6 +148,10 @@ function MainSearch (props) {
         current_screen = {props.current_screen}
         handleClickGoBack={props.handleClickGoBack}
       />
+
+      <ResultsGrid
+        pokemons={props.found_pokemons}
+      /> 
 
     </main>
   )

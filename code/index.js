@@ -9,6 +9,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 import { get_pokedex } from "./pokeapi.js";
 import { SearchButtons } from "./search_buttons.js";
 import { SearchBar } from "./search_bar.js";
+import { ResultsGrid } from "./results.js";
 
 "use strict";
 
@@ -50,24 +51,28 @@ var Pokedex = function (_React$Component) {
     value: function handleChangeSearch(event) {
 
       var search_value = event.target.value;
-      var pokemons = this.state.pokemons;
-
-      var found_pokemons = pokemons.filter(function (pokemon) {
-        return pokemon.pokemon_species.name.includes(search_value);
-      });
 
       this.setState({
-        search_value: search_value,
-        found_pokemons: found_pokemons
+        search_value: search_value
       });
     }
   }, {
     key: "handleClickSearch",
     value: function handleClickSearch() {
+      var _this2 = this;
+
+      var pokemons = this.state.pokemons;
+
+      // Filter pokemons
+      var found_pokemons = pokemons.filter(function (pokemon) {
+        return pokemon.pokemon_species.name.includes(_this2.state.search_value);
+      });
+
       // Go to search all types screen
       this.setState({
         current_screen: "all types",
-        last_screen: "home"
+        last_screen: "home",
+        found_pokemons: found_pokemons
       });
     }
   }, {
@@ -86,7 +91,7 @@ var Pokedex = function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       // Selet main section
       return React.createElement(
@@ -110,14 +115,15 @@ var Pokedex = function (_React$Component) {
           current_screen: this.state.current_screen,
           search_value: this.state.search_value,
           handleChangeSearch: function handleChangeSearch(event) {
-            return _this2.handleChangeSearch(event);
+            return _this3.handleChangeSearch(event);
           },
           handleClickSearch: function handleClickSearch() {
-            return _this2.handleClickSearch();
+            return _this3.handleClickSearch();
           },
           handleClickGoBack: function handleClickGoBack() {
-            return _this2.handleClickGoBack();
-          }
+            return _this3.handleClickGoBack();
+          },
+          found_pokemons: this.state.found_pokemons
         })
       );
     }
@@ -140,7 +146,8 @@ function Main(props) {
       search_value: props.search_value,
       handleChangeSearch: props.handleChangeSearch,
       handleClickSearch: props.handleClickSearch,
-      handleClickGoBack: props.handleClickGoBack
+      handleClickGoBack: props.handleClickGoBack,
+      found_pokemons: props.found_pokemons
     });
   }
 }
@@ -170,6 +177,9 @@ function MainSearch(props) {
       search_value: props.search_value,
       current_screen: props.current_screen,
       handleClickGoBack: props.handleClickGoBack
+    }),
+    React.createElement(ResultsGrid, {
+      pokemons: props.found_pokemons
     })
   );
 }
