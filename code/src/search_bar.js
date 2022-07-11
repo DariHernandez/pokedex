@@ -1,25 +1,40 @@
 export function SearchBar (props) {
-    if (props.currentScreen == "home") {
-        return (
-            <SearchBarHome 
-                handleChangeSearch={props.handleChangeSearch}
-                handleClickSearch={props.handleClickSearch}
-                searchValue={props.searchValue}
-                sectionTitle = {props.currentScreen}
-                handleClickGoBack={props.handleClickGoBack}
-            />
-        )
-    } else {
-        return (
-            <SearchBarType 
-                handleChangeSearch={props.handleChangeSearch}
-                handleClickSearch={props.handleClickSearch}
-                searchValue={props.searchValue}
-                sectionTitle = {props.currentScreen}
-                handleClickGoBack={props.handleClickGoBack}
-            />
-        )
-    }
+  console.log (["types"].includes(props.currentScreen))
+  if (props.currentScreen == "home") {
+    // Home search bar
+    return (
+        <SearchBarHome 
+            handleChangeSearch={props.handleChangeSearch}
+            handleClickSearch={props.handleClickSearch}
+            searchValue={props.searchValue}
+            sectionTitle = {props.currentScreen}
+            handleClickGoBack={props.handleClickGoBack}
+        />
+    )
+  } else if (["types"].includes(props.currentScreen)) {
+    // Only header for filter pages
+    return (
+      <section className="search-bar">
+        <div className="content regular-width">
+          <SearchBarGoBack
+            onClick={props.handleClickGoBack}
+            sectionTitle={props.currentScreen}
+          />
+        </div>
+      </section>
+    )
+  } else {
+    // Search bar for results page 
+    return (
+      <SearchBarType 
+          handleChangeSearch={props.handleChangeSearch}
+          handleClickSearch={props.handleClickSearch}
+          searchValue={props.searchValue}
+          sectionTitle = {props.currentScreen}
+          handleClickGoBack={props.handleClickGoBack}
+      />
+    )
+  }
 } 
 
 function SearchBarHome (props) {
@@ -51,7 +66,7 @@ function SearchBarHome (props) {
   }
   
 function SearchBarType (props) {
-    // Search bar html
+    // Search
     return (
       <section className="search-bar">
         <div className="content regular-width">

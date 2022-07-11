@@ -205,6 +205,10 @@ function Main (props) {
     return <MainFilter
       currentScreen={props.currentScreen}
       pokemonTypes={props.pokemonTypes}
+      handleChangeSearch={props.handleChangeSearch}
+      handleClickSearch={props.handleClickSearch}
+      searchValue={props.searchValue}
+      handleClickGoBack={props.handleClickGoBack}
     />
   }
 }
@@ -268,6 +272,14 @@ function MainSearch (props) {
 function MainFilter (props) {
   return (   
     <main className={props.currentScreen.replace(" ", "-")}>
+      <SearchBar
+        handleChangeSearch={props.handleChangeSearch}
+        handleClickSearch={props.handleClickSearch}
+        searchValue={props.searchValue}
+        currentScreen = {props.currentScreen}
+        handleClickGoBack={props.handleClickGoBack}
+      />
+
       <TypeButtons
         handleUpdateFilter={() => console.log ("clicked")}
         pokemonTypes={props.pokemonTypes}

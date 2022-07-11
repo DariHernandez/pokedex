@@ -1,5 +1,7 @@
 export function SearchBar(props) {
+  console.log(["types"].includes(props.currentScreen));
   if (props.currentScreen == "home") {
+    // Home search bar
     return React.createElement(SearchBarHome, {
       handleChangeSearch: props.handleChangeSearch,
       handleClickSearch: props.handleClickSearch,
@@ -7,7 +9,22 @@ export function SearchBar(props) {
       sectionTitle: props.currentScreen,
       handleClickGoBack: props.handleClickGoBack
     });
+  } else if (["types"].includes(props.currentScreen)) {
+    // Only header for filter pages
+    return React.createElement(
+      "section",
+      { className: "search-bar" },
+      React.createElement(
+        "div",
+        { className: "content regular-width" },
+        React.createElement(SearchBarGoBack, {
+          onClick: props.handleClickGoBack,
+          sectionTitle: props.currentScreen
+        })
+      )
+    );
   } else {
+    // Search bar for results page 
     return React.createElement(SearchBarType, {
       handleChangeSearch: props.handleChangeSearch,
       handleClickSearch: props.handleClickSearch,
@@ -57,7 +74,7 @@ function SearchBarHome(props) {
 }
 
 function SearchBarType(props) {
-  // Search bar html
+  // Search
   return React.createElement(
     "section",
     { className: "search-bar" },

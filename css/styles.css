@@ -224,6 +224,35 @@ main label input[type=button].btn.round {
   text-align: center;
   display: block;
 }
+main section.search-bar {
+  padding-bottom: 20px;
+}
+main section.search-bar .content .return {
+  background: none;
+  border: none;
+  height: 25px;
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0;
+  height: 60px;
+  cursor: pointer;
+}
+main section.search-bar .content .return img {
+  width: auto;
+  height: 25px;
+}
+main section.search-bar .content .return .section-title {
+  display: inline-block;
+  font-size: 24px;
+  line-height: auto;
+  color: #F5EDDC;
+  text-transform: capitalize;
+  margin: 0;
+  margin-left: 30px;
+}
 main.home section.search-bar {
   position: relative;
   overflow: hidden;
@@ -259,35 +288,6 @@ main.home section.search-bar .content .title {
   font-size: 32px;
   line-height: 37px;
   color: #F5EDDC;
-}
-main.all-types section.search-bar {
-  padding-bottom: 20px;
-}
-main.all-types section.search-bar .content .return {
-  background: none;
-  border: none;
-  height: 25px;
-  margin-top: 10px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin: 0;
-  height: 60px;
-  cursor: pointer;
-}
-main.all-types section.search-bar .content .return img {
-  width: auto;
-  height: 25px;
-}
-main.all-types section.search-bar .content .return .section-title {
-  display: inline-block;
-  font-size: 24px;
-  line-height: auto;
-  color: #F5EDDC;
-  text-transform: capitalize;
-  margin: 0;
-  margin-left: 10px;
 }
 
 main.home section.search-buttons {

@@ -228,7 +228,11 @@ function Main(props) {
   } else if (props.currentScreen == "types") {
     return React.createElement(MainFilter, {
       currentScreen: props.currentScreen,
-      pokemonTypes: props.pokemonTypes
+      pokemonTypes: props.pokemonTypes,
+      handleChangeSearch: props.handleChangeSearch,
+      handleClickSearch: props.handleClickSearch,
+      searchValue: props.searchValue,
+      handleClickGoBack: props.handleClickGoBack
     });
   }
 }
@@ -285,6 +289,13 @@ function MainFilter(props) {
   return React.createElement(
     "main",
     { className: props.currentScreen.replace(" ", "-") },
+    React.createElement(SearchBar, {
+      handleChangeSearch: props.handleChangeSearch,
+      handleClickSearch: props.handleClickSearch,
+      searchValue: props.searchValue,
+      currentScreen: props.currentScreen,
+      handleClickGoBack: props.handleClickGoBack
+    }),
     React.createElement(TypeButtons, {
       handleUpdateFilter: function handleUpdateFilter() {
         return console.log("clicked");

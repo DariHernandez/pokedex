@@ -36,6 +36,37 @@ main
                 text-align: center
                 display: block
 
+    section.search-bar
+        padding-bottom: 20px
+        
+        .content
+            .return
+                background: none
+                border: none
+                height: 25px
+                margin-top: 10px
+                width: 100%
+                display: flex
+                align-items: center 
+                justify-content: flex-start
+                margin: 0
+                height: 60px
+                cursor: pointer
+
+                img
+                    width: auto
+                    height: 25px
+
+
+                .section-title
+                    display: inline-block
+                    font-size: calc($font-size-base * 1.5)
+                    line-height: auto
+                    color: $color-d
+                    text-transform: capitalize
+                    margin: 0
+                    margin-left: 30px
+
     &.home
         section.search-bar
             position: relative
@@ -74,36 +105,3 @@ main
                     font-size: calc($font-size-base * 2)
                     line-height: calc($font-size-base * 2 + 5px)
                     color: $color-d
-    
-    &.all-types
-        section.search-bar
-            padding-bottom: 20px
-            
-            .content
-                .return
-                    background: none
-                    border: none
-                    height: 25px
-                    margin-top: 10px
-                    width: 100%
-                    display: flex
-                    align-items: center 
-                    justify-content: flex-start
-                    margin: 0
-                    height: 60px
-                    cursor: pointer
-
-                    img
-                        width: auto
-                        height: 25px
-
-
-                    .section-title
-                        display: inline-block
-                        font-size: calc($font-size-base * 1.5)
-                        line-height: auto
-                        color: $color-d
-                        text-transform: capitalize
-                        margin: 0
-                        margin-left: 10px
-                        
