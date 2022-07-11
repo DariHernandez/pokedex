@@ -33,7 +33,7 @@ export function TypeButtons(props) {
 
     return React.createElement(
         "section",
-        { className: "pokemon-types-buttons regular-width" },
+        { className: "types-buttons regular-width" },
         buttons
     );
 }
@@ -42,15 +42,19 @@ function TypeButton(props) {
     return React.createElement(
         "button",
         {
-            className: "pokemon-type btn round",
+            className: "pokemon-type btn round text-shadow",
             onClick: function onClick(pokemonType) {
                 return props.onClick(pokemonType);
             },
             pokecolor: props.pokemonType
         },
         props.pokemonType,
-        React.createElement("img", {
-            src: "./imgs/types/" + props.pokemonType + ".png"
-        })
+        React.createElement(
+            "div",
+            { className: "wrapper-img" },
+            React.createElement("img", {
+                src: "./imgs/types-assets/" + props.pokemonType + ".png"
+            })
+        )
     );
 }

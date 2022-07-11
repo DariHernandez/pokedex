@@ -1,0 +1,29 @@
+.types-buttons
+    display: grid
+    grid-template-columns: repeat(2, 1fr)
+    gap: 10px
+    margin-top: 30px
+
+    button.pokemon-type.btn.round
+        margin: 0
+        position: relative
+        height: 50px
+        overflow: hidden
+
+        .wrapper-img
+            width: 100px
+            height: 50px
+            overflow: hidden
+            display: flex
+            align-items: center
+            justify-content: center
+            opacity: 0.1
+            position: absolute
+            right: -30px
+            top: 0
+
+            img
+                width: 100%
+                height: auto
+                filter: blur(1px)
+

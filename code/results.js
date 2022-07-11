@@ -124,7 +124,7 @@ var Card = function (_React$Component) {
                 React.createElement(
                     "span",
                     {
-                        className: "pokemonCode",
+                        className: "pokemonCode text-shadow",
                         pokecolor: pokemon_type
                     },
                     "#",

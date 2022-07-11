@@ -12,7 +12,7 @@ export function TypeButtons (props) {
         )
     }
     return (
-        <section className="pokemon-types-buttons regular-width">
+        <section className="types-buttons regular-width">
             {buttons}
         </section>
     )
@@ -21,14 +21,16 @@ export function TypeButtons (props) {
 function TypeButton (props) {
     return (
         <button
-            className="pokemon-type btn round"
+            className="pokemon-type btn round text-shadow"
             onClick={(pokemonType) => props.onClick (pokemonType)}
             pokecolor={props.pokemonType}
         >
             {props.pokemonType}
-            <img
-                src={`./imgs/types/${props.pokemonType}.png`}
-            />
+            <div className="wrapper-img">
+                <img
+                    src={`./imgs/types-assets/${props.pokemonType}.png`}
+                />
+            </div>
         </button>
     )
 }
