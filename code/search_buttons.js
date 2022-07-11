@@ -14,7 +14,9 @@ export function SearchButtons(props) {
     React.createElement(
       "div",
       { className: "buttons regular-width" },
-      React.createElement(SearchButton, { value: "types", pokecolor: "grass" }),
+      React.createElement(SearchButton, { value: "types", pokecolor: "grass", onClick: function onClick(filter_name) {
+          return props.handleFilter("types");
+        } }),
       React.createElement(SearchButton, { value: "location", pokecolor: "fire" }),
       React.createElement(SearchButton, { value: "moves and habilities", pokecolor: "water" })
     )
@@ -24,7 +26,10 @@ export function SearchButtons(props) {
 function SearchButton(props) {
   return React.createElement(
     "button",
-    { className: "btn round animate", pokecolor: props.pokecolor },
+    {
+      className: "btn round animate",
+      pokecolor: props.pokecolor,
+      onClick: props.onClick },
     props.value,
     React.createElement("img", {
       src: "./imgs/" + props.value.replaceAll(" ", "-") + "-btn.svg",

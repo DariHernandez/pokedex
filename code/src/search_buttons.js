@@ -7,7 +7,7 @@ export function SearchButtons (props) {
             </svg>
         </div>
         <div className="buttons regular-width">
-          <SearchButton value="types" pokecolor="grass"/>
+          <SearchButton value="types" pokecolor="grass" onClick={(filter_name) => props.handleFilter("types")}/>
           <SearchButton value="location" pokecolor="fire"/>
           <SearchButton value="moves and habilities" pokecolor="water"/>
         </div>
@@ -17,7 +17,10 @@ export function SearchButtons (props) {
   
   function SearchButton (props) {
     return (
-      <button className="btn round animate" pokecolor={props.pokecolor}>
+      <button 
+        className="btn round animate" 
+        pokecolor={props.pokecolor} 
+        onClick={props.onClick}>
         {props.value}
         <img 
           src={"./imgs/" + props.value.replaceAll (" ", "-") + "-btn.svg"}

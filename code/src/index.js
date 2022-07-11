@@ -3,6 +3,7 @@ import {SearchButtons} from "./search_buttons.js"
 import {SearchBar} from "./search_bar.js"
 import {ResultsGrid} from "./results.js"
 import {Paginator} from "./paginator.js"
+import {TypeButtons} from "./type_buttons.js"
 
 "use strict"
 
@@ -19,6 +20,26 @@ class Pokedex extends React.Component {
       lastScreen: "",
       currentPage: 1,
       totalPages: 1,
+      pokemonTypes: [
+        "normal", 
+        "fighting", 
+        "flying",
+        "poison", 
+        "ground",
+        "rock",
+        "bug",
+        "ghost",
+        "steel",
+        "fire",
+        "water",
+        "grass",
+        "electric",
+        "psychic",
+        "ice",
+        "dragon",
+        "dark",
+        "fairy",
+      ],
     }
   }
 
@@ -111,6 +132,13 @@ class Pokedex extends React.Component {
     currentPage--
     this.updateResults(null, currentPage)
   }
+  
+  handleFilter (filter_name) {
+    this.setState({
+      currentScreen: filter_name,
+      lastScreen: "home",
+    })
+  }
 
   // Main component
   render() {
@@ -141,6 +169,8 @@ class Pokedex extends React.Component {
           handleClickNextPage={() => this.handleClickNextPage()}
           handleClickBackPage={() => this.handleClickBackPage()}
           pokemonsNum={this.state.foundPokemons.length}
+          handleFilter={(filter_name) => this.handleFilter(filter_name)}
+          pokemonTypes={this.state.pokemonTypes}
         />
         
       </div>
@@ -155,6 +185,7 @@ function Main (props) {
       searchValue={props.searchValue}
       handleChangeSearch ={props.handleChangeSearch}
       handleClickSearch={props.handleClickSearch}
+      handleFilter={props.handleFilter}
     />
   } else if (props.currentScreen == "all types") {
     return <MainSearch
@@ -169,6 +200,11 @@ function Main (props) {
       handleClickNextPage={props.handleClickNextPage}
       handleClickBackPage={props.handleClickBackPage}
       pokemonsNum={props.pokemonsNum}
+    />
+  } else if (props.currentScreen == "types") {
+    return <MainFilter
+      currentScreen={props.currentScreen}
+      pokemonTypes={props.pokemonTypes}
     />
   }
 }
@@ -185,7 +221,9 @@ function MainHome (props) {
         handleClickGoBack={props.handleClickGoBack}
       />
 
-      <SearchButtons/>
+      <SearchButtons
+        handleFilter={props.handleFilter}
+      />
 
     </main>
   )
@@ -223,6 +261,17 @@ function MainSearch (props) {
         clickBackPage={props.handleClickBackPage}
       />
 
+    </main>
+  )
+}
+
+function MainFilter (props) {
+  return (   
+    <main className={props.currentScreen.replace(" ", "-")}>
+      <TypeButtons
+        handleUpdateFilter={() => console.log ("clicked")}
+        pokemonTypes={props.pokemonTypes}
+      />
     </main>
   )
 }

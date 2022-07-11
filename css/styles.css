@@ -270,6 +270,7 @@ main.all-types section.search-bar .content .return {
   justify-content: flex-start;
   margin: 0;
   height: 60px;
+  cursor: pointer;
 }
 main.all-types section.search-bar .content .return img {
   width: auto;

@@ -11,6 +11,7 @@ import { SearchButtons } from "./search_buttons.js";
 import { SearchBar } from "./search_bar.js";
 import { ResultsGrid } from "./results.js";
 import { Paginator } from "./paginator.js";
+import { TypeButtons } from "./type_buttons.js";
 
 "use strict";
 
@@ -38,7 +39,8 @@ var Pokedex = function (_React$Component) {
       currentScreen: "home",
       lastScreen: "",
       currentPage: 1,
-      totalPages: 1
+      totalPages: 1,
+      pokemonTypes: ["normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice", "dragon", "dark", "fairy"]
     };
     return _this;
   }
@@ -132,6 +134,14 @@ var Pokedex = function (_React$Component) {
       currentPage--;
       this.updateResults(null, currentPage);
     }
+  }, {
+    key: "handleFilter",
+    value: function handleFilter(filter_name) {
+      this.setState({
+        currentScreen: filter_name,
+        lastScreen: "home"
+      });
+    }
 
     // Main component
 
@@ -179,7 +189,11 @@ var Pokedex = function (_React$Component) {
           handleClickBackPage: function handleClickBackPage() {
             return _this2.handleClickBackPage();
           },
-          pokemonsNum: this.state.foundPokemons.length
+          pokemonsNum: this.state.foundPokemons.length,
+          handleFilter: function handleFilter(filter_name) {
+            return _this2.handleFilter(filter_name);
+          },
+          pokemonTypes: this.state.pokemonTypes
         })
       );
     }
@@ -194,7 +208,8 @@ function Main(props) {
       currentScreen: props.currentScreen,
       searchValue: props.searchValue,
       handleChangeSearch: props.handleChangeSearch,
-      handleClickSearch: props.handleClickSearch
+      handleClickSearch: props.handleClickSearch,
+      handleFilter: props.handleFilter
     });
   } else if (props.currentScreen == "all types") {
     return React.createElement(MainSearch, {
@@ -210,6 +225,11 @@ function Main(props) {
       handleClickBackPage: props.handleClickBackPage,
       pokemonsNum: props.pokemonsNum
     });
+  } else if (props.currentScreen == "types") {
+    return React.createElement(MainFilter, {
+      currentScreen: props.currentScreen,
+      pokemonTypes: props.pokemonTypes
+    });
   }
 }
 
@@ -224,7 +244,9 @@ function MainHome(props) {
       currentScreen: props.currentScreen,
       handleClickGoBack: props.handleClickGoBack
     }),
-    React.createElement(SearchButtons, null)
+    React.createElement(SearchButtons, {
+      handleFilter: props.handleFilter
+    })
   );
 }
 
@@ -255,6 +277,19 @@ function MainSearch(props) {
       pokemonsNum: props.pokemonsNum,
       clickNextPage: props.handleClickNextPage,
       clickBackPage: props.handleClickBackPage
+    })
+  );
+}
+
+function MainFilter(props) {
+  return React.createElement(
+    "main",
+    { className: props.currentScreen.replace(" ", "-") },
+    React.createElement(TypeButtons, {
+      handleUpdateFilter: function handleUpdateFilter() {
+        return console.log("clicked");
+      },
+      pokemonTypes: props.pokemonTypes
     })
   );
 }
