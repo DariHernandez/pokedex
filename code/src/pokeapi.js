@@ -22,5 +22,5 @@ export function getPokemonsType (doneFunction, pokemonType) {
     .then ((response) => response.json())
 
     // Send data to function
-    .then(data => doneFunction(data))
+    .then(data => doneFunction(data, pokemonType))
 }

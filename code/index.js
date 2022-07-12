@@ -65,7 +65,6 @@ var Pokedex = function (_React$Component) {
       pokemons: [],
       foundPokemons: [],
       currentScreen: "home",
-      lastScreen: "",
       currentPage: 1,
       totalPages: 1,
       pokemonTypes: ["normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice", "dragon", "dark", "fairy"]
@@ -109,8 +108,6 @@ var Pokedex = function (_React$Component) {
 
       // Go to search all types screen
       this.setState({
-        currentScreen: "all types",
-        lastScreen: "home",
         foundPokemons: foundPokemons,
         searchValue: searchValue,
         currentPage: currentPage,
@@ -136,16 +133,16 @@ var Pokedex = function (_React$Component) {
   }, {
     key: "handleClickSearch",
     value: function handleClickSearch() {
-      this.updateResults();
+      this.setState({
+        currentScreen: "type all"
+      });
     }
   }, {
     key: "handleClickGoBack",
     value: function handleClickGoBack() {
       // Go back to last screen
-      var lastScreen = this.state.lastScreen;
       this.setState({
-        currentScreen: lastScreen,
-        lastScreen: ""
+        currentScreen: "home"
       });
     }
   }, {
@@ -166,8 +163,7 @@ var Pokedex = function (_React$Component) {
     key: "handleFilter",
     value: function handleFilter(filter_name) {
       this.setState({
-        currentScreen: filter_name,
-        lastScreen: "home"
+        currentScreen: filter_name
       });
     }
   }, {
@@ -231,8 +227,8 @@ var Pokedex = function (_React$Component) {
           handleFilterType: function handleFilterType(pokemonType) {
             return _this2.handleFilterType(pokemonType);
           },
-          updateResults: function updateResults() {
-            return _this2.updateResults();
+          updateResults: function updateResults(currentScreen) {
+            return _this2.updateResults(currentScreen = currentScreen);
           },
           onHomeLoad: function onHomeLoad() {
             return _this2.handleUpdatePokedex();

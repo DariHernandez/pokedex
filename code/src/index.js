@@ -17,7 +17,6 @@ class Pokedex extends React.Component {
       pokemons: [],
       foundPokemons: [],
       currentScreen: "home",
-      lastScreen: "",
       currentPage: 1,
       totalPages: 1,
       pokemonTypes: [
@@ -80,8 +79,6 @@ class Pokedex extends React.Component {
 
     // Go to search all types screen
     this.setState({
-      currentScreen: "all types",
-      lastScreen: "home",
       foundPokemons: foundPokemons,
       searchValue: searchValue,  
       currentPage: currentPage,
@@ -108,16 +105,16 @@ class Pokedex extends React.Component {
   }
 
   handleClickSearch () {
-    this.updateResults ()
+    this.setState({
+      currentScreen: "type all",
+    })
 
   }
 
   handleClickGoBack () {
     // Go back to last screen
-    const lastScreen = this.state.lastScreen
     this.setState({
-      currentScreen: lastScreen,
-      lastScreen: "",
+      currentScreen: "home",
     })
   }
 
@@ -136,7 +133,6 @@ class Pokedex extends React.Component {
   handleFilter (filter_name) {
     this.setState({
       currentScreen: filter_name,
-      lastScreen: "home",
     })
   }
   
@@ -206,7 +202,7 @@ class Pokedex extends React.Component {
           handleFilter={(filter_name) => this.handleFilter(filter_name)}
           pokemonTypes={this.state.pokemonTypes}
           handleFilterType={(pokemonType) => this.handleFilterType(pokemonType)}
-          updateResults={() => this.updateResults()}
+          updateResults={(currentScreen) => this.updateResults(currentScreen=currentScreen)}
           onHomeLoad={() => this.handleUpdatePokedex()}
         />
         

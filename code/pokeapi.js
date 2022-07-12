@@ -30,6 +30,6 @@ export function getPokemonsType(doneFunction, pokemonType) {
 
     // Send data to function
     .then(function (data) {
-        return doneFunction(data);
+        return doneFunction(data, pokemonType);
     });
 }
