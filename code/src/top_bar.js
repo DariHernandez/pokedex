@@ -1,9 +1,8 @@
-export function SearchBar (props) {
-  console.log (["types"].includes(props.currentScreen))
+export function TopBar (props) {
   if (props.currentScreen == "home") {
     // Home search bar
     return (
-        <SearchBarHome 
+        <TopBarHome 
             handleChangeSearch={props.handleChangeSearch}
             handleClickSearch={props.handleClickSearch}
             searchValue={props.searchValue}
@@ -12,11 +11,11 @@ export function SearchBar (props) {
         />
     )
   } else if (["types"].includes(props.currentScreen)) {
-    // Only header for filter pages
+    // Only TopBar for filter pages
     return (
       <section className="search-bar">
         <div className="content regular-width">
-          <SearchBarGoBack
+          <TopBarGoBack
             onClick={props.handleClickGoBack}
             sectionTitle={props.currentScreen}
           />
@@ -26,7 +25,7 @@ export function SearchBar (props) {
   } else {
     // Search bar for results page 
     return (
-      <SearchBarType 
+      <TopBarType 
           handleChangeSearch={props.handleChangeSearch}
           handleClickSearch={props.handleClickSearch}
           searchValue={props.searchValue}
@@ -37,7 +36,7 @@ export function SearchBar (props) {
   }
 } 
 
-function SearchBarHome (props) {
+function TopBarHome (props) {
 
     // Search bar html
     return (
@@ -50,11 +49,11 @@ function SearchBarHome (props) {
           <h1 className="title">Find your <br/> favorite pokemon</h1>
           <label>
             <img src="./imgs/search.svg" alt="Serach icon"></img>
-            <SearchBarInput 
+            <TopBarInputSearch 
               onChange={props.handleChangeSearch}
               value={props.searchValue}
             />
-            <SearchBarButton
+            <TopBarButtonSearch
               onClick={props.handleClickSearch}
               disabled={props.searchValue.length > 0 ? false : true}
             />
@@ -65,18 +64,18 @@ function SearchBarHome (props) {
     )
   }
   
-function SearchBarType (props) {
+function TopBarType (props) {
     // Search
     return (
       <section className="search-bar">
         <div className="content regular-width">
-          <SearchBarGoBack
+          <TopBarGoBack
             sectionTitle = {props.sectionTitle}
             onClick={props.handleClickGoBack}
           />
           <label>
             <img src="./imgs/search.svg" alt="Serach icon"></img>
-            <SearchBarInput 
+            <TopBarInputSearch 
               onChange={props.handleChangeSearch}
               value={props.searchValue}
             />            
@@ -86,7 +85,7 @@ function SearchBarType (props) {
     )
   }
   
-  function SearchBarInput (props) {
+  function TopBarInputSearch (props) {
     return (
       <input
         type="search"
@@ -97,7 +96,7 @@ function SearchBarType (props) {
     )
   }
   
-  function SearchBarButton (props) {
+  function TopBarButtonSearch (props) {
     return (
       <input
         type="button"
@@ -109,7 +108,7 @@ function SearchBarType (props) {
     )
   }
   
-  function SearchBarGoBack (props) {
+  function TopBarGoBack (props) {
     return (
       <div className="return" onClick={props.onClick}>
         <img src="./imgs/arrow.svg" alt="go back icon" className="return-icon"/>

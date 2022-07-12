@@ -20,7 +20,7 @@ export function ResultsGrid(props) {
         for (var _iterator = props.pokemons[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
             var pokemon_data = _step.value;
 
-            cards.push(React.createElement(Card, { pokemon: pokemon_data, key: pokemon_data.entry_number.toString() }));
+            cards.push(React.createElement(ResultCard, { pokemon: pokemon_data, key: pokemon_data.entry_number.toString() }));
         }
     } catch (err) {
         _didIteratorError = true;
@@ -65,13 +65,13 @@ export function ResultsGrid(props) {
     }
 }
 
-var Card = function (_React$Component) {
-    _inherits(Card, _React$Component);
+var ResultCard = function (_React$Component) {
+    _inherits(ResultCard, _React$Component);
 
-    function Card(props) {
-        _classCallCheck(this, Card);
+    function ResultCard(props) {
+        _classCallCheck(this, ResultCard);
 
-        var _this = _possibleConstructorReturn(this, (Card.__proto__ || Object.getPrototypeOf(Card)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (ResultCard.__proto__ || Object.getPrototypeOf(ResultCard)).call(this, props));
 
         _this.updatePokemonData = function (data) {
             // Update state
@@ -88,7 +88,7 @@ var Card = function (_React$Component) {
         return _this;
     }
 
-    _createClass(Card, [{
+    _createClass(ResultCard, [{
         key: "componentDidMount",
         value: function componentDidMount() {
             // Query data for current pokemon
@@ -140,5 +140,5 @@ var Card = function (_React$Component) {
         }
     }]);
 
-    return Card;
+    return ResultCard;
 }(React.Component);

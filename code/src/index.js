@@ -1,6 +1,6 @@
 import {get_pokedex} from "./pokeapi.js"
-import {SearchButtons} from "./search_buttons.js"
-import {SearchBar} from "./search_bar.js"
+import {FilterButtons} from "./filter_buttons.js"
+import {TopBar} from "./top_bar.js"
 import {ResultsGrid} from "./results.js"
 import {Paginator} from "./paginator.js"
 import {TypeButtons} from "./type_buttons.js"
@@ -202,7 +202,7 @@ function Main (props) {
       pokemonsNum={props.pokemonsNum}
     />
   } else if (props.currentScreen == "types") {
-    return <MainFilter
+    return <MainFilterType
       currentScreen={props.currentScreen}
       pokemonTypes={props.pokemonTypes}
       handleChangeSearch={props.handleChangeSearch}
@@ -217,7 +217,7 @@ function MainHome (props) {
   return (
     <main className={props.currentScreen.replace(" ", "-")}>
           
-      <SearchBar
+      <TopBar
         handleChangeSearch={props.handleChangeSearch}
         handleClickSearch={props.handleClickSearch}
         searchValue={props.searchValue}
@@ -225,7 +225,7 @@ function MainHome (props) {
         handleClickGoBack={props.handleClickGoBack}
       />
 
-      <SearchButtons
+      <FilterButtons
         handleFilter={props.handleFilter}
       />
 
@@ -237,7 +237,7 @@ function MainSearch (props) {
   return (
     <main className={props.currentScreen.replace(" ", "-")}>
           
-      <SearchBar
+      <TopBar
         handleChangeSearch={props.handleChangeSearch}
         handleClickSearch={props.handleClickSearch}
         searchValue={props.searchValue}
@@ -269,10 +269,10 @@ function MainSearch (props) {
   )
 }
 
-function MainFilter (props) {
+function MainFilterType (props) {
   return (   
     <main className={props.currentScreen.replace(" ", "-")}>
-      <SearchBar
+      <TopBar
         handleChangeSearch={props.handleChangeSearch}
         handleClickSearch={props.handleClickSearch}
         searchValue={props.searchValue}

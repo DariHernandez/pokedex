@@ -1,4 +1,4 @@
-export function SearchButtons (props) {
+export function FilterButtons (props) {
     return (
       <section className="search-buttons">
         <div className="separator">
@@ -7,15 +7,15 @@ export function SearchButtons (props) {
             </svg>
         </div>
         <div className="buttons regular-width">
-          <SearchButton value="types" pokecolor="grass" onClick={(filter_name) => props.handleFilter("types")}/>
-          <SearchButton value="location" pokecolor="fire"/>
-          <SearchButton value="moves and habilities" pokecolor="water"/>
+          <FilterButton value="types" pokecolor="grass" onClick={(filter_name) => props.handleFilter("types")}/>
+          <FilterButton value="location" pokecolor="fire"/>
+          <FilterButton value="moves and habilities" pokecolor="water"/>
         </div>
       </section>
     )
   }
   
-  function SearchButton (props) {
+  function FilterButton (props) {
     return (
       <button 
         className="btn round animate" 

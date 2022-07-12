@@ -7,8 +7,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 import { get_pokedex } from "./pokeapi.js";
-import { SearchButtons } from "./search_buttons.js";
-import { SearchBar } from "./search_bar.js";
+import { FilterButtons } from "./filter_buttons.js";
+import { TopBar } from "./top_bar.js";
 import { ResultsGrid } from "./results.js";
 import { Paginator } from "./paginator.js";
 import { TypeButtons } from "./type_buttons.js";
@@ -226,7 +226,7 @@ function Main(props) {
       pokemonsNum: props.pokemonsNum
     });
   } else if (props.currentScreen == "types") {
-    return React.createElement(MainFilter, {
+    return React.createElement(MainFilterType, {
       currentScreen: props.currentScreen,
       pokemonTypes: props.pokemonTypes,
       handleChangeSearch: props.handleChangeSearch,
@@ -241,14 +241,14 @@ function MainHome(props) {
   return React.createElement(
     "main",
     { className: props.currentScreen.replace(" ", "-") },
-    React.createElement(SearchBar, {
+    React.createElement(TopBar, {
       handleChangeSearch: props.handleChangeSearch,
       handleClickSearch: props.handleClickSearch,
       searchValue: props.searchValue,
       currentScreen: props.currentScreen,
       handleClickGoBack: props.handleClickGoBack
     }),
-    React.createElement(SearchButtons, {
+    React.createElement(FilterButtons, {
       handleFilter: props.handleFilter
     })
   );
@@ -258,7 +258,7 @@ function MainSearch(props) {
   return React.createElement(
     "main",
     { className: props.currentScreen.replace(" ", "-") },
-    React.createElement(SearchBar, {
+    React.createElement(TopBar, {
       handleChangeSearch: props.handleChangeSearch,
       handleClickSearch: props.handleClickSearch,
       searchValue: props.searchValue,
@@ -285,11 +285,11 @@ function MainSearch(props) {
   );
 }
 
-function MainFilter(props) {
+function MainFilterType(props) {
   return React.createElement(
     "main",
     { className: props.currentScreen.replace(" ", "-") },
-    React.createElement(SearchBar, {
+    React.createElement(TopBar, {
       handleChangeSearch: props.handleChangeSearch,
       handleClickSearch: props.handleClickSearch,
       searchValue: props.searchValue,

@@ -5,7 +5,7 @@ export function ResultsGrid (props) {
     // Create a card for each pokemon
     let cards = []
     for (const pokemon_data of props.pokemons) {
-        cards.push (<Card pokemon={pokemon_data} key={pokemon_data.entry_number.toString()}/>)
+        cards.push (<ResultCard pokemon={pokemon_data} key={pokemon_data.entry_number.toString()}/>)
     }
 
     if (cards.length > 0) {
@@ -30,7 +30,7 @@ export function ResultsGrid (props) {
     }
 }
 
-class Card extends React.Component {
+class ResultCard extends React.Component {
     constructor (props) {
         super (props)
         this.state = {
