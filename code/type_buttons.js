@@ -13,7 +13,8 @@ export function TypeButtons(props) {
             buttons.push(React.createElement(TypeButton, {
                 pokemonType: pokemonType,
                 handleUpdateFilter: props.handleUpdateFilter,
-                key: pokemonType
+                key: pokemonType,
+                onClick: props.handleFilterType
             }));
         }
     } catch (err) {
@@ -43,8 +44,8 @@ function TypeButton(props) {
         "button",
         {
             className: "pokemon-type btn round text-shadow",
-            onClick: function onClick(pokemonType) {
-                return props.onClick(pokemonType);
+            onClick: function onClick() {
+                return props.onClick(props.pokemonType);
             },
             pokecolor: props.pokemonType
         },

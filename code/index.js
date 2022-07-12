@@ -6,7 +6,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import { get_pokedex } from "./pokeapi.js";
+import { getPokedex, getPokemonsType } from "./pokeapi.js";
 import { FilterButtons } from "./filter_buttons.js";
 import { TopBar } from "./top_bar.js";
 import { ResultsGrid } from "./results.js";
@@ -32,6 +32,33 @@ var Pokedex = function (_React$Component) {
       });
     };
 
+    _this.updateFilterType = function (data, pokemonType) {
+      // Format data from the api
+      var pokemonsFormated = data.pokemon.map(function (pokemonData) {
+        var pokemonName = pokemonData.pokemon.name;
+        var pokemonUrl = pokemonData.pokemon.url;
+        var pokemonEntry = pokemonUrl.split("/")[pokemonUrl.split("/").length - 2];
+        return {
+          entry_number: pokemonEntry,
+          pokemon_species: {
+            name: pokemonName,
+            url: pokemonUrl
+          }
+        };
+      });
+
+      // Filter extra pokemons
+      var pokemonsFormatedFiltered = pokemonsFormated.filter(function (pokemonData) {
+        return parseInt(pokemonData.entry_number) < 10000;
+      });
+
+      // Update data in state
+      _this.setState({
+        foundPokemons: pokemonsFormatedFiltered,
+        currentScreen: "type " + pokemonType
+      });
+    };
+
     _this.state = {
       searchValue: "",
       pokemons: [],
@@ -49,7 +76,7 @@ var Pokedex = function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       // Get main data from api
-      get_pokedex(this.updatePokedex);
+      getPokedex(this.updatePokedex);
     }
   }, {
     key: "updateResults",
@@ -142,6 +169,12 @@ var Pokedex = function (_React$Component) {
         lastScreen: "home"
       });
     }
+  }, {
+    key: "handleFilterType",
+    value: function handleFilterType(pokemonType) {
+      // handle click in filter type button
+      getPokemonsType(this.updateFilterType, pokemonType);
+    }
 
     // Main component
 
@@ -193,7 +226,10 @@ var Pokedex = function (_React$Component) {
           handleFilter: function handleFilter(filter_name) {
             return _this2.handleFilter(filter_name);
           },
-          pokemonTypes: this.state.pokemonTypes
+          pokemonTypes: this.state.pokemonTypes,
+          handleFilterType: function handleFilterType(pokemonType) {
+            return _this2.handleFilterType(pokemonType);
+          }
         })
       );
     }
@@ -211,7 +247,7 @@ function Main(props) {
       handleClickSearch: props.handleClickSearch,
       handleFilter: props.handleFilter
     });
-  } else if (props.currentScreen == "all types") {
+  } else if (props.currentScreen == "all types" || props.currentScreen.includes("type ")) {
     return React.createElement(MainSearch, {
       currentScreen: props.currentScreen,
       searchValue: props.searchValue,
@@ -232,7 +268,8 @@ function Main(props) {
       handleChangeSearch: props.handleChangeSearch,
       handleClickSearch: props.handleClickSearch,
       searchValue: props.searchValue,
-      handleClickGoBack: props.handleClickGoBack
+      handleClickGoBack: props.handleClickGoBack,
+      handleFilterType: props.handleFilterType
     });
   }
 }
@@ -300,7 +337,8 @@ function MainFilterType(props) {
       handleUpdateFilter: function handleUpdateFilter() {
         return console.log("clicked");
       },
-      pokemonTypes: props.pokemonTypes
+      pokemonTypes: props.pokemonTypes,
+      handleFilterType: props.handleFilterType
     })
   );
 }

@@ -1,4 +1,4 @@
-import {get_pokedex} from "./pokeapi.js"
+import {getPokedex, getPokemonsType} from "./pokeapi.js"
 import {FilterButtons} from "./filter_buttons.js"
 import {TopBar} from "./top_bar.js"
 import {ResultsGrid} from "./results.js"
@@ -45,7 +45,7 @@ class Pokedex extends React.Component {
 
   componentDidMount () {
     // Get main data from api
-    get_pokedex (this.updatePokedex)
+    getPokedex (this.updatePokedex)
   }
 
   updatePokedex = (api_data) => {
@@ -139,6 +139,39 @@ class Pokedex extends React.Component {
       lastScreen: "home",
     })
   }
+  
+  updateFilterType = (data, pokemonType) => {
+    // Format data from the api
+    const pokemonsFormated = data.pokemon.map ((pokemonData) => {
+      const pokemonName = pokemonData.pokemon.name
+      const pokemonUrl = pokemonData.pokemon.url
+      const pokemonEntry = pokemonUrl.split("/") [pokemonUrl.split("/").length - 2]
+      return {
+        entry_number: pokemonEntry,
+        pokemon_species: {
+          name: pokemonName,
+          url: pokemonUrl
+        }
+      }
+    }) 
+
+    // Filter extra pokemons
+    const pokemonsFormatedFiltered = pokemonsFormated.filter ((pokemonData) => {
+      return parseInt(pokemonData.entry_number) < 10000
+    })
+
+    // Update data in state
+    this.setState ({
+      foundPokemons: pokemonsFormatedFiltered,
+      currentScreen: `type ${pokemonType}`,
+    })
+  }
+
+  handleFilterType (pokemonType) {
+    // handle click in filter type button
+    getPokemonsType (this.updateFilterType, pokemonType)
+  }
+
 
   // Main component
   render() {
@@ -171,6 +204,7 @@ class Pokedex extends React.Component {
           pokemonsNum={this.state.foundPokemons.length}
           handleFilter={(filter_name) => this.handleFilter(filter_name)}
           pokemonTypes={this.state.pokemonTypes}
+          handleFilterType={(pokemonType) => this.handleFilterType(pokemonType)}
         />
         
       </div>
@@ -187,7 +221,7 @@ function Main (props) {
       handleClickSearch={props.handleClickSearch}
       handleFilter={props.handleFilter}
     />
-  } else if (props.currentScreen == "all types") {
+  } else if (props.currentScreen == "all types" || props.currentScreen.includes("type ")) {
     return <MainSearch
       currentScreen = {props.currentScreen}
       searchValue={props.searchValue}
@@ -209,6 +243,7 @@ function Main (props) {
       handleClickSearch={props.handleClickSearch}
       searchValue={props.searchValue}
       handleClickGoBack={props.handleClickGoBack}
+      handleFilterType={props.handleFilterType}
     />
   }
 }
@@ -283,6 +318,7 @@ function MainFilterType (props) {
       <TypeButtons
         handleUpdateFilter={() => console.log ("clicked")}
         pokemonTypes={props.pokemonTypes}
+        handleFilterType={props.handleFilterType}
       />
     </main>
   )

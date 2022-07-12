@@ -1,4 +1,4 @@
-import {get_pokemon} from "./pokeapi.js"
+import {getPokemon} from "./pokeapi.js"
 
 export function ResultsGrid (props) {
 
@@ -42,7 +42,7 @@ class ResultCard extends React.Component {
 
     componentDidMount () {
         // Query data for current pokemon
-        get_pokemon (this.updatePokemonData, this.state.pokemonCode)
+        getPokemon (this.updatePokemonData, this.state.pokemonCode)
     }
 
     updatePokemonData = (data) => {

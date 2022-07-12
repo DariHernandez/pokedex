@@ -8,6 +8,7 @@ export function TypeButtons (props) {
                 pokemonType={pokemonType}
                 handleUpdateFilter={props.handleUpdateFilter}
                 key={pokemonType}
+                onClick={props.handleFilterType}
             />
         )
     }
@@ -22,7 +23,7 @@ function TypeButton (props) {
     return (
         <button
             className="pokemon-type btn round text-shadow"
-            onClick={(pokemonType) => props.onClick (pokemonType)}
+            onClick={() => props.onClick (props.pokemonType)}
             pokecolor={props.pokemonType}
         >
             {props.pokemonType}
