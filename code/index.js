@@ -240,7 +240,7 @@ var Pokedex = function (_React$Component) {
       // handle click in filter button
       var currentScreen = this.state.currentScreen;
       var filterkey = currentScreen.substring(0, currentScreen.length - 1);
-      getPokemonsFilter(this.updateFilter, filterkey, filterValue);
+      getPokemonsFilter(this.updateFilter, filterkey, filterValue.toLowerCase());
     }
 
     // Main component

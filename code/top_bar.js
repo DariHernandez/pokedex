@@ -24,7 +24,7 @@ export function TopBar(props) {
     );
   } else {
     // Search bar for results page 
-    return React.createElement(TopBarType, {
+    return React.createElement(TopBarFilter, {
       handleChangeSearch: props.handleChangeSearch,
       handleClickSearch: props.handleClickSearch,
       searchValue: props.searchValue,
@@ -72,7 +72,7 @@ function TopBarHome(props) {
   );
 }
 
-function TopBarType(props) {
+function TopBarFilter(props) {
   // Search
   return React.createElement(
     "section",
@@ -117,14 +117,40 @@ function TopBarButtonSearch(props) {
 }
 
 function TopBarGoBack(props) {
+
+  // Format title parts
+  var titleParts = props.sectionTitle.replace("-", " ").split(" ");
+  var titleSpans = [];
+  titleSpans.push(React.createElement(
+    "span",
+    { key: "first" },
+    titleParts[0]
+  ));
+  if (titleParts.length > 1) {
+    titleSpans.push(React.createElement(
+      "span",
+      { key: "second" },
+      titleParts[titleParts.length - 1]
+    ));
+  } else {
+    titleSpans.push(React.createElement(
+      "span",
+      { key: "second" },
+      titleParts[1]
+    ));
+  }
+
+  // Class for titles in upper case
+  var upperClass = props.sectionTitle.includes("generation") ? "upper" : "title";
+
   return React.createElement(
     "div",
     { className: "return", onClick: props.onClick },
     React.createElement("img", { src: "./imgs/arrow.svg", alt: "go back icon", className: "return-icon" }),
     React.createElement(
       "h2",
-      { className: "section-title" },
-      props.sectionTitle
+      { className: "section-title " + upperClass },
+      titleSpans
     )
   );
 }

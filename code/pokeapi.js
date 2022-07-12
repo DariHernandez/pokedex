@@ -36,4 +36,4 @@ export function getPokemonsFilter(doneFunction, filterkey, filterValue) {
 
 export var pokemonTypes = ["normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice", "dragon", "dark", "fairy"];
 
-export var pokemonGenerations = ["generation-i", "generation-ii", "generation-iii", "generation-iv", "generation-v", "generation-vi", "generation-vii", "generation-viii"];
+export var pokemonGenerations = ["generation-I", "generation-II", "generation-III", "generation-IV", "generation-V", "generation-VI", "generation-VII", "generation-VIII"];

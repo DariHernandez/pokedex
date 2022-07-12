@@ -256,6 +256,13 @@ main section.top-bar .content .return .section-title {
   margin: 0;
   margin-left: 30px;
 }
+main section.top-bar .content .return .section-title span {
+  margin-left: 10px;
+  text-transform: capitalize;
+}
+main section.top-bar .content .return .section-title.upper span:last-child {
+  text-transform: uppercase;
+}
 main.home section.top-bar {
   position: relative;
   overflow: hidden;

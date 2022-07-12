@@ -47,12 +47,12 @@ export const pokemonTypes = [
 ]
 
 export const pokemonGenerations = [
-    "generation-i",
-    "generation-ii",
-    "generation-iii",
-    "generation-iv",
-    "generation-v",
-    "generation-vi",
-    "generation-vii",
-    "generation-viii",
+    "generation-I",
+    "generation-II",
+    "generation-III",
+    "generation-IV",
+    "generation-V",
+    "generation-VI",
+    "generation-VII",
+    "generation-VIII",
 ]

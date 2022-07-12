@@ -204,7 +204,7 @@ class Pokedex extends React.Component {
     // handle click in filter button
     const currentScreen = this.state.currentScreen
     const filterkey = currentScreen.substring (0, currentScreen.length - 1)
-    getPokemonsFilter (this.updateFilter, filterkey, filterValue)
+    getPokemonsFilter (this.updateFilter, filterkey, filterValue.toLowerCase())
   }
 
 
