@@ -119,7 +119,7 @@ var Pokedex = function (_React$Component) {
 
       // Filter pokemons
       var foundPokemons = pokemons.filter(function (pokemon) {
-        return pokemon.pokemon_species.name.includes(searchValue);
+        return pokemon.pokemon_species.name.includes(searchValue.toLowerCase());
       });
 
       // Calculate number of result pages

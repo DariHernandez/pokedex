@@ -52,7 +52,7 @@ class Pokedex extends React.Component {
 
     // Filter pokemons
     let foundPokemons = pokemons.filter ((pokemon) => {
-      return pokemon.pokemon_species.name.includes (searchValue)
+      return pokemon.pokemon_species.name.includes (searchValue.toLowerCase())
     })
 
     // Calculate number of result pages
