@@ -61,7 +61,12 @@ class ResultCard extends React.Component {
         if (this.state.pokemonData.sprites && this.state.pokemonData.types) {
             // Render pokemon image
             image = this.state.pokemonData.sprites.front_default
-            pokemon_image = <img src={image} alt="{this.state.pokemonName} image"/>
+            if (image != null) {
+                // Api image
+                pokemon_image = <img src={image} alt="pokemon image"/>
+            } else {
+                pokemon_image = <img src="./imgs/pokemon-not-found.png" alt="pokemon image not found"/>
+            }
 
             // Render pokemon code color
             pokemon_type = this.state.pokemonData.types[0].type.name

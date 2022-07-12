@@ -157,6 +157,7 @@ class Pokedex extends React.Component {
     })
 
     // Update data in state
+    console.log (pokemonsFormatedFiltered)
     this.setState ({
       pokemons: pokemonsFormatedFiltered,
       foundPokemons: pokemonsFormatedFiltered,

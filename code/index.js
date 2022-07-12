@@ -53,6 +53,7 @@ var Pokedex = function (_React$Component) {
       });
 
       // Update data in state
+      console.log(pokemonsFormatedFiltered);
       _this.setState({
         pokemons: pokemonsFormatedFiltered,
         foundPokemons: pokemonsFormatedFiltered,
