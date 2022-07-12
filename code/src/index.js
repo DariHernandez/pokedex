@@ -1,9 +1,9 @@
 import {getPokedex, getPokemonsType} from "./pokeapi.js"
-import {FilterButtons} from "./filter_buttons.js"
+import {CategoryButtons} from "./category_buttons.js"
 import {TopBar} from "./top_bar.js"
 import {ResultsGrid} from "./results.js"
 import {Paginator} from "./paginator.js"
-import {TypeButtons} from "./type_buttons.js"
+import {FilterButtons} from "./filter_buttons.js"
 
 "use strict"
 
@@ -19,26 +19,7 @@ class Pokedex extends React.Component {
       currentScreen: "home",
       currentPage: 1,
       totalPages: 1,
-      pokemonTypes: [
-        "normal", 
-        "fighting", 
-        "flying",
-        "poison", 
-        "ground",
-        "rock",
-        "bug",
-        "ghost",
-        "steel",
-        "fire",
-        "water",
-        "grass",
-        "electric",
-        "psychic",
-        "ice",
-        "dragon",
-        "dark",
-        "fairy",
-      ],
+      categoryFilter: "",
     }
   }
 
@@ -159,7 +140,6 @@ class Pokedex extends React.Component {
     })
 
     // Update data in state
-    console.log (pokemonsFormatedFiltered)
     this.setState ({
       pokemons: pokemonsFormatedFiltered,
       foundPokemons: pokemonsFormatedFiltered,
@@ -203,7 +183,6 @@ class Pokedex extends React.Component {
           handleClickBackPage={() => this.handleClickBackPage()}
           pokemonsNum={this.state.foundPokemons.length}
           handleFilter={(filter_name) => this.handleFilter(filter_name)}
-          pokemonTypes={this.state.pokemonTypes}
           handleFilterType={(pokemonType) => this.handleFilterType(pokemonType)}
           updateResults={(currentScreen) => this.updateResults(currentScreen=currentScreen)}
           onHomeLoad={() => this.handleUpdatePokedex()}
@@ -240,10 +219,9 @@ function Main (props) {
       pokemonsNum={props.pokemonsNum}
       updateResults={props.updateResults}
     />
-  } else if (props.currentScreen == "types") {
+  } else if (["types", "generations"].includes (props.currentScreen)) {
     return <MainFilterType
       currentScreen={props.currentScreen}
-      pokemonTypes={props.pokemonTypes}
       handleChangeSearch={props.handleChangeSearch}
       handleClickSearch={props.handleClickSearch}
       searchValue={props.searchValue}
@@ -265,7 +243,7 @@ function MainHome (props) {
         handleClickGoBack={props.handleClickGoBack}
       />
 
-      <FilterButtons
+      <CategoryButtons
         handleFilter={props.handleFilter}
       />
 
@@ -327,10 +305,9 @@ function MainFilterType (props) {
         handleClickGoBack={props.handleClickGoBack}
       />
 
-      <TypeButtons
-        handleUpdateFilter={() => console.log ("clicked")}
-        pokemonTypes={props.pokemonTypes}
+      <FilterButtons
         handleFilterType={props.handleFilterType}
+        currentScreen={props.currentScreen}
       />
     </main>
   )

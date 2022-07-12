@@ -24,3 +24,35 @@ export function getPokemonsType (doneFunction, pokemonType) {
     // Send data to function
     .then(data => doneFunction(data, pokemonType))
 }
+
+export const pokemonTypes = [
+    "normal", 
+    "fighting", 
+    "flying",
+    "poison", 
+    "ground",
+    "rock",
+    "bug",
+    "ghost",
+    "steel",
+    "fire",
+    "water",
+    "grass",
+    "electric",
+    "psychic",
+    "ice",
+    "dragon",
+    "dark",
+    "fairy",
+]
+
+export const pokemonGenerations = [
+    "generation-i",
+    "generation-ii",
+    "generation-iii",
+    "generation-iv",
+    "generation-v",
+    "generation-vi",
+    "generation-vii",
+    "generation-viii",
+]

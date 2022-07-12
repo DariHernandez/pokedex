@@ -7,11 +7,11 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 import { getPokedex, getPokemonsType } from "./pokeapi.js";
-import { FilterButtons } from "./filter_buttons.js";
+import { CategoryButtons } from "./category_buttons.js";
 import { TopBar } from "./top_bar.js";
 import { ResultsGrid } from "./results.js";
 import { Paginator } from "./paginator.js";
-import { TypeButtons } from "./type_buttons.js";
+import { FilterButtons } from "./filter_buttons.js";
 
 "use strict";
 
@@ -53,7 +53,6 @@ var Pokedex = function (_React$Component) {
       });
 
       // Update data in state
-      console.log(pokemonsFormatedFiltered);
       _this.setState({
         pokemons: pokemonsFormatedFiltered,
         foundPokemons: pokemonsFormatedFiltered,
@@ -68,7 +67,7 @@ var Pokedex = function (_React$Component) {
       currentScreen: "home",
       currentPage: 1,
       totalPages: 1,
-      pokemonTypes: ["normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice", "dragon", "dark", "fairy"]
+      categoryFilter: ""
     };
     return _this;
   }
@@ -226,7 +225,6 @@ var Pokedex = function (_React$Component) {
           handleFilter: function handleFilter(filter_name) {
             return _this2.handleFilter(filter_name);
           },
-          pokemonTypes: this.state.pokemonTypes,
           handleFilterType: function handleFilterType(pokemonType) {
             return _this2.handleFilterType(pokemonType);
           },
@@ -270,10 +268,9 @@ function Main(props) {
       pokemonsNum: props.pokemonsNum,
       updateResults: props.updateResults
     });
-  } else if (props.currentScreen == "types") {
+  } else if (["types", "generations"].includes(props.currentScreen)) {
     return React.createElement(MainFilterType, {
       currentScreen: props.currentScreen,
-      pokemonTypes: props.pokemonTypes,
       handleChangeSearch: props.handleChangeSearch,
       handleClickSearch: props.handleClickSearch,
       searchValue: props.searchValue,
@@ -294,7 +291,7 @@ function MainHome(props) {
       currentScreen: props.currentScreen,
       handleClickGoBack: props.handleClickGoBack
     }),
-    React.createElement(FilterButtons, {
+    React.createElement(CategoryButtons, {
       handleFilter: props.handleFilter
     })
   );
@@ -364,12 +361,9 @@ function MainFilterType(props) {
       currentScreen: props.currentScreen,
       handleClickGoBack: props.handleClickGoBack
     }),
-    React.createElement(TypeButtons, {
-      handleUpdateFilter: function handleUpdateFilter() {
-        return console.log("clicked");
-      },
-      pokemonTypes: props.pokemonTypes,
-      handleFilterType: props.handleFilterType
+    React.createElement(FilterButtons, {
+      handleFilterType: props.handleFilterType,
+      currentScreen: props.currentScreen
     })
   );
 }

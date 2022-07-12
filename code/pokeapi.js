@@ -33,3 +33,7 @@ export function getPokemonsType(doneFunction, pokemonType) {
         return doneFunction(data, pokemonType);
     });
 }
+
+export var pokemonTypes = ["normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice", "dragon", "dark", "fairy"];
+
+export var pokemonGenerations = ["generation-i", "generation-ii", "generation-iii", "generation-iv", "generation-v", "generation-vi", "generation-vii", "generation-viii"];

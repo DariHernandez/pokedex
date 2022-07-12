@@ -290,14 +290,14 @@ main.home section.top-bar .content .title {
   color: #F5EDDC;
 }
 
-main.home section.filter-buttons {
+main.home section.category-buttons {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   position: relative;
 }
-main.home section.filter-buttons .separator {
+main.home section.category-buttons .separator {
   position: absolute;
   top: -63px;
   left: 0;
@@ -306,17 +306,17 @@ main.home section.filter-buttons .separator {
   line-height: 0;
   transform: rotate(180deg);
 }
-main.home section.filter-buttons .separator svg {
+main.home section.category-buttons .separator svg {
   position: relative;
   display: block;
   width: calc(100% + 1.3px);
   height: 150px;
 }
-main.home section.filter-buttons .separator .shape-fill {
+main.home section.category-buttons .separator .shape-fill {
   fill: #F5EDDC;
 }
 @media (max-width: 767px) {
-  main.home section.filter-buttons .separator svg {
+  main.home section.category-buttons .separator svg {
     width: calc(100% + 1.3px);
     height: 64px;
   }
@@ -385,19 +385,19 @@ section.results-grid .card img {
   cursor: not-allowed;
 }
 
-.types-buttons {
+.filter-buttons {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
-  margin-top: 30px;
+  margin: 30px 0;
 }
-.types-buttons button.pokemon-type.btn.round {
+.filter-buttons button.button.btn.round {
   margin: 0;
   position: relative;
   height: 50px;
   overflow: hidden;
 }
-.types-buttons button.pokemon-type.btn.round .wrapper-img {
+.filter-buttons button.button.btn.round .wrapper-img {
   width: 100px;
   height: 50px;
   overflow: hidden;
@@ -409,7 +409,7 @@ section.results-grid .card img {
   right: -30px;
   top: 0;
 }
-.types-buttons button.pokemon-type.btn.round .wrapper-img img {
+.filter-buttons button.button.btn.round .wrapper-img img {
   width: 100%;
   height: auto;
   filter: blur(1px);

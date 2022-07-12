@@ -1,39 +1,85 @@
+import { pokemonTypes, pokemonGenerations } from "./pokeapi.js";
+
 export function FilterButtons(props) {
-  return React.createElement(
-    "section",
-    { className: "filter-buttons" },
-    React.createElement(
-      "div",
-      { className: "separator" },
-      React.createElement(
-        "svg",
-        { "data-name": "Layer 1", xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 1200 120", preserveAspectRatio: "none" },
-        React.createElement("path", { d: "M0,0V7.23C0,65.52,268.63,112.77,600,112.77S1200,65.52,1200,7.23V0Z", className: "shape-fill" })
-      )
-    ),
-    React.createElement(
-      "div",
-      { className: "buttons regular-width" },
-      React.createElement(FilterButton, { value: "types", pokecolor: "grass", onClick: function onClick(filter_name) {
-          return props.handleFilter("types");
-        } }),
-      React.createElement(FilterButton, { value: "generations", pokecolor: "fire" }),
-      React.createElement(FilterButton, { value: "moves and habilities", pokecolor: "water" })
-    )
-  );
+
+    // Select data for show different filter buttons
+    var currentScreen = props.currentScreen;
+    var buttonsData = void 0;
+    var useImage = false;
+    if (currentScreen == "types") {
+        buttonsData = pokemonTypes;
+        useImage = true;
+    } else if (currentScreen == "generations") {
+        buttonsData = pokemonGenerations;
+    }
+
+    // Generate buttons
+    var buttons = [];
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+
+    try {
+        for (var _iterator = buttonsData[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var buttonData = _step.value;
+
+
+            // Set color for button
+            var color = "default";
+            if (currentScreen == "types") {
+                color = buttonData;
+            }
+
+            buttons.push(React.createElement(FilterButton, {
+                buttonData: buttonData,
+                key: buttonData,
+                onClick: props.handleFilterType,
+                currentScreen: props.currentScreen,
+                color: color,
+                useImage: useImage
+            }));
+        }
+    } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+    } finally {
+        try {
+            if (!_iteratorNormalCompletion && _iterator.return) {
+                _iterator.return();
+            }
+        } finally {
+            if (_didIteratorError) {
+                throw _iteratorError;
+            }
+        }
+    }
+
+    return React.createElement(
+        "section",
+        { className: currentScreen + " filter-buttons regular-width" },
+        buttons
+    );
 }
 
 function FilterButton(props) {
-  return React.createElement(
-    "button",
-    {
-      className: "btn round animate",
-      pokecolor: props.pokecolor,
-      onClick: props.onClick },
-    props.value,
-    React.createElement("img", {
-      src: "./imgs/" + props.value.replaceAll(" ", "-") + "-btn.svg",
-      className: "regular"
-    })
-  );
+
+    return React.createElement(
+        "button",
+        {
+            className: props.currentScreen + " button btn round text-shadow",
+            onClick: function onClick() {
+                return props.onClick(props.buttonData);
+            },
+            pokecolor: props.color
+        },
+        props.buttonData,
+        props.useImage && React.createElement(
+            "div",
+            { className: "wrapper-img" },
+            React.createElement("img", {
+                src: "./imgs/types-assets/" + props.buttonData + ".png",
+                alt: "pokemon type image"
+            })
+        )
+    );
 }
