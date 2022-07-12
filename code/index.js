@@ -143,7 +143,8 @@ var Pokedex = function (_React$Component) {
     value: function handleClickGoBack() {
       // Go back to last screen
       this.setState({
-        currentScreen: "home"
+        currentScreen: "home",
+        searchValue: ""
       });
     }
   }, {
@@ -164,7 +165,8 @@ var Pokedex = function (_React$Component) {
     key: "handleFilter",
     value: function handleFilter(filter_name) {
       this.setState({
-        currentScreen: filter_name
+        currentScreen: filter_name,
+        searchValue: ""
       });
     }
   }, {

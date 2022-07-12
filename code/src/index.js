@@ -115,6 +115,7 @@ class Pokedex extends React.Component {
     // Go back to last screen
     this.setState({
       currentScreen: "home",
+      searchValue: "",
     })
   }
 
@@ -133,6 +134,7 @@ class Pokedex extends React.Component {
   handleFilter (filter_name) {
     this.setState({
       currentScreen: filter_name,
+      searchValue: "",
     })
   }
   
