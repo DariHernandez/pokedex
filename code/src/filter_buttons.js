@@ -27,7 +27,7 @@ export function FilterButtons (props) {
             <FilterButton
                 buttonData={buttonData}
                 key={buttonData}
-                onClick={props.handleFilterType}
+                onClick={props.handleFilter}
                 currentScreen={props.currentScreen}
                 color={color} 
                 useImage={useImage}

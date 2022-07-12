@@ -22,15 +22,15 @@ export function getPokemon(doneFunction, number) {
     });
 }
 
-export function getPokemonsType(doneFunction, pokemonType) {
+export function getPokemonsFilter(doneFunction, filterkey, filterValue) {
     // Get data from api
-    fetch("https://pokeapi.co/api/v2/type/" + pokemonType + "/").then(function (response) {
+    fetch("https://pokeapi.co/api/v2/" + filterkey + "/" + filterValue + "/").then(function (response) {
         return response.json();
     })
 
     // Send data to function
     .then(function (data) {
-        return doneFunction(data, pokemonType);
+        return doneFunction(data, filterkey, filterValue);
     });
 }
 

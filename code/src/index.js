@@ -1,4 +1,4 @@
-import {getPokedex, getPokemonsType} from "./pokeapi.js"
+import {getPokedex, getPokemonsFilter} from "./pokeapi.js"
 import {CategoryButtons} from "./category_buttons.js"
 import {TopBar} from "./top_bar.js"
 import {ResultsGrid} from "./results.js"
@@ -8,6 +8,12 @@ import {FilterButtons} from "./filter_buttons.js"
 "use strict"
 
 const e = React.createElement
+
+function getPokemonEntry (pokemonData) {
+  const url = pokemonData.url
+  const pokemonEntry = url.split("/") [url.split("/").length - 2]
+  return pokemonEntry
+}
 
 class Pokedex extends React.Component {
   constructor(props) {
@@ -112,44 +118,65 @@ class Pokedex extends React.Component {
     this.updateResults(null, currentPage)
   }
   
-  handleFilter (filter_name) {
+  handleCategory (categoryName) {
     this.setState({
-      currentScreen: filter_name,
+      currentScreen: categoryName,
       searchValue: "",
     })
   }
   
-  updateFilterType = (data, pokemonType) => {
+  updateFilter = (data, filterkey, filterValue) => {
     // Format data from the api
-    const pokemonsFormated = data.pokemon.map ((pokemonData) => {
-      const pokemonName = pokemonData.pokemon.name
-      const pokemonUrl = pokemonData.pokemon.url
-      const pokemonEntry = pokemonUrl.split("/") [pokemonUrl.split("/").length - 2]
-      return {
-        entry_number: pokemonEntry,
-        pokemon_species: {
-          name: pokemonName,
-          url: pokemonUrl
-        }
-      }
-    }) 
+    let pokemonsFormated
 
-    // Filter extra pokemons
-    const pokemonsFormatedFiltered = pokemonsFormated.filter ((pokemonData) => {
-      return parseInt(pokemonData.entry_number) < 10000
-    })
+    if (filterkey == "type") {
+      // Format data for pokemon type filter
+      pokemonsFormated = data.pokemon.map ((pokemonData) => {
+        const pokemonName = pokemonData.pokemon.name
+        const pokemonUrl = pokemonData.pokemon.url
+        const pokemonEntry = getPokemonEntry (pokemonData.pokemon)
+        return {
+          entry_number: pokemonEntry,
+          pokemon_species: {
+            name: pokemonName,
+            url: pokemonUrl
+          }
+        }
+      }) 
+  
+      // Filter extra pokemons
+      pokemonsFormated = pokemonsFormated.filter ((pokemonData) => {
+        return parseInt(pokemonData.entry_number) < 10000
+      })
+    } else if (filterkey == "generation") {
+      // Format data for pokemon generation filter
+      pokemonsFormated = data.pokemon_species.map ((pokemonData) => {
+        const pokemonName = pokemonData.name
+        const pokemonUrl = pokemonData.url
+        const pokemonEntry = getPokemonEntry (pokemonData)
+        return {
+          entry_number: pokemonEntry,
+          pokemon_species: {
+            name: pokemonName,
+            url: pokemonUrl
+          }
+        }
+      }) 
+    }
 
     // Update data in state
     this.setState ({
-      pokemons: pokemonsFormatedFiltered,
-      foundPokemons: pokemonsFormatedFiltered,
-      currentScreen: `type ${pokemonType}`,
+      pokemons: pokemonsFormated,
+      foundPokemons: pokemonsFormated,
+      currentScreen: `${filterkey} ${filterValue}`,
     })
   }
 
-  handleFilterType (pokemonType) {
-    // handle click in filter type button
-    getPokemonsType (this.updateFilterType, pokemonType)
+  handleFilter (filterValue) {
+    // handle click in filter button
+    const currentScreen = this.state.currentScreen
+    const filterkey = currentScreen.substring (0, currentScreen.length - 1)
+    getPokemonsFilter (this.updateFilter, filterkey, filterValue)
   }
 
 
@@ -182,8 +209,8 @@ class Pokedex extends React.Component {
           handleClickNextPage={() => this.handleClickNextPage()}
           handleClickBackPage={() => this.handleClickBackPage()}
           pokemonsNum={this.state.foundPokemons.length}
-          handleFilter={(filter_name) => this.handleFilter(filter_name)}
-          handleFilterType={(pokemonType) => this.handleFilterType(pokemonType)}
+          handleCategory={(categoryName) => this.handleCategory(categoryName)}
+          handleFilter={(filterValue) => this.handleFilter(filterValue)}
           updateResults={(currentScreen) => this.updateResults(currentScreen=currentScreen)}
           onHomeLoad={() => this.handleUpdatePokedex()}
         />
@@ -194,19 +221,22 @@ class Pokedex extends React.Component {
 }
 
 function Main (props) {
-  if (props.currentScreen == "home") {
+  const currentScreen = props.currentScreen
+  if (currentScreen == "home") {
     props.onHomeLoad ()
     return <MainHome
-      currentScreen = {props.currentScreen}
+      currentScreen = {currentScreen}
       searchValue={props.searchValue}
       handleChangeSearch ={props.handleChangeSearch}
       handleClickSearch={props.handleClickSearch}
-      handleFilter={props.handleFilter}
+      handleCategory={props.handleCategory}
     />
-  } else if (props.currentScreen == "all types" || props.currentScreen.includes("type ")) {
+  } else if (currentScreen == "all types" 
+            || currentScreen.includes("type ")
+            || currentScreen.includes("generation ")) {
 
     return <MainSearch
-      currentScreen = {props.currentScreen}
+      currentScreen = {currentScreen}
       searchValue={props.searchValue}
       handleChangeSearch ={props.handleChangeSearch}
       handleClickSearch={props.handleClickSearch}
@@ -219,14 +249,14 @@ function Main (props) {
       pokemonsNum={props.pokemonsNum}
       updateResults={props.updateResults}
     />
-  } else if (["types", "generations"].includes (props.currentScreen)) {
-    return <MainFilterType
-      currentScreen={props.currentScreen}
+  } else if (["types", "generations"].includes (currentScreen)) {
+    return <MainFilter
+      currentScreen={currentScreen}
       handleChangeSearch={props.handleChangeSearch}
       handleClickSearch={props.handleClickSearch}
       searchValue={props.searchValue}
       handleClickGoBack={props.handleClickGoBack}
-      handleFilterType={props.handleFilterType}
+      handleFilter={props.handleFilter}
     />
   }
 }
@@ -244,7 +274,7 @@ function MainHome (props) {
       />
 
       <CategoryButtons
-        handleFilter={props.handleFilter}
+        handleCategory={props.handleCategory}
       />
 
     </main>
@@ -294,7 +324,7 @@ class MainSearch extends React.Component {
   }
 }
 
-function MainFilterType (props) {
+function MainFilter (props) {
   return (   
     <main className={props.currentScreen.replace(" ", "-")}>
       <TopBar
@@ -306,7 +336,7 @@ function MainFilterType (props) {
       />
 
       <FilterButtons
-        handleFilterType={props.handleFilterType}
+        handleFilter={props.handleFilter}
         currentScreen={props.currentScreen}
       />
     </main>

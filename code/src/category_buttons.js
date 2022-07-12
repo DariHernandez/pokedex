@@ -7,8 +7,8 @@ export function CategoryButtons (props) {
           </svg>
       </div>
       <div className="buttons regular-width">
-        <FilterButton value="types" pokecolor="grass" onClick={(filter_name) => props.handleFilter("types")}/>
-        <FilterButton value="generations" pokecolor="fire" onClick={(filter_name) => props.handleFilter("generations")}/>
+        <FilterButton value="types" pokecolor="grass" onClick={() => props.handleCategory("types")}/>
+        <FilterButton value="generations" pokecolor="fire" onClick={() => props.handleCategory("generations")}/>
         <FilterButton value="moves and habilities" pokecolor="water"/>
       </div>
     </section>

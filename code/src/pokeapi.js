@@ -16,13 +16,13 @@ export function getPokemon (doneFunction, number) {
     .then(data => doneFunction(data))
 }
 
-export function getPokemonsType (doneFunction, pokemonType) {
+export function getPokemonsFilter (doneFunction, filterkey, filterValue) {
     // Get data from api
-    fetch (`https://pokeapi.co/api/v2/type/${pokemonType}/`)
+    fetch (`https://pokeapi.co/api/v2/${filterkey}/${filterValue}/`)
     .then ((response) => response.json())
 
     // Send data to function
-    .then(data => doneFunction(data, pokemonType))
+    .then(data => doneFunction(data, filterkey, filterValue))
 }
 
 export const pokemonTypes = [

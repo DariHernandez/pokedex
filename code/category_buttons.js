@@ -14,11 +14,11 @@ export function CategoryButtons(props) {
     React.createElement(
       "div",
       { className: "buttons regular-width" },
-      React.createElement(FilterButton, { value: "types", pokecolor: "grass", onClick: function onClick(filter_name) {
-          return props.handleFilter("types");
+      React.createElement(FilterButton, { value: "types", pokecolor: "grass", onClick: function onClick() {
+          return props.handleCategory("types");
         } }),
-      React.createElement(FilterButton, { value: "generations", pokecolor: "fire", onClick: function onClick(filter_name) {
-          return props.handleFilter("generations");
+      React.createElement(FilterButton, { value: "generations", pokecolor: "fire", onClick: function onClick() {
+          return props.handleCategory("generations");
         } }),
       React.createElement(FilterButton, { value: "moves and habilities", pokecolor: "water" })
     )

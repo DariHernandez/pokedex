@@ -33,7 +33,7 @@ export function FilterButtons(props) {
             buttons.push(React.createElement(FilterButton, {
                 buttonData: buttonData,
                 key: buttonData,
-                onClick: props.handleFilterType,
+                onClick: props.handleFilter,
                 currentScreen: props.currentScreen,
                 color: color,
                 useImage: useImage

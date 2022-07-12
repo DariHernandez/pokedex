@@ -6,7 +6,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import { getPokedex, getPokemonsType } from "./pokeapi.js";
+import { getPokedex, getPokemonsFilter } from "./pokeapi.js";
 import { CategoryButtons } from "./category_buttons.js";
 import { TopBar } from "./top_bar.js";
 import { ResultsGrid } from "./results.js";
@@ -16,6 +16,12 @@ import { FilterButtons } from "./filter_buttons.js";
 "use strict";
 
 var e = React.createElement;
+
+function getPokemonEntry(pokemonData) {
+  var url = pokemonData.url;
+  var pokemonEntry = url.split("/")[url.split("/").length - 2];
+  return pokemonEntry;
+}
 
 var Pokedex = function (_React$Component) {
   _inherits(Pokedex, _React$Component);
@@ -32,31 +38,50 @@ var Pokedex = function (_React$Component) {
       });
     };
 
-    _this.updateFilterType = function (data, pokemonType) {
+    _this.updateFilter = function (data, filterkey, filterValue) {
       // Format data from the api
-      var pokemonsFormated = data.pokemon.map(function (pokemonData) {
-        var pokemonName = pokemonData.pokemon.name;
-        var pokemonUrl = pokemonData.pokemon.url;
-        var pokemonEntry = pokemonUrl.split("/")[pokemonUrl.split("/").length - 2];
-        return {
-          entry_number: pokemonEntry,
-          pokemon_species: {
-            name: pokemonName,
-            url: pokemonUrl
-          }
-        };
-      });
+      var pokemonsFormated = void 0;
 
-      // Filter extra pokemons
-      var pokemonsFormatedFiltered = pokemonsFormated.filter(function (pokemonData) {
-        return parseInt(pokemonData.entry_number) < 10000;
-      });
+      if (filterkey == "type") {
+        // Format data for pokemon type filter
+        pokemonsFormated = data.pokemon.map(function (pokemonData) {
+          var pokemonName = pokemonData.pokemon.name;
+          var pokemonUrl = pokemonData.pokemon.url;
+          var pokemonEntry = getPokemonEntry(pokemonData.pokemon);
+          return {
+            entry_number: pokemonEntry,
+            pokemon_species: {
+              name: pokemonName,
+              url: pokemonUrl
+            }
+          };
+        });
+
+        // Filter extra pokemons
+        pokemonsFormated = pokemonsFormated.filter(function (pokemonData) {
+          return parseInt(pokemonData.entry_number) < 10000;
+        });
+      } else if (filterkey == "generation") {
+        // Format data for pokemon generation filter
+        pokemonsFormated = data.pokemon_species.map(function (pokemonData) {
+          var pokemonName = pokemonData.name;
+          var pokemonUrl = pokemonData.url;
+          var pokemonEntry = getPokemonEntry(pokemonData);
+          return {
+            entry_number: pokemonEntry,
+            pokemon_species: {
+              name: pokemonName,
+              url: pokemonUrl
+            }
+          };
+        });
+      }
 
       // Update data in state
       _this.setState({
-        pokemons: pokemonsFormatedFiltered,
-        foundPokemons: pokemonsFormatedFiltered,
-        currentScreen: "type " + pokemonType
+        pokemons: pokemonsFormated,
+        foundPokemons: pokemonsFormated,
+        currentScreen: filterkey + " " + filterValue
       });
     };
 
@@ -161,18 +186,20 @@ var Pokedex = function (_React$Component) {
       this.updateResults(null, currentPage);
     }
   }, {
-    key: "handleFilter",
-    value: function handleFilter(filter_name) {
+    key: "handleCategory",
+    value: function handleCategory(categoryName) {
       this.setState({
-        currentScreen: filter_name,
+        currentScreen: categoryName,
         searchValue: ""
       });
     }
   }, {
-    key: "handleFilterType",
-    value: function handleFilterType(pokemonType) {
-      // handle click in filter type button
-      getPokemonsType(this.updateFilterType, pokemonType);
+    key: "handleFilter",
+    value: function handleFilter(filterValue) {
+      // handle click in filter button
+      var currentScreen = this.state.currentScreen;
+      var filterkey = currentScreen.substring(0, currentScreen.length - 1);
+      getPokemonsFilter(this.updateFilter, filterkey, filterValue);
     }
 
     // Main component
@@ -222,11 +249,11 @@ var Pokedex = function (_React$Component) {
             return _this2.handleClickBackPage();
           },
           pokemonsNum: this.state.foundPokemons.length,
-          handleFilter: function handleFilter(filter_name) {
-            return _this2.handleFilter(filter_name);
+          handleCategory: function handleCategory(categoryName) {
+            return _this2.handleCategory(categoryName);
           },
-          handleFilterType: function handleFilterType(pokemonType) {
-            return _this2.handleFilterType(pokemonType);
+          handleFilter: function handleFilter(filterValue) {
+            return _this2.handleFilter(filterValue);
           },
           updateResults: function updateResults(currentScreen) {
             return _this2.updateResults(currentScreen = currentScreen);
@@ -243,19 +270,20 @@ var Pokedex = function (_React$Component) {
 }(React.Component);
 
 function Main(props) {
-  if (props.currentScreen == "home") {
+  var currentScreen = props.currentScreen;
+  if (currentScreen == "home") {
     props.onHomeLoad();
     return React.createElement(MainHome, {
-      currentScreen: props.currentScreen,
+      currentScreen: currentScreen,
       searchValue: props.searchValue,
       handleChangeSearch: props.handleChangeSearch,
       handleClickSearch: props.handleClickSearch,
-      handleFilter: props.handleFilter
+      handleCategory: props.handleCategory
     });
-  } else if (props.currentScreen == "all types" || props.currentScreen.includes("type ")) {
+  } else if (currentScreen == "all types" || currentScreen.includes("type ") || currentScreen.includes("generation ")) {
 
     return React.createElement(MainSearch, {
-      currentScreen: props.currentScreen,
+      currentScreen: currentScreen,
       searchValue: props.searchValue,
       handleChangeSearch: props.handleChangeSearch,
       handleClickSearch: props.handleClickSearch,
@@ -268,14 +296,14 @@ function Main(props) {
       pokemonsNum: props.pokemonsNum,
       updateResults: props.updateResults
     });
-  } else if (["types", "generations"].includes(props.currentScreen)) {
-    return React.createElement(MainFilterType, {
-      currentScreen: props.currentScreen,
+  } else if (["types", "generations"].includes(currentScreen)) {
+    return React.createElement(MainFilter, {
+      currentScreen: currentScreen,
       handleChangeSearch: props.handleChangeSearch,
       handleClickSearch: props.handleClickSearch,
       searchValue: props.searchValue,
       handleClickGoBack: props.handleClickGoBack,
-      handleFilterType: props.handleFilterType
+      handleFilter: props.handleFilter
     });
   }
 }
@@ -292,7 +320,7 @@ function MainHome(props) {
       handleClickGoBack: props.handleClickGoBack
     }),
     React.createElement(CategoryButtons, {
-      handleFilter: props.handleFilter
+      handleCategory: props.handleCategory
     })
   );
 }
@@ -350,7 +378,7 @@ var MainSearch = function (_React$Component2) {
   return MainSearch;
 }(React.Component);
 
-function MainFilterType(props) {
+function MainFilter(props) {
   return React.createElement(
     "main",
     { className: props.currentScreen.replace(" ", "-") },
@@ -362,7 +390,7 @@ function MainFilterType(props) {
       handleClickGoBack: props.handleClickGoBack
     }),
     React.createElement(FilterButtons, {
-      handleFilterType: props.handleFilterType,
+      handleFilter: props.handleFilter,
       currentScreen: props.currentScreen
     })
   );
