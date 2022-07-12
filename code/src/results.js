@@ -83,7 +83,7 @@ class ResultCard extends React.Component {
         return (
             <article className="card btn round">
                 <span 
-                    className="pokemonCode"
+                    className="pokemonCode text-shadow"
                     pokecolor={pokemon_type}
                     >#{this.state.pokemonCode}</span>
                 {pokemon_image}

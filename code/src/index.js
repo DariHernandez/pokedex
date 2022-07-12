@@ -10,9 +10,20 @@ import {FilterButtons} from "./filter_buttons.js"
 const e = React.createElement
 
 function getPokemonEntry (pokemonData) {
+
+  // Get entry
   const url = pokemonData.url
-  const pokemonEntry = url.split("/") [url.split("/").length - 2]
-  return pokemonEntry
+  let pokemonEntry = url.split("/") [url.split("/").length - 2]
+  let pokemonEntryFormated = pokemonEntry
+
+  // Format pokemon entry text
+  if (pokemonEntryFormated.length == 1) {
+    pokemonEntry = `00${pokemonEntryFormated}` 
+  } else if (pokemonEntryFormated.length == 2) {
+    pokemonEntry = `0${pokemonEntryFormated}` 
+  }
+
+  return [pokemonEntryFormated, pokemonEntry]
 }
 
 class Pokedex extends React.Component {
@@ -134,9 +145,10 @@ class Pokedex extends React.Component {
       pokemonsFormated = data.pokemon.map ((pokemonData) => {
         const pokemonName = pokemonData.pokemon.name
         const pokemonUrl = pokemonData.pokemon.url
-        const pokemonEntry = getPokemonEntry (pokemonData.pokemon)
+        let [pokemonEntry, pokemonEntryFormated] = getPokemonEntry (pokemonData.pokemon)
         return {
           entry_number: pokemonEntry,
+          entry_formated: pokemonEntryFormated,
           pokemon_species: {
             name: pokemonName,
             url: pokemonUrl
@@ -153,9 +165,11 @@ class Pokedex extends React.Component {
       pokemonsFormated = data.pokemon_species.map ((pokemonData) => {
         const pokemonName = pokemonData.name
         const pokemonUrl = pokemonData.url
-        const pokemonEntry = getPokemonEntry (pokemonData)
+        let [pokemonEntry, pokemonEntryFormated] = getPokemonEntry (pokemonData)
+
         return {
           entry_number: pokemonEntry,
+          entry_formated: pokemonEntryFormated,
           pokemon_species: {
             name: pokemonName,
             url: pokemonUrl
@@ -163,6 +177,20 @@ class Pokedex extends React.Component {
         }
       }) 
     }
+
+    // Short pokemon by number
+    let pokemonsEntries = pokemonsFormated.map ((pokemonData) => {
+      return pokemonData.entry_formated
+    })
+    pokemonsEntries.sort ()
+
+    let pokemonsFormatedLast = [...pokemonsFormated]
+    pokemonsFormated = pokemonsEntries.map ((entry_formated) => {
+      return pokemonsFormatedLast.filter ((pokemonData) => {
+        return pokemonData.entry_formated == entry_formated
+      })[0]
+    })
+    console.log (pokemonsFormated)
 
     // Update data in state
     this.setState ({

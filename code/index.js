@@ -1,4 +1,8 @@
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -18,9 +22,20 @@ import { FilterButtons } from "./filter_buttons.js";
 var e = React.createElement;
 
 function getPokemonEntry(pokemonData) {
+
+  // Get entry
   var url = pokemonData.url;
   var pokemonEntry = url.split("/")[url.split("/").length - 2];
-  return pokemonEntry;
+  var pokemonEntryFormated = pokemonEntry;
+
+  // Format pokemon entry text
+  if (pokemonEntryFormated.length == 1) {
+    pokemonEntry = "00" + pokemonEntryFormated;
+  } else if (pokemonEntryFormated.length == 2) {
+    pokemonEntry = "0" + pokemonEntryFormated;
+  }
+
+  return [pokemonEntryFormated, pokemonEntry];
 }
 
 var Pokedex = function (_React$Component) {
@@ -47,9 +62,15 @@ var Pokedex = function (_React$Component) {
         pokemonsFormated = data.pokemon.map(function (pokemonData) {
           var pokemonName = pokemonData.pokemon.name;
           var pokemonUrl = pokemonData.pokemon.url;
-          var pokemonEntry = getPokemonEntry(pokemonData.pokemon);
+
+          var _getPokemonEntry = getPokemonEntry(pokemonData.pokemon),
+              _getPokemonEntry2 = _slicedToArray(_getPokemonEntry, 2),
+              pokemonEntry = _getPokemonEntry2[0],
+              pokemonEntryFormated = _getPokemonEntry2[1];
+
           return {
             entry_number: pokemonEntry,
+            entry_formated: pokemonEntryFormated,
             pokemon_species: {
               name: pokemonName,
               url: pokemonUrl
@@ -66,9 +87,15 @@ var Pokedex = function (_React$Component) {
         pokemonsFormated = data.pokemon_species.map(function (pokemonData) {
           var pokemonName = pokemonData.name;
           var pokemonUrl = pokemonData.url;
-          var pokemonEntry = getPokemonEntry(pokemonData);
+
+          var _getPokemonEntry3 = getPokemonEntry(pokemonData),
+              _getPokemonEntry4 = _slicedToArray(_getPokemonEntry3, 2),
+              pokemonEntry = _getPokemonEntry4[0],
+              pokemonEntryFormated = _getPokemonEntry4[1];
+
           return {
             entry_number: pokemonEntry,
+            entry_formated: pokemonEntryFormated,
             pokemon_species: {
               name: pokemonName,
               url: pokemonUrl
@@ -76,6 +103,20 @@ var Pokedex = function (_React$Component) {
           };
         });
       }
+
+      // Short pokemon by number
+      var pokemonsEntries = pokemonsFormated.map(function (pokemonData) {
+        return pokemonData.entry_formated;
+      });
+      pokemonsEntries.sort();
+
+      var pokemonsFormatedLast = [].concat(_toConsumableArray(pokemonsFormated));
+      pokemonsFormated = pokemonsEntries.map(function (entry_formated) {
+        return pokemonsFormatedLast.filter(function (pokemonData) {
+          return pokemonData.entry_formated == entry_formated;
+        })[0];
+      });
+      console.log(pokemonsFormated);
 
       // Update data in state
       _this.setState({
