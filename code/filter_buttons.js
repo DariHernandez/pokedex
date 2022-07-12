@@ -72,7 +72,7 @@ function FilterButton(props) {
             },
             pokecolor: props.color
         },
-        props.buttonData,
+        props.buttonData.replaceAll("-", " "),
         props.useImage && React.createElement(
             "div",
             { className: "wrapper-img" },

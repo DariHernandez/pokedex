@@ -49,7 +49,7 @@ function FilterButton (props) {
             onClick={() => props.onClick (props.buttonData)}
             pokecolor={props.color}
         >
-            {props.buttonData}
+            {props.buttonData.replaceAll("-", " ")}
 
             {/* Use iage only for filter type */}
             {props.useImage &&
