@@ -54,6 +54,7 @@ var Pokedex = function (_React$Component) {
 
       // Update data in state
       _this.setState({
+        pokemons: pokemonsFormatedFiltered,
         foundPokemons: pokemonsFormatedFiltered,
         currentScreen: "type " + pokemonType
       });
@@ -229,6 +230,9 @@ var Pokedex = function (_React$Component) {
           pokemonTypes: this.state.pokemonTypes,
           handleFilterType: function handleFilterType(pokemonType) {
             return _this2.handleFilterType(pokemonType);
+          },
+          updateResults: function updateResults() {
+            return _this2.updateResults();
           }
         })
       );
@@ -248,6 +252,7 @@ function Main(props) {
       handleFilter: props.handleFilter
     });
   } else if (props.currentScreen == "all types" || props.currentScreen.includes("type ")) {
+
     return React.createElement(MainSearch, {
       currentScreen: props.currentScreen,
       searchValue: props.searchValue,
@@ -259,7 +264,8 @@ function Main(props) {
       totalPages: props.totalPages,
       handleClickNextPage: props.handleClickNextPage,
       handleClickBackPage: props.handleClickBackPage,
-      pokemonsNum: props.pokemonsNum
+      pokemonsNum: props.pokemonsNum,
+      updateResults: props.updateResults
     });
   } else if (props.currentScreen == "types") {
     return React.createElement(MainFilterType, {
@@ -291,36 +297,58 @@ function MainHome(props) {
   );
 }
 
-function MainSearch(props) {
-  return React.createElement(
-    "main",
-    { className: props.currentScreen.replace(" ", "-") },
-    React.createElement(TopBar, {
-      handleChangeSearch: props.handleChangeSearch,
-      handleClickSearch: props.handleClickSearch,
-      searchValue: props.searchValue,
-      currentScreen: props.currentScreen,
-      handleClickGoBack: props.handleClickGoBack
-    }),
-    React.createElement(Paginator, {
-      currentPage: props.currentPage,
-      totalPages: props.totalPages,
-      pokemonsNum: props.pokemonsNum,
-      clickNextPage: props.handleClickNextPage,
-      clickBackPage: props.handleClickBackPage
-    }),
-    React.createElement(ResultsGrid, {
-      pokemons: props.foundPokemons
-    }),
-    React.createElement(Paginator, {
-      currentPage: props.currentPage,
-      totalPages: props.totalPages,
-      pokemonsNum: props.pokemonsNum,
-      clickNextPage: props.handleClickNextPage,
-      clickBackPage: props.handleClickBackPage
-    })
-  );
-}
+var MainSearch = function (_React$Component2) {
+  _inherits(MainSearch, _React$Component2);
+
+  function MainSearch() {
+    _classCallCheck(this, MainSearch);
+
+    return _possibleConstructorReturn(this, (MainSearch.__proto__ || Object.getPrototypeOf(MainSearch)).apply(this, arguments));
+  }
+
+  _createClass(MainSearch, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      // Call to update function for enable pagination
+      this.props.updateResults();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+
+      return React.createElement(
+        "main",
+        { className: this.props.currentScreen.replace(" ", "-") },
+        React.createElement(TopBar, {
+          handleChangeSearch: this.props.handleChangeSearch,
+          handleClickSearch: this.props.handleClickSearch,
+          searchValue: this.props.searchValue,
+          currentScreen: this.props.currentScreen,
+          handleClickGoBack: this.props.handleClickGoBack
+        }),
+        React.createElement(Paginator, {
+          currentPage: this.props.currentPage,
+          totalPages: this.props.totalPages,
+          pokemonsNum: this.props.pokemonsNum,
+          clickNextPage: this.props.handleClickNextPage,
+          clickBackPage: this.props.handleClickBackPage
+        }),
+        React.createElement(ResultsGrid, {
+          pokemons: this.props.foundPokemons
+        }),
+        React.createElement(Paginator, {
+          currentPage: this.props.currentPage,
+          totalPages: this.props.totalPages,
+          pokemonsNum: this.props.pokemonsNum,
+          clickNextPage: this.props.handleClickNextPage,
+          clickBackPage: this.props.handleClickBackPage
+        })
+      );
+    }
+  }]);
+
+  return MainSearch;
+}(React.Component);
 
 function MainFilterType(props) {
   return React.createElement(

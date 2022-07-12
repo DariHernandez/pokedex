@@ -162,6 +162,7 @@ class Pokedex extends React.Component {
 
     // Update data in state
     this.setState ({
+      pokemons: pokemonsFormatedFiltered,
       foundPokemons: pokemonsFormatedFiltered,
       currentScreen: `type ${pokemonType}`,
     })
@@ -205,6 +206,7 @@ class Pokedex extends React.Component {
           handleFilter={(filter_name) => this.handleFilter(filter_name)}
           pokemonTypes={this.state.pokemonTypes}
           handleFilterType={(pokemonType) => this.handleFilterType(pokemonType)}
+          updateResults={() => this.updateResults()}
         />
         
       </div>
@@ -222,6 +224,7 @@ function Main (props) {
       handleFilter={props.handleFilter}
     />
   } else if (props.currentScreen == "all types" || props.currentScreen.includes("type ")) {
+
     return <MainSearch
       currentScreen = {props.currentScreen}
       searchValue={props.searchValue}
@@ -234,6 +237,7 @@ function Main (props) {
       handleClickNextPage={props.handleClickNextPage}
       handleClickBackPage={props.handleClickBackPage}
       pokemonsNum={props.pokemonsNum}
+      updateResults={props.updateResults}
     />
   } else if (props.currentScreen == "types") {
     return <MainFilterType
@@ -268,40 +272,47 @@ function MainHome (props) {
   )
 }
 
-function MainSearch (props) {
-  return (
-    <main className={props.currentScreen.replace(" ", "-")}>
-          
-      <TopBar
-        handleChangeSearch={props.handleChangeSearch}
-        handleClickSearch={props.handleClickSearch}
-        searchValue={props.searchValue}
-        currentScreen = {props.currentScreen}
-        handleClickGoBack={props.handleClickGoBack}
-      />
+class MainSearch extends React.Component {
+  componentDidMount () {
+    // Call to update function for enable pagination
+    this.props.updateResults ()
+  }
+  render () {
 
-      <Paginator
-        currentPage={props.currentPage}
-        totalPages={props.totalPages}
-        pokemonsNum={props.pokemonsNum}
-        clickNextPage={props.handleClickNextPage}
-        clickBackPage={props.handleClickBackPage}
-      />
-
-      <ResultsGrid
-        pokemons={props.foundPokemons}
-      /> 
-
-      <Paginator
-        currentPage={props.currentPage}
-        totalPages={props.totalPages}
-        pokemonsNum={props.pokemonsNum}
-        clickNextPage={props.handleClickNextPage}
-        clickBackPage={props.handleClickBackPage}
-      />
-
-    </main>
-  )
+    return (
+      <main className={this.props.currentScreen.replace(" ", "-")}>
+            
+        <TopBar
+          handleChangeSearch={this.props.handleChangeSearch}
+          handleClickSearch={this.props.handleClickSearch}
+          searchValue={this.props.searchValue}
+          currentScreen = {this.props.currentScreen}
+          handleClickGoBack={this.props.handleClickGoBack}
+        />
+  
+        <Paginator
+          currentPage={this.props.currentPage}
+          totalPages={this.props.totalPages}
+          pokemonsNum={this.props.pokemonsNum}
+          clickNextPage={this.props.handleClickNextPage}
+          clickBackPage={this.props.handleClickBackPage}
+        />
+  
+        <ResultsGrid
+          pokemons={this.props.foundPokemons}
+        /> 
+  
+        <Paginator
+          currentPage={this.props.currentPage}
+          totalPages={this.props.totalPages}
+          pokemonsNum={this.props.pokemonsNum}
+          clickNextPage={this.props.handleClickNextPage}
+          clickBackPage={this.props.handleClickBackPage}
+        />
+  
+      </main>
+    )
+  }
 }
 
 function MainFilterType (props) {
