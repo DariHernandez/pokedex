@@ -74,8 +74,8 @@ var Pokedex = function (_React$Component) {
   }
 
   _createClass(Pokedex, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
+    key: "handleUpdatePokedex",
+    value: function handleUpdatePokedex() {
       // Get main data from api
       getPokedex(this.updatePokedex);
     }
@@ -233,6 +233,9 @@ var Pokedex = function (_React$Component) {
           },
           updateResults: function updateResults() {
             return _this2.updateResults();
+          },
+          onHomeLoad: function onHomeLoad() {
+            return _this2.handleUpdatePokedex();
           }
         })
       );
@@ -244,6 +247,7 @@ var Pokedex = function (_React$Component) {
 
 function Main(props) {
   if (props.currentScreen == "home") {
+    props.onHomeLoad();
     return React.createElement(MainHome, {
       currentScreen: props.currentScreen,
       searchValue: props.searchValue,

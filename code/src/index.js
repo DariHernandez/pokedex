@@ -43,7 +43,7 @@ class Pokedex extends React.Component {
     }
   }
 
-  componentDidMount () {
+  handleUpdatePokedex () {
     // Get main data from api
     getPokedex (this.updatePokedex)
   }
@@ -207,6 +207,7 @@ class Pokedex extends React.Component {
           pokemonTypes={this.state.pokemonTypes}
           handleFilterType={(pokemonType) => this.handleFilterType(pokemonType)}
           updateResults={() => this.updateResults()}
+          onHomeLoad={() => this.handleUpdatePokedex()}
         />
         
       </div>
@@ -216,6 +217,7 @@ class Pokedex extends React.Component {
 
 function Main (props) {
   if (props.currentScreen == "home") {
+    props.onHomeLoad ()
     return <MainHome
       currentScreen = {props.currentScreen}
       searchValue={props.searchValue}
