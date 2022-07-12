@@ -13,7 +13,7 @@ export function TopBar (props) {
   } else if (["types"].includes(props.currentScreen)) {
     // Only TopBar for filter pages
     return (
-      <section className="search-bar">
+      <section className="top-bar">
         <div className="content regular-width">
           <TopBarGoBack
             onClick={props.handleClickGoBack}
@@ -40,7 +40,7 @@ function TopBarHome (props) {
 
     // Search bar html
     return (
-      <section className="search-bar">
+      <section className="top-bar">
         <div className="bg-img-wrapper">
           <img src="./imgs/pokeball.svg" alt="pokeball background image" className="bg-img"></img>
         </div>
@@ -67,7 +67,7 @@ function TopBarHome (props) {
 function TopBarType (props) {
     // Search
     return (
-      <section className="search-bar">
+      <section className="top-bar">
         <div className="content regular-width">
           <TopBarGoBack
             sectionTitle = {props.sectionTitle}

@@ -12,7 +12,7 @@ export function TopBar(props) {
     // Only TopBar for filter pages
     return React.createElement(
       "section",
-      { className: "search-bar" },
+      { className: "top-bar" },
       React.createElement(
         "div",
         { className: "content regular-width" },
@@ -39,7 +39,7 @@ function TopBarHome(props) {
   // Search bar html
   return React.createElement(
     "section",
-    { className: "search-bar" },
+    { className: "top-bar" },
     React.createElement(
       "div",
       { className: "bg-img-wrapper" },
@@ -76,7 +76,7 @@ function TopBarType(props) {
   // Search
   return React.createElement(
     "section",
-    { className: "search-bar" },
+    { className: "top-bar" },
     React.createElement(
       "div",
       { className: "content regular-width" },

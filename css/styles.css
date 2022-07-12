@@ -187,7 +187,7 @@ header.home .content .title {
   margin-left: 20px;
 }
 
-main section.search-bar {
+main section.top-bar {
   background-color: #EB1D36;
 }
 main label {
@@ -224,10 +224,10 @@ main label input[type=button].btn.round {
   text-align: center;
   display: block;
 }
-main section.search-bar {
+main section.top-bar {
   padding-bottom: 20px;
 }
-main section.search-bar .content .return {
+main section.top-bar .content .return {
   background: none;
   border: none;
   height: 25px;
@@ -240,11 +240,11 @@ main section.search-bar .content .return {
   height: 60px;
   cursor: pointer;
 }
-main section.search-bar .content .return img {
+main section.top-bar .content .return img {
   width: auto;
   height: 25px;
 }
-main section.search-bar .content .return .section-title {
+main section.top-bar .content .return .section-title {
   display: inline-block;
   font-size: 24px;
   line-height: auto;
@@ -253,7 +253,7 @@ main section.search-bar .content .return .section-title {
   margin: 0;
   margin-left: 30px;
 }
-main.home section.search-bar {
+main.home section.top-bar {
   position: relative;
   overflow: hidden;
   display: flex;
@@ -261,7 +261,7 @@ main.home section.search-bar {
   align-items: center;
   justify-content: center;
 }
-main.home section.search-bar .bg-img-wrapper {
+main.home section.top-bar .bg-img-wrapper {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -273,31 +273,31 @@ main.home section.search-bar .bg-img-wrapper {
   align-items: center;
   justify-content: center;
 }
-main.home section.search-bar .bg-img-wrapper .bg-img {
+main.home section.top-bar .bg-img-wrapper .bg-img {
   opacity: 0.05;
   width: 90%;
   height: auto;
 }
-main.home section.search-bar .content {
+main.home section.top-bar .content {
   position: relative;
   z-index: 1;
   padding-top: 120px;
   padding-bottom: 160px;
 }
-main.home section.search-bar .content .title {
+main.home section.top-bar .content .title {
   font-size: 32px;
   line-height: 37px;
   color: #F5EDDC;
 }
 
-main.home section.search-buttons {
+main.home section.filter-buttons {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   position: relative;
 }
-main.home section.search-buttons .separator {
+main.home section.filter-buttons .separator {
   position: absolute;
   top: -63px;
   left: 0;
@@ -306,17 +306,17 @@ main.home section.search-buttons .separator {
   line-height: 0;
   transform: rotate(180deg);
 }
-main.home section.search-buttons .separator svg {
+main.home section.filter-buttons .separator svg {
   position: relative;
   display: block;
   width: calc(100% + 1.3px);
   height: 150px;
 }
-main.home section.search-buttons .separator .shape-fill {
+main.home section.filter-buttons .separator .shape-fill {
   fill: #F5EDDC;
 }
 @media (max-width: 767px) {
-  main.home section.search-buttons .separator svg {
+  main.home section.filter-buttons .separator svg {
     width: calc(100% + 1.3px);
     height: 64px;
   }

@@ -1,7 +1,7 @@
 export function FilterButtons(props) {
   return React.createElement(
     "section",
-    { className: "search-buttons" },
+    { className: "filter-buttons" },
     React.createElement(
       "div",
       { className: "separator" },
@@ -17,7 +17,7 @@ export function FilterButtons(props) {
       React.createElement(FilterButton, { value: "types", pokecolor: "grass", onClick: function onClick(filter_name) {
           return props.handleFilter("types");
         } }),
-      React.createElement(FilterButton, { value: "location", pokecolor: "fire" }),
+      React.createElement(FilterButton, { value: "generations", pokecolor: "fire" }),
       React.createElement(FilterButton, { value: "moves and habilities", pokecolor: "water" })
     )
   );
