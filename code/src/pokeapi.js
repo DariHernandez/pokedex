@@ -56,3 +56,21 @@ export const pokemonGenerations = [
     "generation-VII",
     "generation-VIII",
 ]
+
+export const pokemonEggs = [
+    "monster",
+    "water1",
+    "bug",
+    "flying",
+    "ground",
+    "fairy",
+    "plant",
+    "humanshape",
+    "water3",
+    "mineral",
+    "indeterminate",
+    "water2",
+    "ditto",
+    "dragon",
+    "no-eggs",
+]

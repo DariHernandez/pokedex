@@ -116,7 +116,6 @@ var Pokedex = function (_React$Component) {
           return pokemonData.entry_formated == entry_formated;
         })[0];
       });
-      console.log(pokemonsFormated);
 
       // Update data in state
       _this.setState({
@@ -337,7 +336,7 @@ function Main(props) {
       pokemonsNum: props.pokemonsNum,
       updateResults: props.updateResults
     });
-  } else if (["types", "generations"].includes(currentScreen)) {
+  } else if (["types", "generations", "egg group"].includes(currentScreen)) {
     return React.createElement(MainFilter, {
       currentScreen: currentScreen,
       handleChangeSearch: props.handleChangeSearch,

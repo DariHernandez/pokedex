@@ -1,4 +1,4 @@
-import { pokemonTypes, pokemonGenerations } from "./pokeapi.js";
+import { pokemonTypes, pokemonGenerations, pokemonEggs } from "./pokeapi.js";
 
 export function FilterButtons(props) {
 
@@ -11,6 +11,8 @@ export function FilterButtons(props) {
         useImage = true;
     } else if (currentScreen == "generations") {
         buttonsData = pokemonGenerations;
+    } else if (currentScreen == "egg group") {
+        buttonsData = pokemonEggs;
     }
 
     // Generate buttons
@@ -26,7 +28,7 @@ export function FilterButtons(props) {
 
             // Set color for button
             var color = "default";
-            if (currentScreen == "types") {
+            if (currentScreen == "types" || currentScreen == "egg group") {
                 color = buttonData;
             }
 

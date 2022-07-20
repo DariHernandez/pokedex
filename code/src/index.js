@@ -190,7 +190,6 @@ class Pokedex extends React.Component {
         return pokemonData.entry_formated == entry_formated
       })[0]
     })
-    console.log (pokemonsFormated)
 
     // Update data in state
     this.setState ({
@@ -277,7 +276,7 @@ function Main (props) {
       pokemonsNum={props.pokemonsNum}
       updateResults={props.updateResults}
     />
-  } else if (["types", "generations"].includes (currentScreen)) {
+  } else if (["types", "generations", "egg group"].includes (currentScreen)) {
     return <MainFilter
       currentScreen={currentScreen}
       handleChangeSearch={props.handleChangeSearch}

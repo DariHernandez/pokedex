@@ -9,9 +9,9 @@ export function CategoryButtons (props) {
       <div className="buttons regular-width">
         <FilterButton value="types" pokecolor="grass" onClick={() => props.handleCategory("types")}/>
         <FilterButton value="generations" pokecolor="fire" onClick={() => props.handleCategory("generations")}/>
-        <FilterButton value="egg group" pokecolor="water" onClick={() => console.log ("click")}/>
-        <FilterButton value="color" pokecolor="ghost" onClick={() => console.log ("click")}/>
-        <FilterButton value="habitat" pokecolor="ground" onClick={() => console.log ("click")}/>
+        <FilterButton value="egg group" pokecolor="water" onClick={() => props.handleCategory("egg group")}/>
+        <FilterButton value="color" pokecolor="ghost" onClick={() => props.handleCategory("color")}/>
+        <FilterButton value="habitat" pokecolor="ground" onClick={() => props.handleCategory("habitat")}/>
       </div>
     </section>
   )

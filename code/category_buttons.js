@@ -21,13 +21,13 @@ export function CategoryButtons(props) {
           return props.handleCategory("generations");
         } }),
       React.createElement(FilterButton, { value: "egg group", pokecolor: "water", onClick: function onClick() {
-          return console.log("click");
+          return props.handleCategory("egg group");
         } }),
       React.createElement(FilterButton, { value: "color", pokecolor: "ghost", onClick: function onClick() {
-          return console.log("click");
+          return props.handleCategory("color");
         } }),
       React.createElement(FilterButton, { value: "habitat", pokecolor: "ground", onClick: function onClick() {
-          return console.log("click");
+          return props.handleCategory("habitat");
         } })
     )
   );
