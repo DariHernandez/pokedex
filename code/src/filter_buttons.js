@@ -11,8 +11,8 @@ export function FilterButtons (props) {
         useImage = true
     } else if (currentScreen == "generations") {
         buttonsData = pokemonGenerations
-    } else if (currentScreen == "egg group") {
-        buttonsData = pokemonEggs
+    } else if (currentScreen == "egg groups") {
+        buttonsData = pokemonEggs.sort()
     }
 
     // Generate buttons
@@ -21,7 +21,7 @@ export function FilterButtons (props) {
 
         // Set color for button
         let color = "default"
-        if (currentScreen == "types" || currentScreen == "egg group") {
+        if (currentScreen == "types" || currentScreen == "egg groups") {
             color = buttonData
         }
         

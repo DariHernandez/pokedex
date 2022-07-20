@@ -160,7 +160,7 @@ class Pokedex extends React.Component {
       pokemonsFormated = pokemonsFormated.filter ((pokemonData) => {
         return parseInt(pokemonData.entry_number) < 10000
       })
-    } else if (filterkey == "generation") {
+    } else {
       // Format data for pokemon generation filter
       pokemonsFormated = data.pokemon_species.map ((pokemonData) => {
         const pokemonName = pokemonData.name
@@ -192,6 +192,7 @@ class Pokedex extends React.Component {
     })
 
     // Update data in state
+    console.log (pokemonsFormated)
     this.setState ({
       pokemons: pokemonsFormated,
       foundPokemons: pokemonsFormated,
@@ -202,7 +203,8 @@ class Pokedex extends React.Component {
   handleFilter (filterValue) {
     // handle click in filter button
     const currentScreen = this.state.currentScreen
-    const filterkey = currentScreen.substring (0, currentScreen.length - 1)
+    let filterkey = currentScreen.substring (0, currentScreen.length - 1)
+    filterkey = filterkey.replace (" ", "-")
     getPokemonsFilter (this.updateFilter, filterkey, filterValue.toLowerCase())
   }
 
@@ -249,6 +251,7 @@ class Pokedex extends React.Component {
 
 function Main (props) {
   const currentScreen = props.currentScreen
+  console.log (currentScreen)
   if (currentScreen == "home") {
     props.onHomeLoad ()
     return <MainHome
@@ -260,7 +263,8 @@ function Main (props) {
     />
   } else if (currentScreen == "all types" 
             || currentScreen.includes("type ")
-            || currentScreen.includes("generation ")) {
+            || currentScreen.includes("generation ")
+            || currentScreen.includes("egg-group ")) {
 
     return <MainSearch
       currentScreen = {currentScreen}
@@ -276,7 +280,7 @@ function Main (props) {
       pokemonsNum={props.pokemonsNum}
       updateResults={props.updateResults}
     />
-  } else if (["types", "generations", "egg group"].includes (currentScreen)) {
+  } else if (["types", "generations", "egg groups"].includes (currentScreen)) {
     return <MainFilter
       currentScreen={currentScreen}
       handleChangeSearch={props.handleChangeSearch}

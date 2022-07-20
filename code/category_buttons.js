@@ -20,14 +20,14 @@ export function CategoryButtons(props) {
       React.createElement(FilterButton, { value: "generations", pokecolor: "fire", onClick: function onClick() {
           return props.handleCategory("generations");
         } }),
-      React.createElement(FilterButton, { value: "egg group", pokecolor: "water", onClick: function onClick() {
-          return props.handleCategory("egg group");
+      React.createElement(FilterButton, { value: "egg groups", pokecolor: "water", onClick: function onClick() {
+          return props.handleCategory("egg groups");
         } }),
-      React.createElement(FilterButton, { value: "color", pokecolor: "ghost", onClick: function onClick() {
-          return props.handleCategory("color");
+      React.createElement(FilterButton, { value: "colors", pokecolor: "ghost", onClick: function onClick() {
+          return props.handleCategory("colors");
         } }),
-      React.createElement(FilterButton, { value: "habitat", pokecolor: "ground", onClick: function onClick() {
-          return props.handleCategory("habitat");
+      React.createElement(FilterButton, { value: "habitats", pokecolor: "ground", onClick: function onClick() {
+          return props.handleCategory("habitats");
         } })
     )
   );

@@ -18,6 +18,7 @@ export function getPokemon (doneFunction, number) {
 
 export function getPokemonsFilter (doneFunction, filterkey, filterValue) {
     // Get data from api
+    console.log (`https://pokeapi.co/api/v2/${filterkey}/${filterValue}/`)
     fetch (`https://pokeapi.co/api/v2/${filterkey}/${filterValue}/`)
     .then ((response) => response.json())
 
