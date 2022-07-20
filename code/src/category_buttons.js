@@ -9,7 +9,9 @@ export function CategoryButtons (props) {
       <div className="buttons regular-width">
         <FilterButton value="types" pokecolor="grass" onClick={() => props.handleCategory("types")}/>
         <FilterButton value="generations" pokecolor="fire" onClick={() => props.handleCategory("generations")}/>
-        <FilterButton value="moves and habilities" pokecolor="water"/>
+        <FilterButton value="egg group" pokecolor="water" onClick={() => console.log ("click")}/>
+        <FilterButton value="color" pokecolor="ghost" onClick={() => console.log ("click")}/>
+        <FilterButton value="habitat" pokecolor="ground" onClick={() => console.log ("click")}/>
       </div>
     </section>
   )
@@ -18,7 +20,7 @@ export function CategoryButtons (props) {
 function FilterButton (props) {
   return (
     <button 
-      className="btn round animate" 
+      className="btn round animate text-shadow" 
       pokecolor={props.pokecolor} 
       onClick={props.onClick}>
       {props.value}

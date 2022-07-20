@@ -20,7 +20,15 @@ export function CategoryButtons(props) {
       React.createElement(FilterButton, { value: "generations", pokecolor: "fire", onClick: function onClick() {
           return props.handleCategory("generations");
         } }),
-      React.createElement(FilterButton, { value: "moves and habilities", pokecolor: "water" })
+      React.createElement(FilterButton, { value: "egg group", pokecolor: "water", onClick: function onClick() {
+          return console.log("click");
+        } }),
+      React.createElement(FilterButton, { value: "color", pokecolor: "ghost", onClick: function onClick() {
+          return console.log("click");
+        } }),
+      React.createElement(FilterButton, { value: "habitat", pokecolor: "ground", onClick: function onClick() {
+          return console.log("click");
+        } })
     )
   );
 }
@@ -29,7 +37,7 @@ function FilterButton(props) {
   return React.createElement(
     "button",
     {
-      className: "btn round animate",
+      className: "btn round animate text-shadow",
       pokecolor: props.pokecolor,
       onClick: props.onClick },
     props.value,
