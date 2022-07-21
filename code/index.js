@@ -118,7 +118,6 @@ var Pokedex = function (_React$Component) {
       });
 
       // Update data in state
-      console.log(pokemonsFormated);
       _this.setState({
         pokemons: pokemonsFormated,
         foundPokemons: pokemonsFormated,
@@ -241,6 +240,10 @@ var Pokedex = function (_React$Component) {
       var currentScreen = this.state.currentScreen;
       var filterkey = currentScreen.substring(0, currentScreen.length - 1);
       filterkey = filterkey.replace(" ", "-");
+      if (["color", "habitat"].includes(filterkey)) {
+        filterkey = "pokemon-" + filterkey;
+      }
+
       getPokemonsFilter(this.updateFilter, filterkey, filterValue.toLowerCase());
     }
 
@@ -313,7 +316,6 @@ var Pokedex = function (_React$Component) {
 
 function Main(props) {
   var currentScreen = props.currentScreen;
-  console.log(currentScreen);
   if (currentScreen == "home") {
     props.onHomeLoad();
     return React.createElement(MainHome, {
@@ -323,7 +325,7 @@ function Main(props) {
       handleClickSearch: props.handleClickSearch,
       handleCategory: props.handleCategory
     });
-  } else if (currentScreen == "all types" || currentScreen.includes("type ") || currentScreen.includes("generation ") || currentScreen.includes("egg-group ")) {
+  } else if (currentScreen == "all types" || currentScreen.includes("type ") || currentScreen.includes("generation ") || currentScreen.includes("egg-group ") || currentScreen.includes("color ") || currentScreen.includes("habitat ")) {
 
     return React.createElement(MainSearch, {
       currentScreen: currentScreen,
@@ -339,7 +341,7 @@ function Main(props) {
       pokemonsNum: props.pokemonsNum,
       updateResults: props.updateResults
     });
-  } else if (["types", "generations", "egg groups"].includes(currentScreen)) {
+  } else if (["types", "generations", "egg groups", "colors", "habitats"].includes(currentScreen)) {
     return React.createElement(MainFilter, {
       currentScreen: currentScreen,
       handleChangeSearch: props.handleChangeSearch,

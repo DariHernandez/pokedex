@@ -192,7 +192,6 @@ class Pokedex extends React.Component {
     })
 
     // Update data in state
-    console.log (pokemonsFormated)
     this.setState ({
       pokemons: pokemonsFormated,
       foundPokemons: pokemonsFormated,
@@ -205,6 +204,10 @@ class Pokedex extends React.Component {
     const currentScreen = this.state.currentScreen
     let filterkey = currentScreen.substring (0, currentScreen.length - 1)
     filterkey = filterkey.replace (" ", "-")
+    if (["color", "habitat"].includes (filterkey)) {
+      filterkey = `pokemon-${filterkey}`
+    }
+
     getPokemonsFilter (this.updateFilter, filterkey, filterValue.toLowerCase())
   }
 
@@ -251,7 +254,6 @@ class Pokedex extends React.Component {
 
 function Main (props) {
   const currentScreen = props.currentScreen
-  console.log (currentScreen)
   if (currentScreen == "home") {
     props.onHomeLoad ()
     return <MainHome
@@ -264,7 +266,9 @@ function Main (props) {
   } else if (currentScreen == "all types" 
             || currentScreen.includes("type ")
             || currentScreen.includes("generation ")
-            || currentScreen.includes("egg-group ")) {
+            || currentScreen.includes("egg-group ")
+            || currentScreen.includes("color ")
+            || currentScreen.includes("habitat ")) {
 
     return <MainSearch
       currentScreen = {currentScreen}
@@ -280,7 +284,7 @@ function Main (props) {
       pokemonsNum={props.pokemonsNum}
       updateResults={props.updateResults}
     />
-  } else if (["types", "generations", "egg groups"].includes (currentScreen)) {
+  } else if (["types", "generations", "egg groups", "colors", "habitats"].includes (currentScreen)) {
     return <MainFilter
       currentScreen={currentScreen}
       handleChangeSearch={props.handleChangeSearch}

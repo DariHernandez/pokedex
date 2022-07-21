@@ -18,7 +18,6 @@ export function getPokemon (doneFunction, number) {
 
 export function getPokemonsFilter (doneFunction, filterkey, filterValue) {
     // Get data from api
-    console.log (`https://pokeapi.co/api/v2/${filterkey}/${filterValue}/`)
     fetch (`https://pokeapi.co/api/v2/${filterkey}/${filterValue}/`)
     .then ((response) => response.json())
 
@@ -26,52 +25,75 @@ export function getPokemonsFilter (doneFunction, filterkey, filterValue) {
     .then(data => doneFunction(data, filterkey, filterValue))
 }
 
-export const pokemonTypes = [
-    "normal", 
-    "fighting", 
-    "flying",
-    "poison", 
-    "ground",
-    "rock",
-    "bug",
-    "ghost",
-    "steel",
-    "fire",
-    "water",
-    "grass",
-    "electric",
-    "psychic",
-    "ice",
-    "dragon",
-    "dark",
-    "fairy",
-]
-
-export const pokemonGenerations = [
-    "generation-I",
-    "generation-II",
-    "generation-III",
-    "generation-IV",
-    "generation-V",
-    "generation-VI",
-    "generation-VII",
-    "generation-VIII",
-]
-
-export const pokemonEggs = [
-    "monster",
-    "water1",
-    "bug",
-    "flying",
-    "ground",
-    "fairy",
-    "plant",
-    "humanshape",
-    "water3",
-    "mineral",
-    "indeterminate",
-    "water2",
-    "ditto",
-    "dragon",
-    "no-eggs",
-]
+export const pokemonFilters = {
+    "types": [
+        "normal", 
+        "fighting", 
+        "flying",
+        "poison", 
+        "ground",
+        "rock",
+        "bug",
+        "ghost",
+        "steel",
+        "fire",
+        "water",
+        "grass",
+        "electric",
+        "psychic",
+        "ice",
+        "dragon",
+        "dark",
+        "fairy",
+    ],
+    "generations": [
+        "generation-I",
+        "generation-II",
+        "generation-III",
+        "generation-IV",
+        "generation-V",
+        "generation-VI",
+        "generation-VII",
+        "generation-VIII",
+    ],
+    "egg groups": [
+        "monster",
+        "water1",
+        "bug",
+        "flying",
+        "ground",
+        "fairy",
+        "plant",
+        "humanshape",
+        "water3",
+        "mineral",
+        "indeterminate",
+        "water2",
+        "ditto",
+        "dragon",
+        "no-eggs",
+    ],
+    "colors": [
+        "black",
+        "blue",
+        "brown",
+        "gray",
+        "green",
+        "pink",
+        "purple",
+        "red",
+        "white",
+        "yellow",
+    ],
+    "habitats": [
+        "cave",
+        "forest",
+        "grassland",
+        "mountain",
+        "rare",
+        "rough-terrain",
+        "sea",
+        "urban",
+        "waters-edge",
+    ],
+}

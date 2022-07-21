@@ -113,59 +113,62 @@ h1, h2, h3, h4, h5, h6, .title {
 [pokecolor][pokecolor=default] {
   background-color: #496870 !important;
 }
-[pokecolor][pokecolor=bug] {
+[pokecolor][pokecolor=bug], [pokecolor][pokecolor=grassland] {
   background-color: rgba(28, 75, 39, 0.5) !important;
 }
-[pokecolor][pokecolor=dark], [pokecolor][pokecolor=indeterminate] {
+[pokecolor][pokecolor=dark], [pokecolor][pokecolor=indeterminate], [pokecolor][pokecolor=black] {
   background-color: rgba(4, 7, 6, 0.5) !important;
 }
 [pokecolor][pokecolor=dragon] {
   background-color: rgba(68, 139, 149, 0.5) !important;
 }
-[pokecolor][pokecolor=electric] {
+[pokecolor][pokecolor=electric], [pokecolor][pokecolor=yellow] {
   background-color: rgba(204, 204, 37, 0.5) !important;
 }
 [pokecolor][pokecolor=fairy] {
   background-color: rgba(234, 19, 105, 0.5) !important;
 }
-[pokecolor][pokecolor=fighting] {
+[pokecolor][pokecolor=fighting], [pokecolor][pokecolor=mountain] {
   background-color: rgba(153, 64, 37, 0.5) !important;
 }
-[pokecolor][pokecolor=fire] {
+[pokecolor][pokecolor=fire], [pokecolor][pokecolor=red] {
   background-color: rgba(171, 31, 35, 0.5) !important;
 }
 [pokecolor][pokecolor=flying] {
   background-color: rgba(74, 103, 125, 0.5) !important;
 }
-[pokecolor][pokecolor=ghost], [pokecolor][pokecolor=monster] {
+[pokecolor][pokecolor=ghost], [pokecolor][pokecolor=monster], [pokecolor][pokecolor=rare] {
   background-color: rgba(51, 51, 107, 0.5) !important;
 }
-[pokecolor][pokecolor=grass], [pokecolor][pokecolor=plant] {
+[pokecolor][pokecolor=grass], [pokecolor][pokecolor=plant], [pokecolor][pokecolor=green], [pokecolor][pokecolor=forest] {
   background-color: rgba(17, 123, 58, 0.5) !important;
 }
-[pokecolor][pokecolor=ground] {
+[pokecolor][pokecolor=ground], [pokecolor][pokecolor=brown], [pokecolor][pokecolor=cave] {
   background-color: rgba(169, 112, 44, 0.5) !important;
 }
-[pokecolor][pokecolor=ice], [pokecolor][pokecolor=no-eggs] {
+[pokecolor][pokecolor=ice], [pokecolor][pokecolor=waters-edge], [pokecolor][pokecolor=water2] {
   background-color: rgba(134, 210, 245, 0.5) !important;
 }
-[pokecolor][pokecolor=normal], [pokecolor][pokecolor=humanshape] {
+[pokecolor][pokecolor=normal], [pokecolor][pokecolor=humanshape], [pokecolor][pokecolor=rough-terrain] {
   background-color: rgba(117, 81, 91, 0.5) !important;
 }
-[pokecolor][pokecolor=poison] {
+[pokecolor][pokecolor=poison], [pokecolor][pokecolor=purple] {
   background-color: rgba(94, 45, 136, 0.5) !important;
 }
-[pokecolor][pokecolor=psychic], [pokecolor][pokecolor=ditto] {
+[pokecolor][pokecolor=psychic], [pokecolor][pokecolor=ditto], [pokecolor][pokecolor=pink] {
   background-color: rgba(164, 42, 108, 0.5) !important;
 }
-[pokecolor][pokecolor=rock] {
+[pokecolor][pokecolor=rock], [pokecolor][pokecolor=no-eggs] {
   background-color: rgba(72, 24, 11, 0.5) !important;
 }
-[pokecolor][pokecolor=steel], [pokecolor][pokecolor=mineral] {
+[pokecolor][pokecolor=steel], [pokecolor][pokecolor=mineral], [pokecolor][pokecolor=gray], [pokecolor][pokecolor=urban] {
   background-color: rgba(95, 117, 109, 0.5) !important;
 }
-[pokecolor][pokecolor=water], [pokecolor][pokecolor=water1], [pokecolor][pokecolor=water2], [pokecolor][pokecolor=water3] {
+[pokecolor][pokecolor=water], [pokecolor][pokecolor=water1], [pokecolor][pokecolor=water3], [pokecolor][pokecolor=blue], [pokecolor][pokecolor=sea] {
   background-color: rgba(21, 82, 226, 0.5) !important;
+}
+[pokecolor][pokecolor=white] {
+  background-color: rgba(207, 210, 207, 0.5) !important;
 }
 
 header.home {
