@@ -16,6 +16,7 @@ import { TopBar } from "./top_bar.js";
 import { ResultsGrid } from "./results.js";
 import { Paginator } from "./paginator.js";
 import { FilterButtons } from "./filter_buttons.js";
+import { Pokemon } from "./pokemon.js";
 
 "use strict";
 
@@ -129,10 +130,11 @@ var Pokedex = function (_React$Component) {
       searchValue: "",
       pokemons: [],
       foundPokemons: [],
-      currentScreen: "home",
+      currentScreen: "pokemon",
       currentPage: 1,
       totalPages: 1,
-      categoryFilter: ""
+      categoryFilter: "",
+      pokemon: "pikachu"
     };
     return _this;
   }
@@ -316,6 +318,8 @@ var Pokedex = function (_React$Component) {
 
 function Main(props) {
   var currentScreen = props.currentScreen;
+
+  // Home screen
   if (currentScreen == "home") {
     props.onHomeLoad();
     return React.createElement(MainHome, {
@@ -325,6 +329,8 @@ function Main(props) {
       handleClickSearch: props.handleClickSearch,
       handleCategory: props.handleCategory
     });
+
+    // Filter screens
   } else if (currentScreen == "all types" || currentScreen.includes("type ") || currentScreen.includes("generation ") || currentScreen.includes("egg-group ") || currentScreen.includes("color ") || currentScreen.includes("habitat ")) {
 
     return React.createElement(MainSearch, {
@@ -341,6 +347,8 @@ function Main(props) {
       pokemonsNum: props.pokemonsNum,
       updateResults: props.updateResults
     });
+
+    // Filter buttons screens
   } else if (["types", "generations", "egg groups", "colors", "habitats"].includes(currentScreen)) {
     return React.createElement(MainFilter, {
       currentScreen: currentScreen,
@@ -350,6 +358,10 @@ function Main(props) {
       handleClickGoBack: props.handleClickGoBack,
       handleFilter: props.handleFilter
     });
+
+    // Pokemon screen
+  } else if (currentScreen == "pokemon") {
+    return React.createElement(MainPokemon, null);
   }
 }
 
@@ -439,6 +451,10 @@ function MainFilter(props) {
       currentScreen: props.currentScreen
     })
   );
+}
+
+function MainPokemon(props) {
+  return React.createElement(Pokemon, null);
 }
 
 // render button

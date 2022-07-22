@@ -2,19 +2,41 @@
     display: inline-block
     transition-duration: 0.5s
     cursor: pointer
+    border: none
+    display: flex
+    align-items: center
+
+    &:not(.no-box-shadow)
+        box-shadow: 5px 5px 17px -6px rgba(0,0,0,0.60)
+
+        &:hover
+            box-shadow: 5px 5px 17px -6px rgba(0,0,0,1)
+
+        &:active
+            box-shadow: inset 5px 5px 28px 1px rgba(0,0,0,0.29)
+
+        &[disabled], &.disabled
+            box-shadow: none
+
+    &.arrow
+        justify-content: center
+        background: none
+        background-color: $color-d
+        border-radius: 50%
+        width: 40px
+        height: 40px
+
+        img
+            width: 15px
 
     &.round 
         font-size: $font-size-base
         border-radius: 30px
-        border: none
-        display: flex
-        align-items: center
         justify-content: space-between
         padding: 12px 20px
         width: 100%
         text-transform: capitalize
         font-weight: bold
-        box-shadow: 5px 5px 17px -6px rgba(0,0,0,0.60)
         margin: 8px 0
 
         img.regular
@@ -24,14 +46,27 @@
             opacity: 0.5
     
         &:hover
-            box-shadow: 5px 5px 17px -6px rgba(0,0,0,1)
 
             &.animate
                 padding-left: 40px
 
+    &.pokemon-details
+        font-size: 20px
+        opacity: 0.6
+        transition-duration: 0.5s
+        position: relative
 
-        &:active
-            box-shadow: inset 5px 5px 28px 1px rgba(0,0,0,0.29)
+        &.active
+            opacity: 1
 
-        &[disabled], &.disabled
-            box-shadow: none
+        &:hover
+            font-size: 22px
+
+        span 
+            position: absolute
+            top: 0
+            left: 0
+            width: 100%
+            height: 100%
+
+        
