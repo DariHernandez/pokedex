@@ -287,7 +287,7 @@ function InfoAbout(props) {
             ),
             React.createElement(
                 "p",
-                { className: "header 2-columns" },
+                { className: "header columns-2" },
                 "Base experience"
             ),
             React.createElement(
@@ -297,7 +297,7 @@ function InfoAbout(props) {
             ),
             React.createElement(
                 "p",
-                { className: "header 2-columns" },
+                { className: "header columns-2" },
                 "Base happiness"
             ),
             React.createElement(
@@ -307,7 +307,7 @@ function InfoAbout(props) {
             ),
             React.createElement(
                 "p",
-                { className: "header 2-columns" },
+                { className: "header columns-2" },
                 "Capture rate"
             ),
             React.createElement(

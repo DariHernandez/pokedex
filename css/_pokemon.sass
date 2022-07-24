@@ -122,4 +122,21 @@
                 &:nth-child(3)
                     border-top-right-radius: 50px
                     border-bottom-right-radius: 50px
-                
+
+    .info
+        &.about
+            .grid
+                display: grid
+                grid-template-columns: repeat(3, 1fr)
+
+                p
+                    margin: 5px 0
+
+                    &.header
+                        font-weight: bold
+
+                        &.columns-2
+                            grid-column-start: 1
+                            grid-column-end: 3
+
+                    

@@ -588,5 +588,19 @@ section.results-grid .card img {
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
 }
+.pokemon .info.about .grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.pokemon .info.about .grid p {
+  margin: 5px 0;
+}
+.pokemon .info.about .grid p.header {
+  font-weight: bold;
+}
+.pokemon .info.about .grid p.header.columns-2 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
 
 /*# sourceMappingURL=styles.css.map */

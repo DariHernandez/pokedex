@@ -205,21 +205,21 @@ function InfoAbout (props) {
                     {Math.round(props.weight/10*2.20462*100)/100} lbs
                 </p>
 
-                <p className="header 2-columns">
+                <p className="header columns-2">
                     Base experience
                 </p>
                 <p>
                     {props.base_experience}
                 </p>
 
-                <p className="header 2-columns">
+                <p className="header columns-2">
                     Base happiness
                 </p>
                 <p>
                     {props.base_happiness}
                 </p>
 
-                <p className="header 2-columns">
+                <p className="header columns-2">
                     Capture rate
                 </p>
                 <p>
