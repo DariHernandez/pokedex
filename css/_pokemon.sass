@@ -139,4 +139,32 @@
                             grid-column-start: 1
                             grid-column-end: 3
 
+        &.stats
+            margin-top: 30px
+
+            .stat
+                display: flex
+                align-items: center
+                justify-content: space-between
+
+            p
+                width: 10%
+                margin: 0
+            
+            .bar
+                width: calc(100% - 20% - 30px)
+                height: 30px
+                position: relative
+
+                .bar-inner, .bar-bg
+                    border-radius: 50px
+                    height: 70%
+
+                .bar-inner
+                    position: absolute
+                    top: 0
+                    left: 0
+
+                .bar-bg
+                    background-color: $color_c
                     

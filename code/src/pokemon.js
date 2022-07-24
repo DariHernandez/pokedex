@@ -101,7 +101,7 @@ class Details extends React.Component {
     constructor (props) {
         super (props)
         this.state = {
-            activeButton: "About",
+            activeButton: "Stats",
         }
     }
 
@@ -123,6 +123,19 @@ class Details extends React.Component {
                 base_happiness="50"
                 capture_rate="45"
 
+            />
+        } else if (this.state.activeButton == "Stats") {
+            const stats = {
+                hp: 50,
+                atk: 100,
+                def: 150,
+                satk: 200,
+                sdef: 100,
+                spd: 50
+            }
+            info = <InfoStats
+                stats={stats}
+                pokemonType={this.props.pokemonType}
             />
         }
 
@@ -228,5 +241,38 @@ function InfoAbout (props) {
             </div>
         </div>
     )
+}
 
+function InfoStats (props) {
+    
+    let stats_bars = []
+    for (const stat_name in props.stats) {
+        let bar_width = {
+            "width": `${props.stats[stat_name]*100/200}%`
+        }
+        stats_bars.push (
+            <label key={stat_name} className={`stat ${stat_name}`}>
+                <p>
+                    {stat_name}
+                </p>
+                <div className="bar">
+                    <div 
+                        className="bar-inner" 
+                        style={bar_width}
+                        pokecolor={props.pokemonType}>
+                        
+                    </div>
+                    <div className="bar-bg"></div>
+                </div>
+                <p>
+                    {props.stats[stat_name]}
+                </p>
+            </label>
+        )
+    }
+    return (
+        <div className="info stats">
+            {stats_bars}
+        </div>
+    )
 }

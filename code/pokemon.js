@@ -141,7 +141,7 @@ var Details = function (_React$Component2) {
         var _this2 = _possibleConstructorReturn(this, (Details.__proto__ || Object.getPrototypeOf(Details)).call(this, props));
 
         _this2.state = {
-            activeButton: "About"
+            activeButton: "Stats"
         };
         return _this2;
     }
@@ -169,6 +169,19 @@ var Details = function (_React$Component2) {
                     base_happiness: "50",
                     capture_rate: "45"
 
+                });
+            } else if (this.state.activeButton == "Stats") {
+                var stats = {
+                    hp: 50,
+                    atk: 100,
+                    def: 150,
+                    satk: 200,
+                    sdef: 100,
+                    spd: 50
+                };
+                info = React.createElement(InfoStats, {
+                    stats: stats,
+                    pokemonType: this.props.pokemonType
                 });
             }
 
@@ -316,5 +329,43 @@ function InfoAbout(props) {
                 props.capture_rate
             )
         )
+    );
+}
+
+function InfoStats(props) {
+
+    var stats_bars = [];
+    for (var stat_name in props.stats) {
+        var bar_width = {
+            "width": props.stats[stat_name] * 100 / 200 + "%"
+        };
+        stats_bars.push(React.createElement(
+            "label",
+            { key: stat_name, className: "stat " + stat_name },
+            React.createElement(
+                "p",
+                null,
+                stat_name
+            ),
+            React.createElement(
+                "div",
+                { className: "bar" },
+                React.createElement("div", {
+                    className: "bar-inner",
+                    style: bar_width,
+                    pokecolor: props.pokemonType }),
+                React.createElement("div", { className: "bar-bg" })
+            ),
+            React.createElement(
+                "p",
+                null,
+                props.stats[stat_name]
+            )
+        ));
+    }
+    return React.createElement(
+        "div",
+        { className: "info stats" },
+        stats_bars
     );
 }
