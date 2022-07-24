@@ -98,50 +98,135 @@ function TypeTag (props) {
 }
 
 class Details extends React.Component {
+    constructor (props) {
+        super (props)
+        this.state = {
+            activeButton: "About",
+        }
+    }
+
+    handleUpdateActiveButton (newButton) {
+        this.setState ({
+            activeButton: newButton,
+        })
+    }
+
     render () {
+        // Select correct info
+        let info
+        if (this.state.activeButton == "About") {
+            info = <InfoAbout
+                description="When several of\nthese POKéMON\ngather, their\u000celectricity could\nbuild and cause\nlightning storms."
+                height="7"
+                weight="69"
+                base_experience="64"
+                base_happiness="50"
+                capture_rate="45"
+
+            />
+        }
+
         return (
             <section className="details">
                 <div className="buttons">
                     <DetailsButton
                         buttonType="left"
-                        text="About"
+                        value="About"
                         pokemonType = {this.props.pokemonType}
-                        activeButton="About"
+                        activeButton={this.state.activeButton}
+                        onClick={(newButton) => (this.handleUpdateActiveButton(newButton))}
                     />
                     <DetailsButton
                         buttonType="center"
-                        text="Stats"
+                        value="Stats"
                         pokemonType = {this.props.pokemonType}
-                        activeButton="About"
+                        activeButton={this.state.activeButton}
+                        onClick={(newButton) => (this.handleUpdateActiveButton(newButton))}
                     />
                     <DetailsButton
                         buttonType="right"
-                        text="Moves"
+                        value="Moves"
                         pokemonType = {this.props.pokemonType}
-                        activeButton="About"
+                        activeButton={this.state.activeButton}
+                        onClick={(newButton) => (this.handleUpdateActiveButton(newButton))}
                     />
                 </div>
+                {info}
             </section>
+
+
         )
     }
 }
 
 function DetailsButton (props) {
     let className
-    if (props.activeButton == props.text) {
-        className = `btn pokemon-details no-box-shadow text-shadow ${props.buttonType} active`
+    if (props.activeButton == props.value) {
+        className = `btn pokemon-details no-box-shadow ${props.buttonType} active`
     } else {
-        className = `btn pokemon-details no-box-shadow text-shadow ${props.buttonType}`
+        className = `btn pokemon-details no-box-shadow ${props.buttonType}`
     }
 
     return (
         <button 
             className= {className} 
             pokecolor={props.pokemonType}
+            onClick={() => props.onClick(props.value)}
         >
             <span>
-                {props.text}
+                {props.value}
             </span>
         </button>
     )
+}
+
+function InfoAbout (props) {
+    return (
+        <div className="info about">
+            <p className="description">{props.description.replaceAll("\\n", " ").replaceAll("\\u000", " ")}</p>
+            <div className="grid">
+                <p className="header">
+                    Height
+                </p>
+                <p>
+                    {Math.round(props.height/10*100)/100} m
+                </p>
+                <p>
+                    {Math.round(props.height/10*3.28084*100)/100} ft
+                </p>
+
+                <p className="header">
+                    Weight
+                </p>
+                <p>
+                    {Math.round(props.weight/10*100)/100} kg
+                </p>
+                <p>
+                    {Math.round(props.weight/10*2.20462*100)/100} lbs
+                </p>
+
+                <p className="header 2-columns">
+                    Base experience
+                </p>
+                <p>
+                    {props.base_experience}
+                </p>
+
+                <p className="header 2-columns">
+                    Base happiness
+                </p>
+                <p>
+                    {props.base_happiness}
+                </p>
+
+                <p className="header 2-columns">
+                    Capture rate
+                </p>
+                <p>
+                    {props.capture_rate}
+                </p>
+            </div>
+        </div>
+    )
+
 }
