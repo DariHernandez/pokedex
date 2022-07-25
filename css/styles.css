@@ -621,7 +621,7 @@ section.results-grid .card img {
 }
 .pokemon .info.stats .bar .bar-inner, .pokemon .info.stats .bar .bar-bg {
   border-radius: 50px;
-  height: 70%;
+  height: 60%;
 }
 .pokemon .info.stats .bar .bar-inner {
   position: absolute;
@@ -630,6 +630,9 @@ section.results-grid .card img {
 }
 .pokemon .info.stats .bar .bar-bg {
   background-color: #CFD2CF;
+}
+.pokemon .info.moves li {
+  text-transform: capitalize;
 }
 
 /*# sourceMappingURL=styles.css.map */

@@ -101,7 +101,7 @@ class Details extends React.Component {
     constructor (props) {
         super (props)
         this.state = {
-            activeButton: "Stats",
+            activeButton: "Moves",
         }
     }
 
@@ -136,6 +136,17 @@ class Details extends React.Component {
             info = <InfoStats
                 stats={stats}
                 pokemonType={this.props.pokemonType}
+            />
+        } else if (this.state.activeButton == "Moves") {
+            const moves = {
+                "pay day": "machine",
+                "cut": "machine",
+                "sand attack": "level 5",
+                "tackle": "level 1",
+                "body slam": "machine",
+            }
+            info = <InfoMoves
+                moves={moves}
             />
         }
 
@@ -274,5 +285,23 @@ function InfoStats (props) {
         <div className="info stats">
             {stats_bars}
         </div>
+    )
+}
+
+function InfoMoves (props) {
+    
+    let moves_details = []
+    for (const move_name in props.moves) {
+        let move_learning = props.moves[move_name]
+        moves_details.push (
+            <li className="move" key={move_name}>
+                {move_name} ({move_learning})
+            </li>             
+        )
+    }
+    return (
+        <ul className="info moves">
+            {moves_details}
+        </ul>
     )
 }

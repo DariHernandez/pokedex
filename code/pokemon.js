@@ -141,7 +141,7 @@ var Details = function (_React$Component2) {
         var _this2 = _possibleConstructorReturn(this, (Details.__proto__ || Object.getPrototypeOf(Details)).call(this, props));
 
         _this2.state = {
-            activeButton: "Stats"
+            activeButton: "Moves"
         };
         return _this2;
     }
@@ -182,6 +182,17 @@ var Details = function (_React$Component2) {
                 info = React.createElement(InfoStats, {
                     stats: stats,
                     pokemonType: this.props.pokemonType
+                });
+            } else if (this.state.activeButton == "Moves") {
+                var moves = {
+                    "pay day": "machine",
+                    "cut": "machine",
+                    "sand attack": "level 5",
+                    "tackle": "level 1",
+                    "body slam": "machine"
+                };
+                info = React.createElement(InfoMoves, {
+                    moves: moves
                 });
             }
 
@@ -367,5 +378,26 @@ function InfoStats(props) {
         "div",
         { className: "info stats" },
         stats_bars
+    );
+}
+
+function InfoMoves(props) {
+
+    var moves_details = [];
+    for (var move_name in props.moves) {
+        var move_learning = props.moves[move_name];
+        moves_details.push(React.createElement(
+            "li",
+            { className: "move", key: move_name },
+            move_name,
+            " (",
+            move_learning,
+            ")"
+        ));
+    }
+    return React.createElement(
+        "ul",
+        { className: "info moves" },
+        moves_details
     );
 }
