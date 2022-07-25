@@ -6,7 +6,7 @@ export class Pokemon extends React.Component {
         this.state = {
             isLoading: true,
             pokemonData: {
-                pokemonId: 10,
+                pokemonId: 151,
             },
         }
     }
@@ -215,20 +215,31 @@ function Name (props) {
     )
 }
 
-function Sprite (props) {
-    // Show the pokemon image
-    return (
-        <div className="sprites">
-            <img 
-                src={props.sprite}
-                className="main"   
-            />
-            <img 
-                src={props.sprite}
-                className="back"   
-            />
-        </div> 
-    )
+class Sprite extends React.Component {
+    componentDidMount () {
+        // Set image height
+        const sprites = document.querySelectorAll (".sprites > img")
+        for (const sprite of sprites) {
+            const width = sprite.style.width
+            sprite.style.height = width
+        }
+    }
+    
+    render () {
+        // Show the pokemon image
+        return (
+            <div className="sprites">
+                <img 
+                    src={this.props.sprite}
+                    className="main"   
+                />
+                <img 
+                    src={this.props.sprite}
+                    className="back"   
+                />
+            </div> 
+        )
+    }
 }
 
 function TypeTag (props) {

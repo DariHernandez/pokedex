@@ -119,7 +119,7 @@ export var Pokemon = function (_React$Component) {
         _this.state = {
             isLoading: true,
             pokemonData: {
-                pokemonId: 10
+                pokemonId: 151
             }
         };
         return _this;
@@ -246,21 +246,67 @@ function Name(props) {
     );
 }
 
-function Sprite(props) {
-    // Show the pokemon image
-    return React.createElement(
-        "div",
-        { className: "sprites" },
-        React.createElement("img", {
-            src: props.sprite,
-            className: "main"
-        }),
-        React.createElement("img", {
-            src: props.sprite,
-            className: "back"
-        })
-    );
-}
+var Sprite = function (_React$Component2) {
+    _inherits(Sprite, _React$Component2);
+
+    function Sprite() {
+        _classCallCheck(this, Sprite);
+
+        return _possibleConstructorReturn(this, (Sprite.__proto__ || Object.getPrototypeOf(Sprite)).apply(this, arguments));
+    }
+
+    _createClass(Sprite, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            // Set image height
+            var sprites = document.querySelectorAll(".sprites > img");
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = sprites[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var sprite = _step.value;
+
+                    var width = sprite.style.width;
+                    sprite.style.height = width;
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            // Show the pokemon image
+            return React.createElement(
+                "div",
+                { className: "sprites" },
+                React.createElement("img", {
+                    src: this.props.sprite,
+                    className: "main"
+                }),
+                React.createElement("img", {
+                    src: this.props.sprite,
+                    className: "back"
+                })
+            );
+        }
+    }]);
+
+    return Sprite;
+}(React.Component);
 
 function TypeTag(props) {
     // Show the pokemon name
@@ -275,18 +321,18 @@ function TypeTag(props) {
     );
 }
 
-var Details = function (_React$Component2) {
-    _inherits(Details, _React$Component2);
+var Details = function (_React$Component3) {
+    _inherits(Details, _React$Component3);
 
     function Details(props) {
         _classCallCheck(this, Details);
 
-        var _this2 = _possibleConstructorReturn(this, (Details.__proto__ || Object.getPrototypeOf(Details)).call(this, props));
+        var _this3 = _possibleConstructorReturn(this, (Details.__proto__ || Object.getPrototypeOf(Details)).call(this, props));
 
-        _this2.state = {
+        _this3.state = {
             activeButton: "About"
         };
-        return _this2;
+        return _this3;
     }
 
     _createClass(Details, [{
@@ -300,7 +346,7 @@ var Details = function (_React$Component2) {
     }, {
         key: "render",
         value: function render() {
-            var _this3 = this;
+            var _this4 = this;
 
             // Select correct info to show
             var info = void 0;
@@ -337,7 +383,7 @@ var Details = function (_React$Component2) {
                         pokemonType: this.props.pokemonType,
                         activeButton: this.state.activeButton,
                         onClick: function onClick(newButton) {
-                            return _this3.handleUpdateActiveButton(newButton);
+                            return _this4.handleUpdateActiveButton(newButton);
                         }
                     }),
                     React.createElement(DetailsButton, {
@@ -346,7 +392,7 @@ var Details = function (_React$Component2) {
                         pokemonType: this.props.pokemonType,
                         activeButton: this.state.activeButton,
                         onClick: function onClick(newButton) {
-                            return _this3.handleUpdateActiveButton(newButton);
+                            return _this4.handleUpdateActiveButton(newButton);
                         }
                     }),
                     React.createElement(DetailsButton, {
@@ -355,7 +401,7 @@ var Details = function (_React$Component2) {
                         pokemonType: this.props.pokemonType,
                         activeButton: this.state.activeButton,
                         onClick: function onClick(newButton) {
-                            return _this3.handleUpdateActiveButton(newButton);
+                            return _this4.handleUpdateActiveButton(newButton);
                         }
                     })
                 ),
