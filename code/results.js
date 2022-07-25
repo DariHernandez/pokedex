@@ -20,7 +20,11 @@ export function ResultsGrid(props) {
         for (var _iterator = props.pokemons[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
             var pokemon_data = _step.value;
 
-            cards.push(React.createElement(ResultCard, { pokemon: pokemon_data, key: pokemon_data.entry_number.toString() }));
+            cards.push(React.createElement(ResultCard, {
+                pokemon: pokemon_data,
+                key: pokemon_data.entry_number.toString(),
+                updatePokemonId: props.updatePokemonId
+            }));
         }
     } catch (err) {
         _didIteratorError = true;
@@ -97,11 +101,13 @@ var ResultCard = function (_React$Component) {
     }, {
         key: "render",
         value: function render() {
+            var _this2 = this;
 
             // Check if image is loaded from api
             var image = void 0;
             var pokemon_image = void 0;
             var pokemon_type = void 0;
+            var pokemonId = this.state.pokemonData.id;
             if (this.state.pokemonData.sprites && this.state.pokemonData.types) {
                 // Render pokemon image
                 image = this.state.pokemonData.sprites.front_default;
@@ -109,6 +115,7 @@ var ResultCard = function (_React$Component) {
                     // Api image
                     pokemon_image = React.createElement("img", { src: image, alt: "pokemon image" });
                 } else {
+                    // Default image
                     pokemon_image = React.createElement("img", { src: "./imgs/pokemon-not-found.png", alt: "pokemon image not found" });
                 }
 
@@ -125,7 +132,11 @@ var ResultCard = function (_React$Component) {
 
             return React.createElement(
                 "article",
-                { className: "card btn round" },
+                {
+                    className: "card btn round",
+                    onClick: function onClick() {
+                        return _this2.props.updatePokemonId(pokemonId);
+                    } },
                 React.createElement(
                     "span",
                     {

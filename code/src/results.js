@@ -5,7 +5,13 @@ export function ResultsGrid (props) {
     // Create a card for each pokemon
     let cards = []
     for (const pokemon_data of props.pokemons) {
-        cards.push (<ResultCard pokemon={pokemon_data} key={pokemon_data.entry_number.toString()}/>)
+        cards.push (
+            <ResultCard 
+                pokemon={pokemon_data} 
+                key={pokemon_data.entry_number.toString()}
+                updatePokemonId={props.updatePokemonId}
+                />
+        )
     }
 
     if (cards.length > 0) {
@@ -58,6 +64,7 @@ class ResultCard extends React.Component {
         let image
         let pokemon_image
         let pokemon_type
+        let pokemonId = this.state.pokemonData.id
         if (this.state.pokemonData.sprites && this.state.pokemonData.types) {
             // Render pokemon image
             image = this.state.pokemonData.sprites.front_default
@@ -65,6 +72,7 @@ class ResultCard extends React.Component {
                 // Api image
                 pokemon_image = <img src={image} alt="pokemon image"/>
             } else {
+                // Default image
                 pokemon_image = <img src="./imgs/pokemon-not-found.png" alt="pokemon image not found"/>
             }
 
@@ -81,7 +89,9 @@ class ResultCard extends React.Component {
         }
 
         return (
-            <article className="card btn round">
+            <article 
+                className="card btn round"
+                onClick={() => this.props.updatePokemonId(pokemonId)}>
                 <span 
                     className="pokemonCode text-shadow"
                     pokecolor={pokemon_type}

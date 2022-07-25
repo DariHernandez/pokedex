@@ -119,7 +119,7 @@ export var Pokemon = function (_React$Component) {
 
         _this.state = {
             isLoading: true,
-            pokemonId: 890
+            pokemonId: props.pokemonId
         };
         return _this;
     }

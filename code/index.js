@@ -130,11 +130,11 @@ var Pokedex = function (_React$Component) {
       searchValue: "",
       pokemons: [],
       foundPokemons: [],
-      currentScreen: "pokemon",
+      currentScreen: "home",
       currentPage: 1,
       totalPages: 1,
       categoryFilter: "",
-      pokemon: "pikachu"
+      pokemonId: 1
     };
     return _this;
   }
@@ -248,6 +248,14 @@ var Pokedex = function (_React$Component) {
 
       getPokemonsFilter(this.updateFilter, filterkey, filterValue.toLowerCase());
     }
+  }, {
+    key: "updatePokemonId",
+    value: function updatePokemonId(id) {
+      this.setState({
+        pokemonId: id,
+        currentScreen: "pokemon"
+      });
+    }
 
     // Main component
 
@@ -307,7 +315,11 @@ var Pokedex = function (_React$Component) {
           },
           onHomeLoad: function onHomeLoad() {
             return _this2.handleUpdatePokedex();
-          }
+          },
+          updatePokemonId: function updatePokemonId(id) {
+            return _this2.updatePokemonId(id);
+          },
+          pokemonId: this.state.pokemonId
         })
       );
     }
@@ -345,7 +357,8 @@ function Main(props) {
       handleClickNextPage: props.handleClickNextPage,
       handleClickBackPage: props.handleClickBackPage,
       pokemonsNum: props.pokemonsNum,
-      updateResults: props.updateResults
+      updateResults: props.updateResults,
+      updatePokemonId: props.updatePokemonId
     });
 
     // Filter buttons screens
@@ -361,7 +374,9 @@ function Main(props) {
 
     // Pokemon screen
   } else if (currentScreen == "pokemon") {
-    return React.createElement(MainPokemon, null);
+    return React.createElement(MainPokemon, {
+      pokemonId: props.pokemonId
+    });
   }
 }
 
@@ -419,7 +434,8 @@ var MainSearch = function (_React$Component2) {
           clickBackPage: this.props.handleClickBackPage
         }),
         React.createElement(ResultsGrid, {
-          pokemons: this.props.foundPokemons
+          pokemons: this.props.foundPokemons,
+          updatePokemonId: this.props.updatePokemonId
         }),
         React.createElement(Paginator, {
           currentPage: this.props.currentPage,
@@ -454,7 +470,9 @@ function MainFilter(props) {
 }
 
 function MainPokemon(props) {
-  return React.createElement(Pokemon, null);
+  return React.createElement(Pokemon, {
+    pokemonId: props.pokemonId
+  });
 }
 
 // render button

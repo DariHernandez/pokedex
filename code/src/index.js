@@ -34,11 +34,11 @@ class Pokedex extends React.Component {
       searchValue: "",
       pokemons: [],
       foundPokemons: [],
-      currentScreen: "pokemon",
+      currentScreen: "home",
       currentPage: 1,
       totalPages: 1,
       categoryFilter: "",
-      pokemon: "pikachu",
+      pokemonId: 1,
     }
   }
 
@@ -213,6 +213,13 @@ class Pokedex extends React.Component {
     getPokemonsFilter (this.updateFilter, filterkey, filterValue.toLowerCase())
   }
 
+  updatePokemonId (id) {
+    this.setState ({
+      pokemonId: id,
+      currentScreen: "pokemon",
+    })
+  }
+
   // Main component
   render() {
 
@@ -246,6 +253,8 @@ class Pokedex extends React.Component {
           handleFilter={(filterValue) => this.handleFilter(filterValue)}
           updateResults={(currentScreen) => this.updateResults(currentScreen=currentScreen)}
           onHomeLoad={() => this.handleUpdatePokedex()}
+          updatePokemonId = {(id) => this.updatePokemonId(id)}
+          pokemonId={this.state.pokemonId}
         />
         
       </div>
@@ -288,6 +297,7 @@ function Main (props) {
       handleClickBackPage={props.handleClickBackPage}
       pokemonsNum={props.pokemonsNum}
       updateResults={props.updateResults}
+      updatePokemonId={props.updatePokemonId}
     />
 
   // Filter buttons screens
@@ -303,7 +313,9 @@ function Main (props) {
 
   // Pokemon screen
   } else if (currentScreen == "pokemon") {
-    return <MainPokemon/>
+    return <MainPokemon
+      pokemonId={props.pokemonId}
+    />
   }
 }
 
@@ -355,6 +367,7 @@ class MainSearch extends React.Component {
   
         <ResultsGrid
           pokemons={this.props.foundPokemons}
+          updatePokemonId={this.props.updatePokemonId}
         /> 
   
         <Paginator
@@ -390,7 +403,9 @@ function MainFilter (props) {
 }
 
 function MainPokemon (props) {
-  return <Pokemon/>
+  return <Pokemon
+    pokemonId = {props.pokemonId}
+  />
 }
 
 // render button

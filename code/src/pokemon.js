@@ -5,7 +5,7 @@ export class Pokemon extends React.Component {
         super (props)
         this.state = {
             isLoading: true,
-            pokemonId: 890,
+            pokemonId: props.pokemonId,
         }
     }
 
