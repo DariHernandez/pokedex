@@ -119,10 +119,12 @@ var Pokedex = function (_React$Component) {
       });
 
       // Update data in state
+      var currentScreen = _this.state.currentScreen;
       _this.setState({
         pokemons: pokemonsFormated,
         foundPokemons: pokemonsFormated,
-        currentScreen: filterkey + " " + filterValue
+        currentScreen: filterkey + " " + filterValue,
+        lastScreen: currentScreen
       });
     };
 
@@ -131,6 +133,7 @@ var Pokedex = function (_React$Component) {
       pokemons: [],
       foundPokemons: [],
       currentScreen: "home",
+      lastScreen: "home",
       currentPage: 1,
       totalPages: 1,
       categoryFilter: "",
@@ -201,15 +204,21 @@ var Pokedex = function (_React$Component) {
     key: "handleClickSearch",
     value: function handleClickSearch() {
       this.setState({
-        currentScreen: "type all"
+        currentScreen: "type all",
+        lastScreen: "home"
       });
     }
   }, {
     key: "handleClickGoBack",
     value: function handleClickGoBack() {
       // Go back to last screen
+      var goScreen = this.state.lastScreen;
+      if (this.state.lastScreen == this.state.currentScreen) {
+        goScreen = "home";
+      }
+
       this.setState({
-        currentScreen: "home",
+        currentScreen: goScreen,
         searchValue: ""
       });
     }
@@ -251,9 +260,11 @@ var Pokedex = function (_React$Component) {
   }, {
     key: "updatePokemonId",
     value: function updatePokemonId(id) {
+      var currentScreen = this.state.currentScreen;
       this.setState({
         pokemonId: id,
-        currentScreen: "pokemon"
+        currentScreen: "pokemon",
+        lastScreen: currentScreen
       });
     }
 

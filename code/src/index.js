@@ -35,6 +35,7 @@ class Pokedex extends React.Component {
       pokemons: [],
       foundPokemons: [],
       currentScreen: "home",
+      lastScreen: "home",
       currentPage: 1,
       totalPages: 1,
       categoryFilter: "",
@@ -107,14 +108,20 @@ class Pokedex extends React.Component {
   handleClickSearch () {
     this.setState({
       currentScreen: "type all",
+      lastScreen: "home"
     })
 
   }
 
   handleClickGoBack () {
     // Go back to last screen
+    let goScreen = this.state.lastScreen
+    if (this.state.lastScreen == this.state.currentScreen) {
+      goScreen = "home"
+    }
+
     this.setState({
-      currentScreen: "home",
+      currentScreen: goScreen,
       searchValue: "",
     })
   }
@@ -194,10 +201,12 @@ class Pokedex extends React.Component {
     })
 
     // Update data in state
+    const currentScreen = this.state.currentScreen
     this.setState ({
       pokemons: pokemonsFormated,
       foundPokemons: pokemonsFormated,
       currentScreen: `${filterkey} ${filterValue}`,
+      lastScreen: currentScreen
     })
   }
 
@@ -214,9 +223,11 @@ class Pokedex extends React.Component {
   }
 
   updatePokemonId (id) {
+    const currentScreen = this.state.currentScreen
     this.setState ({
       pokemonId: id,
       currentScreen: "pokemon",
+      lastScreen: currentScreen,
     })
   }
 
