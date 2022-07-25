@@ -614,6 +614,7 @@ section.results-grid .card img {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-direction: row;
 }
 .pokemon .pokemon-data .info.stats p {
   width: 10%;
