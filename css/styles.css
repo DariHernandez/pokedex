@@ -474,6 +474,10 @@ section.results-grid .card img {
   padding: 0 15px;
   padding-bottom: 20px;
 }
+.pokemon .loading {
+  width: 100%;
+  margin: 80px auto;
+}
 .pokemon .background {
   position: absolute;
   width: 100%;

@@ -71,9 +71,17 @@ export var Pokemon = function (_React$Component) {
             });
 
             // Update state
-            _this.setState({
-                pokemonData: pokemonData
-            });
+            var newState = {};
+            newState["pokemonData"] = pokemonData;
+            pokemonData = _this.state.pokemonData;
+
+            // Stop loading if all api calls are done
+            if ("baseHappiness" in pokemonData) {
+                // Stop loading
+                newState["isLoading"] = false;
+            }
+
+            _this.setState(newState);
         };
 
         _this.updatePokemonDataSpacies = function (data) {
@@ -94,9 +102,17 @@ export var Pokemon = function (_React$Component) {
             pokemonData.description = englishEntries[englishEntries.length - 1].flavor_text;
 
             // Update state
-            _this.setState({
-                pokemonData: pokemonData
-            });
+            var newState = {};
+            newState["pokemonData"] = pokemonData;
+            pokemonData = _this.state.pokemonData;
+
+            // Stop loading if all api calls are done
+            if ("baseExperience" in pokemonData) {
+                // Stop loading
+                newState["isLoading"] = false;
+            }
+
+            _this.setState(newState);
         };
 
         _this.state = {
@@ -117,33 +133,47 @@ export var Pokemon = function (_React$Component) {
     }, {
         key: "render",
         value: function render() {
-            return React.createElement(
-                "section",
-                { className: "pokemon" },
-                React.createElement(Background, {
-                    pokemonType: "steel"
-                }),
-                React.createElement(ArrowButton, {
-                    arrowType: "back"
-                }),
-                React.createElement(ArrowButton, {
-                    arrowType: "next"
-                }),
-                React.createElement(Name, {
-                    pokemonName: "steelix",
-                    pokemonId: "208",
-                    pokemonType: "steel"
-                }),
-                React.createElement(Sprite, {
-                    sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/208.png"
-                }),
-                React.createElement(TypeTag, {
-                    pokemonType: "steel"
-                }),
-                React.createElement(Details, {
-                    pokemonType: "steel"
-                })
-            );
+            // Show loading spinner
+            if (this.state.isLoading) {
+                return React.createElement(
+                    "section",
+                    { className: "pokemon" },
+                    React.createElement("img", {
+                        className: "loading",
+                        src: "./imgs/loading.gif"
+                    })
+                );
+            } else {
+
+                // Show pokemon dat
+                return React.createElement(
+                    "section",
+                    { className: "pokemon" },
+                    React.createElement(Background, {
+                        pokemonType: "steel"
+                    }),
+                    React.createElement(ArrowButton, {
+                        arrowType: "back"
+                    }),
+                    React.createElement(ArrowButton, {
+                        arrowType: "next"
+                    }),
+                    React.createElement(Name, {
+                        pokemonName: "steelix",
+                        pokemonId: "208",
+                        pokemonType: "steel"
+                    }),
+                    React.createElement(Sprite, {
+                        sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/208.png"
+                    }),
+                    React.createElement(TypeTag, {
+                        pokemonType: "steel"
+                    }),
+                    React.createElement(Details, {
+                        pokemonType: "steel"
+                    })
+                );
+            }
         }
     }]);
 

@@ -66,9 +66,17 @@ export class Pokemon extends React.Component {
         })
 
         // Update state
-        this.setState ({
-            pokemonData: pokemonData
-        })
+        let newState = {}
+        newState["pokemonData"] = pokemonData
+        pokemonData = this.state.pokemonData
+
+        // Stop loading if all api calls are done
+        if ("baseHappiness" in pokemonData) {
+            // Stop loading
+            newState["isLoading"] = false
+        }
+        
+        this.setState (newState)
     }
 
     updatePokemonDataSpacies = (data) => {
@@ -89,9 +97,17 @@ export class Pokemon extends React.Component {
         pokemonData.description = englishEntries[englishEntries.length - 1].flavor_text
 
         // Update state
-        this.setState ({
-            pokemonData: pokemonData
-        })
+        let newState = {}
+        newState["pokemonData"] = pokemonData
+        pokemonData = this.state.pokemonData
+
+        // Stop loading if all api calls are done
+        if ("baseExperience" in pokemonData) {
+            // Stop loading
+            newState["isLoading"] = false
+        }
+        
+        this.setState (newState)
     }
 
     componentDidMount () {
@@ -100,33 +116,48 @@ export class Pokemon extends React.Component {
     }
 
     render () {
-        return (
-            <section className="pokemon">
-                <Background 
-                    pokemonType="steel" 
-                />
-                <ArrowButton
-                    arrowType="back"
-                />
-                <ArrowButton
-                    arrowType="next"
-                />
-                <Name
-                    pokemonName = "steelix"
-                    pokemonId = "208"
-                    pokemonType = "steel"
-                />
-                <Sprite
-                    sprite="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/208.png"
-                />
-                <TypeTag
-                    pokemonType = "steel"
-                />
-                <Details
-                    pokemonType = "steel"
-                />
-            </section>
-        )
+        // Show loading spinner
+        if (this.state.isLoading) {
+            return (
+                <section className="pokemon">
+                    <img
+                        className="loading"
+                        src="./imgs/loading.gif"
+                    />
+                </section>
+            )
+        } else {
+
+            // Show pokemon dat
+            return (
+                <section className="pokemon">
+                    <Background 
+                        pokemonType="steel" 
+                    />
+                    <ArrowButton
+                        arrowType="back"
+                    />
+                    <ArrowButton
+                        arrowType="next"
+                    />
+                    <Name
+                        pokemonName = "steelix"
+                        pokemonId = "208"
+                        pokemonType = "steel"
+                    />
+                    <Sprite
+                        sprite="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/208.png"
+                    />
+                    <TypeTag
+                        pokemonType = "steel"
+                    />
+                    <Details
+                        pokemonType = "steel"
+                    />
+                </section>
+            )
+        }
+
     }
 }
 
