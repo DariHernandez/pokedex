@@ -42,10 +42,10 @@ a {
 }
 
 .regular-width {
-  width: calc(100% - 20px);
+  width: calc(100% - 40px);
   max-width: 1000px;
   margin: 0 auto;
-  padding: 0 10px;
+  padding: 0 20px;
 }
 
 h1, h2, h3, h4, h5, h6, .title {
@@ -230,9 +230,11 @@ header.home .content .title {
 }
 
 main section.top-bar {
+  width: 100%;
   background-color: #EB1D36;
+  padding-bottom: 20px;
 }
-main label {
+main section.top-bar label {
   width: 100%;
   position: relative;
   display: flex;
@@ -240,34 +242,31 @@ main label {
   justify-content: center;
   flex-direction: column;
 }
-main label img {
+main section.top-bar label img {
   position: absolute;
   top: 10px;
   left: 15px;
   width: 20px;
   height: 20px;
 }
-main label input {
+main section.top-bar label input {
   padding: 12px;
   font-size: 16px;
   border-radius: 50px;
   border: none;
 }
-main label input[type=search] {
+main section.top-bar label input[type=search] {
   width: 100%;
   padding-left: 50px;
   padding-right: 20px;
   background-color: #F5EDDC;
 }
-main label input[type=button].btn.round {
+main section.top-bar label input[type=button].btn.round {
   width: 60%;
   background-color: #CFD2CF;
   margin-top: 15px;
   text-align: center;
   display: block;
-}
-main section.top-bar {
-  padding-bottom: 20px;
 }
 main section.top-bar .content .return {
   background: none;
@@ -338,15 +337,39 @@ main.home section.top-bar .content .title {
   line-height: 37px;
   color: #F5EDDC;
 }
+@media screen and (min-width: 768px) {
+  main.home section.top-bar .content {
+    padding-right: 100px;
+    width: calc(100% - 100px);
+    padding-top: 50px;
+    padding-bottom: 100px;
+  }
+  main.home section.top-bar .bg-img-wrapper {
+    width: 400px;
+    height: 400px;
+    left: 0;
+    right: 0;
+    top: 4px;
+    bottom: 0;
+    margin: 0 auto;
+  }
+}
+@media screen and (min-width: 1050px) {
+  main.home section.top-bar .content {
+    padding-left: calc((100vw - 1000px) / 2);
+    width: calc(100% - 100px - (100vw - 1000px) / 2);
+  }
+}
 
-main.home section.category-buttons {
+section.category-buttons {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   position: relative;
 }
-main.home section.category-buttons .separator {
+section.category-buttons .separator {
   position: absolute;
   top: -63px;
   left: 0;
@@ -355,19 +378,56 @@ main.home section.category-buttons .separator {
   line-height: 0;
   transform: rotate(180deg);
 }
-main.home section.category-buttons .separator svg {
+section.category-buttons .separator svg {
   position: relative;
   display: block;
   width: calc(100% + 1.3px);
   height: 150px;
 }
-main.home section.category-buttons .separator .shape-fill {
+section.category-buttons .separator .shape-fill {
   fill: #F5EDDC;
 }
-@media (max-width: 767px) {
-  main.home section.category-buttons .separator svg {
+@media (min-width: 320px) {
+  section.category-buttons .separator svg {
     width: calc(100% + 1.3px);
     height: 64px;
+  }
+}
+@media screen and (min-width: 600px) {
+  section.category-buttons .buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  section.category-buttons .buttons button {
+    margin: 0;
+  }
+}
+@media screen and (min-width: 768px) {
+  section.category-buttons {
+    width: auto;
+  }
+  section.category-buttons .buttons {
+    grid-template-columns: repeat(1, 1fr);
+    width: 200px;
+  }
+  section.category-buttons .separator {
+    top: 127px;
+    left: -226px;
+    transform: rotateZ(90deg);
+    position: absolute;
+    margin: 0;
+    width: 404px;
+    height: 51px;
+  }
+  section.category-buttons .separator svg {
+    width: inherit;
+    height: inherit;
+  }
+}
+@media screen and (min-width: 1050px) {
+  section.category-buttons {
+    padding-right: calc((100vw - 1000px) / 2);
   }
 }
 
@@ -640,6 +700,19 @@ section.results-grid .card img {
 }
 .pokemon .pokemon-data .info.moves li {
   text-transform: capitalize;
+}
+
+.home {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 100%;
+}
+@media screen and (min-width: 768px) {
+  .home {
+    flex-direction: row;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

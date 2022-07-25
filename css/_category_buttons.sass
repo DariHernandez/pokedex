@@ -1,34 +1,67 @@
-main.home
-    section.category-buttons
-        display: flex
-        align-items: center
-        justify-content: center
-        flex-direction: column
-        position: relative
+section.category-buttons
+    width: 100%
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-direction: column
+    position: relative
 
-        .separator
-            position: absolute
-            top: -63px
-            left: 0
-            width: 100%
-            overflow: hidden
-            line-height: 0
-            transform: rotate(180deg)
+    .separator
+        position: absolute
+        top: -63px
+        left: 0
+        width: 100%
+        overflow: hidden
+        line-height: 0
+        transform: rotate(180deg)
+    
+
+        svg 
+            position: relative
+            display: block
+            width: calc(100% + 1.3px)
+            height: 150px
         
 
-            svg 
-                position: relative
-                display: block
-                width: calc(100% + 1.3px)
-                height: 150px
-            
+        .shape-fill 
+            fill: $color-d
+        
 
-            .shape-fill 
-                fill: $color-d
-            
+    @media (min-width: 320px) 
+        .separator svg 
+            width: calc(100% + 1.3px)
+            height: 64px
 
-            @media (max-width: 767px) 
-                svg 
-                    width: calc(100% + 1.3px)
-                    height: 64px
-                
+    @media screen and (min-width: 600px)
+        .buttons 
+            display: grid
+            grid-template-columns: repeat(2, 1fr)
+            gap: 15px
+
+            button
+                margin: 0
+    
+    @media screen and (min-width: 768px)
+        width: auto
+
+        .buttons
+            grid-template-columns: repeat(1, 1fr)
+            width: 200px
+
+        .separator
+            top: 127px
+            left: -226px
+            transform: rotateZ(90deg)
+            position: absolute
+            margin: 0
+            width: 404px
+            height: 51px
+
+
+            svg
+                width: inherit
+                height: inherit
+
+    @media screen and (min-width: 1050px)
+        padding-right: calc((100vw - 1000px)/2)
+            
