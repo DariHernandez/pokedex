@@ -22,6 +22,18 @@ export function getPokemon(doneFunction, number) {
     });
 }
 
+export function getPokemonSpecies(doneFunction, number) {
+    // Get data from api
+    fetch("https://pokeapi.co/api/v2/pokemon-species/" + number + "/").then(function (response) {
+        return response.json();
+    })
+
+    // Send data to function
+    .then(function (data) {
+        return doneFunction(data);
+    });
+}
+
 export function getPokemonsFilter(doneFunction, filterkey, filterValue) {
     // Get data from api
     fetch("https://pokeapi.co/api/v2/" + filterkey + "/" + filterValue + "/").then(function (response) {

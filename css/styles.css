@@ -613,6 +613,7 @@ section.results-grid .card img {
 .pokemon .info.stats p {
   width: 10%;
   margin: 0;
+  text-transform: uppercase;
 }
 .pokemon .info.stats .bar {
   width: calc(80% - 30px);

@@ -6,16 +6,115 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+import { getPokemon, getPokemonSpecies } from "./pokeapi.js";
+
 export var Pokemon = function (_React$Component) {
     _inherits(Pokemon, _React$Component);
 
-    function Pokemon() {
+    function Pokemon(props) {
         _classCallCheck(this, Pokemon);
 
-        return _possibleConstructorReturn(this, (Pokemon.__proto__ || Object.getPrototypeOf(Pokemon)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (Pokemon.__proto__ || Object.getPrototypeOf(Pokemon)).call(this, props));
+
+        _this.updatePokemonData = function (data) {
+
+            // Get component current data
+            var pokemonData = _this.state.pokemonData;
+
+            // Get data from api and save it
+            pokemonData.baseExperience = data.base_experience;
+            pokemonData.height = data.height;
+            pokemonData.name = data.name;
+            pokemonData.sprite = data.sprites.front_default;
+            pokemonData.type = data.types[0].type.name;
+
+            // Get and format moves
+            pokemonData.moves = {};
+            data.moves.map(function (moveElem) {
+
+                // Get move name and learng type
+                var move_name = moveElem.move.name;
+                var move_details_last = moveElem.version_group_details[moveElem.version_group_details.length - 1];
+                var move_learn_type = move_details_last.move_learn_method.name;
+                var move_learn_level = move_details_last.level_learned_at;
+                var move_learn = void 0;
+                if (move_learn_type == "level-up") {
+                    move_learn = "level " + move_learn_level;
+                } else {
+                    move_learn = "machine";
+                }
+
+                // Save in object
+                pokemonData.moves[move_name] = move_learn;
+            });
+
+            // Get and format stats
+            pokemonData.stats = {};
+            data.stats.map(function (statElem) {
+                var value = statElem.base_stat;
+                var name = statElem.stat.name;
+
+                // Short stat name
+                if (name == "attack") {
+                    name = "atk";
+                } else if (name == "defense") {
+                    name = "def";
+                } else if (name == "special-attack") {
+                    name = "satk";
+                } else if (name == "special-defense") {
+                    name = "sdef";
+                } else if (name == "speed") {
+                    name = "spd";
+                }
+
+                pokemonData.stats[name] = value;
+            });
+
+            // Update state
+            _this.setState({
+                pokemonData: pokemonData
+            });
+        };
+
+        _this.updatePokemonDataSpacies = function (data) {
+
+            // Get component current data
+            var pokemonData = _this.state.pokemonData;
+
+            // Get data from api and save it
+            pokemonData.baseHappiness = data.base_happiness;
+            pokemonData.captureRate = data.capture_rate;
+
+            // Get las pokemon description in english
+            var englishEntries = data.flavor_text_entries.filter(function (textEntry) {
+                if (textEntry.language.name == "en") {
+                    return true;
+                }
+            });
+            pokemonData.description = englishEntries[englishEntries.length - 1].flavor_text;
+
+            // Update state
+            _this.setState({
+                pokemonData: pokemonData
+            });
+        };
+
+        _this.state = {
+            isLoading: true,
+            pokemonData: {
+                pokemonId: 10
+            }
+        };
+        return _this;
     }
 
     _createClass(Pokemon, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            getPokemon(this.updatePokemonData, this.state.pokemonData.pokemonId);
+            getPokemonSpecies(this.updatePokemonDataSpacies, this.state.pokemonData.pokemonId);
+        }
+    }, {
         key: "render",
         value: function render() {
             return React.createElement(
@@ -52,6 +151,7 @@ export var Pokemon = function (_React$Component) {
 }(React.Component);
 
 function Background(props) {
+    // Background with pokeball and separator
     return React.createElement(
         "div",
         { className: "background" },
@@ -71,6 +171,7 @@ function Background(props) {
 }
 
 function ArrowButton(props) {
+    // Button for go to the next or last pokemon
     return React.createElement(
         "button",
         { className: "btn arrow pokemon " + props.arrowType },
@@ -79,7 +180,7 @@ function ArrowButton(props) {
 }
 
 function Name(props) {
-    // Format pokemon id
+    // Format pokemon id number for use 3 digits
     var id_formated = props.pokemonId;
     if (id_formated.length == 1) {
         id_formated = "#00" + id_formated;
@@ -89,6 +190,7 @@ function Name(props) {
         id_formated = "#" + id_formated;
     }
 
+    // Show pokemon name
     return React.createElement(
         "h1",
         { className: "pokemon-name", pokecolor: props.pokemonType },
@@ -106,6 +208,7 @@ function Name(props) {
 }
 
 function Sprite(props) {
+    // Show the pokemon image
     return React.createElement(
         "div",
         { className: "sprites" },
@@ -121,6 +224,7 @@ function Sprite(props) {
 }
 
 function TypeTag(props) {
+    // Show the pokemon name
     return React.createElement(
         "div",
         { className: "type-tag" },
@@ -141,7 +245,7 @@ var Details = function (_React$Component2) {
         var _this2 = _possibleConstructorReturn(this, (Details.__proto__ || Object.getPrototypeOf(Details)).call(this, props));
 
         _this2.state = {
-            activeButton: "Moves"
+            activeButton: "About"
         };
         return _this2;
     }
@@ -149,6 +253,7 @@ var Details = function (_React$Component2) {
     _createClass(Details, [{
         key: "handleUpdateActiveButton",
         value: function handleUpdateActiveButton(newButton) {
+            // Update the current active button and the info to show
             this.setState({
                 activeButton: newButton
             });
@@ -158,7 +263,7 @@ var Details = function (_React$Component2) {
         value: function render() {
             var _this3 = this;
 
-            // Select correct info
+            // Select correct info to show
             var info = void 0;
             if (this.state.activeButton == "About") {
                 info = React.createElement(InfoAbout, {
@@ -239,6 +344,8 @@ var Details = function (_React$Component2) {
 }(React.Component);
 
 function DetailsButton(props) {
+    // Buton in the info section (for change the content of the section)
+
     var className = void 0;
     if (props.activeButton == props.value) {
         className = "btn pokemon-details no-box-shadow " + props.buttonType + " active";
@@ -264,6 +371,7 @@ function DetailsButton(props) {
 }
 
 function InfoAbout(props) {
+    // General info of the pokemon
     return React.createElement(
         "div",
         { className: "info about" },
@@ -344,13 +452,17 @@ function InfoAbout(props) {
 }
 
 function InfoStats(props) {
+    // Stats with progress bars
 
     var stats_bars = [];
     for (var stat_name in props.stats) {
+
+        // Set the with for each bar
         var bar_width = {
             "width": props.stats[stat_name] * 100 / 200 + "%"
-        };
-        stats_bars.push(React.createElement(
+
+            // Save stat bar
+        };stats_bars.push(React.createElement(
             "label",
             { key: stat_name, className: "stat " + stat_name },
             React.createElement(
@@ -382,7 +494,7 @@ function InfoStats(props) {
 }
 
 function InfoMoves(props) {
-
+    // List of moves
     var moves_details = [];
     for (var move_name in props.moves) {
         var move_learning = props.moves[move_name];

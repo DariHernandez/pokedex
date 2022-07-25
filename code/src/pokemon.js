@@ -1,4 +1,104 @@
+import {getPokemon, getPokemonSpecies} from "./pokeapi.js"
+
 export class Pokemon extends React.Component {
+    constructor (props) {
+        super (props)
+        this.state = {
+            isLoading: true,
+            pokemonData: {
+                pokemonId: 10,
+            },
+        }
+    }
+
+    updatePokemonData = (data) => {
+
+        // Get component current data
+        let pokemonData = this.state.pokemonData
+
+        // Get data from api and save it
+        pokemonData.baseExperience = data.base_experience
+        pokemonData.height = data.height
+        pokemonData.name = data.name
+        pokemonData.sprite = data.sprites.front_default
+        pokemonData.type = data.types[0].type.name
+
+        // Get and format moves
+        pokemonData.moves = {}
+        data.moves.map ((moveElem) => {
+
+            // Get move name and learng type
+            const move_name = moveElem.move.name
+            const move_details_last = moveElem.version_group_details[moveElem.version_group_details.length - 1]
+            const move_learn_type = move_details_last.move_learn_method.name
+            const move_learn_level = move_details_last.level_learned_at
+            let move_learn
+            if (move_learn_type == "level-up") {
+                move_learn = `level ${move_learn_level}`
+            } else {
+                move_learn = `machine`
+            }
+
+            // Save in object
+            pokemonData.moves[move_name] = move_learn
+        })
+
+        // Get and format stats
+        pokemonData.stats = {}
+        data.stats.map ((statElem) => {
+            const value = statElem.base_stat
+            let name = statElem.stat.name
+
+            // Short stat name
+            if (name=="attack") {
+                name = "atk"
+            } else if (name=="defense") {
+                name = "def"
+            } else if (name=="special-attack") {
+                name = "satk"
+            } else if (name=="special-defense") {
+                name = "sdef"
+            } else if (name=="speed") {
+                name = "spd"
+            } 
+
+            pokemonData.stats[name] = value
+        })
+
+        // Update state
+        this.setState ({
+            pokemonData: pokemonData
+        })
+    }
+
+    updatePokemonDataSpacies = (data) => {
+
+        // Get component current data
+        let pokemonData = this.state.pokemonData
+
+        // Get data from api and save it
+        pokemonData.baseHappiness = data.base_happiness
+        pokemonData.captureRate = data.capture_rate
+        
+        // Get las pokemon description in english
+        const englishEntries = data.flavor_text_entries.filter ((textEntry) => {
+            if (textEntry.language.name == "en") {
+                return true
+            }
+        })
+        pokemonData.description = englishEntries[englishEntries.length - 1].flavor_text
+
+        // Update state
+        this.setState ({
+            pokemonData: pokemonData
+        })
+    }
+
+    componentDidMount () {
+        getPokemon (this.updatePokemonData, this.state.pokemonData.pokemonId)
+        getPokemonSpecies (this.updatePokemonDataSpacies, this.state.pokemonData.pokemonId)
+    }
+
     render () {
         return (
             <section className="pokemon">
@@ -31,6 +131,7 @@ export class Pokemon extends React.Component {
 }
 
 function Background (props) {
+    // Background with pokeball and separator
     return (
         <div className="background">
             <div className="top" pokecolor={props.pokemonType}></div>
@@ -46,6 +147,7 @@ function Background (props) {
 } 
 
 function ArrowButton (props) {
+    // Button for go to the next or last pokemon
     return (
         <button className={`btn arrow pokemon ${props.arrowType}`}>
             <img src="./imgs/arrow-dark.svg" />
@@ -54,7 +156,7 @@ function ArrowButton (props) {
 }
 
 function Name (props) {
-    // Format pokemon id
+    // Format pokemon id number for use 3 digits
     let id_formated = props.pokemonId
     if (id_formated.length == 1) {
         id_formated = `#00${id_formated}`
@@ -64,6 +166,7 @@ function Name (props) {
         id_formated = `#${id_formated}`
     }
 
+    // Show pokemon name
     return (
         <h1 className="pokemon-name" pokecolor={props.pokemonType}>
             <span className="name">{props.pokemonName}</span>
@@ -73,6 +176,7 @@ function Name (props) {
 }
 
 function Sprite (props) {
+    // Show the pokemon image
     return (
         <div className="sprites">
             <img 
@@ -88,6 +192,7 @@ function Sprite (props) {
 }
 
 function TypeTag (props) {
+    // Show the pokemon name
     return (
         <div className="type-tag">
             <span className="text-shadow" pokecolor={props.pokemonType}>
@@ -101,18 +206,19 @@ class Details extends React.Component {
     constructor (props) {
         super (props)
         this.state = {
-            activeButton: "Moves",
+            activeButton: "About",
         }
     }
 
     handleUpdateActiveButton (newButton) {
+        // Update the current active button and the info to show
         this.setState ({
             activeButton: newButton,
         })
     }
 
     render () {
-        // Select correct info
+        // Select correct info to show
         let info
         if (this.state.activeButton == "About") {
             info = <InfoAbout
@@ -152,6 +258,7 @@ class Details extends React.Component {
 
         return (
             <section className="details">
+                {/* Show all buttons} */}
                 <div className="buttons">
                     <DetailsButton
                         buttonType="left"
@@ -175,15 +282,17 @@ class Details extends React.Component {
                         onClick={(newButton) => (this.handleUpdateActiveButton(newButton))}
                     />
                 </div>
+
+                {/* Show info card (about, stats or moves) */}
                 {info}
             </section>
-
-
         )
     }
 }
 
 function DetailsButton (props) {
+    // Buton in the info section (for change the content of the section)
+
     let className
     if (props.activeButton == props.value) {
         className = `btn pokemon-details no-box-shadow ${props.buttonType} active`
@@ -205,6 +314,7 @@ function DetailsButton (props) {
 }
 
 function InfoAbout (props) {
+    // General info of the pokemon
     return (
         <div className="info about">
             <p className="description">{props.description.replaceAll("\\n", " ").replaceAll("\\u000", " ")}</p>
@@ -255,12 +365,17 @@ function InfoAbout (props) {
 }
 
 function InfoStats (props) {
+    // Stats with progress bars
     
     let stats_bars = []
     for (const stat_name in props.stats) {
+
+        // Set the with for each bar
         let bar_width = {
             "width": `${props.stats[stat_name]*100/200}%`
         }
+
+        // Save stat bar
         stats_bars.push (
             <label key={stat_name} className={`stat ${stat_name}`}>
                 <p>
@@ -289,7 +404,7 @@ function InfoStats (props) {
 }
 
 function InfoMoves (props) {
-    
+    // List of moves
     let moves_details = []
     for (const move_name in props.moves) {
         let move_learning = props.moves[move_name]
