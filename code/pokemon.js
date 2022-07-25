@@ -119,7 +119,7 @@ export var Pokemon = function (_React$Component) {
 
         _this.state = {
             isLoading: true,
-            pokemonId: 10
+            pokemonId: 890
         };
         return _this;
     }
@@ -201,13 +201,15 @@ export var Pokemon = function (_React$Component) {
                         arrowType: "back",
                         onClick: function onClick() {
                             return _this2.goPokemon(-1);
-                        }
+                        },
+                        pokemonId: this.state.pokemonId
                     }),
                     React.createElement(ArrowButton, {
                         arrowType: "next",
                         onClick: function onClick() {
                             return _this2.goPokemon(+1);
-                        }
+                        },
+                        pokemonId: this.state.pokemonId
                     }),
                     React.createElement(Name, {
                         pokemonName: this.state.name,
@@ -261,11 +263,18 @@ function Background(props) {
 
 function ArrowButton(props) {
     // Button for go to the next or last pokemon
+    var disbale_button = false;
+    if (props.pokemonId == 898 && props.arrowType == "next") {
+        disbale_button = true;
+    } else if (props.pokemonId == 1 && props.arrowType == "back") {
+        disbale_button = true;
+    }
     return React.createElement(
         "button",
         {
             className: "btn arrow pokemon " + props.arrowType,
-            onClick: props.onClick
+            onClick: props.onClick,
+            disabled: disbale_button
         },
         React.createElement("img", { src: "./imgs/arrow-dark.svg" })
     );

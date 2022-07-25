@@ -5,7 +5,7 @@ export class Pokemon extends React.Component {
         super (props)
         this.state = {
             isLoading: true,
-            pokemonId: 10,
+            pokemonId: 890,
         }
     }
 
@@ -155,10 +155,12 @@ export class Pokemon extends React.Component {
                     <ArrowButton
                         arrowType="back"
                         onClick = {() => this.goPokemon(-1)}
+                        pokemonId = {this.state.pokemonId}
                     />
                     <ArrowButton
                         arrowType="next"
                         onClick = {() => this.goPokemon(+1)}
+                        pokemonId = {this.state.pokemonId}
                     />
                     <Name
                         pokemonName = {this.state.name}
@@ -207,10 +209,17 @@ function Background (props) {
 
 function ArrowButton (props) {
     // Button for go to the next or last pokemon
+    let disbale_button = false
+    if (props.pokemonId == 898 && props.arrowType == "next") {
+        disbale_button = true
+    } else if (props.pokemonId == 1 && props.arrowType == "back") {
+        disbale_button = true
+    } 
     return (
         <button 
             className={`btn arrow pokemon ${props.arrowType}`}
             onClick={props.onClick}
+            disabled={disbale_button}
             >
             <img src="./imgs/arrow-dark.svg" />
         </button>

@@ -100,6 +100,9 @@ h1, h2, h3, h4, h5, h6, .title {
 .btn.arrow img {
   width: 15px;
 }
+.btn.arrow:disabled {
+  opacity: 0.5;
+}
 .btn.round {
   font-size: 16px;
   border-radius: 30px;
