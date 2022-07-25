@@ -24,6 +24,7 @@ export var Pokemon = function (_React$Component) {
             // Get data from api and save it
             pokemonData.baseExperience = data.base_experience;
             pokemonData.height = data.height;
+            pokemonData.weight = data.weight;
             pokemonData.name = data.name;
             pokemonData.sprite = data.sprites.front_default;
             pokemonData.type = data.types[0].type.name;
@@ -150,7 +151,7 @@ export var Pokemon = function (_React$Component) {
                     "section",
                     { className: "pokemon" },
                     React.createElement(Background, {
-                        pokemonType: "steel"
+                        pokemonType: this.state.pokemonData.type
                     }),
                     React.createElement(ArrowButton, {
                         arrowType: "back"
@@ -159,18 +160,26 @@ export var Pokemon = function (_React$Component) {
                         arrowType: "next"
                     }),
                     React.createElement(Name, {
-                        pokemonName: "steelix",
-                        pokemonId: "208",
-                        pokemonType: "steel"
+                        pokemonName: this.state.pokemonData.name,
+                        pokemonId: this.state.pokemonData.pokemonId,
+                        pokemonType: this.state.pokemonData.type
                     }),
                     React.createElement(Sprite, {
-                        sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/208.png"
+                        sprite: this.state.pokemonData.sprite
                     }),
                     React.createElement(TypeTag, {
-                        pokemonType: "steel"
+                        pokemonType: this.state.pokemonData.type
                     }),
                     React.createElement(Details, {
-                        pokemonType: "steel"
+                        pokemonType: this.state.pokemonData.type,
+                        pokemonDescription: this.state.pokemonData.description,
+                        pokemonHeight: this.state.pokemonData.height,
+                        pokemonWeight: this.state.pokemonData.weight,
+                        pokemonBaseExperience: this.state.pokemonData.baseExperience,
+                        pokemonBaseHappiness: this.state.pokemonData.baseHappiness,
+                        pokemonCaptureRate: this.state.pokemonData.captureRate,
+                        pokemonStats: this.state.pokemonData.stats,
+                        pokemonMoves: this.state.pokemonData.moves
                     })
                 );
             }
@@ -297,37 +306,22 @@ var Details = function (_React$Component2) {
             var info = void 0;
             if (this.state.activeButton == "About") {
                 info = React.createElement(InfoAbout, {
-                    description: "When several of\\nthese POK\xE9MON\\ngather, their\\u000celectricity could\\nbuild and cause\\nlightning storms.",
-                    height: "7",
-                    weight: "69",
-                    base_experience: "64",
-                    base_happiness: "50",
-                    capture_rate: "45"
+                    description: this.props.pokemonDescription,
+                    height: this.props.pokemonHeight,
+                    weight: this.props.pokemonWeight,
+                    baseExperience: this.props.pokemonBaseExperience,
+                    baseHappiness: this.props.pokemonBaseHappiness,
+                    captureRate: this.props.pokemonCaptureRate
 
                 });
             } else if (this.state.activeButton == "Stats") {
-                var stats = {
-                    hp: 50,
-                    atk: 100,
-                    def: 150,
-                    satk: 200,
-                    sdef: 100,
-                    spd: 50
-                };
                 info = React.createElement(InfoStats, {
-                    stats: stats,
+                    stats: this.props.pokemonStats,
                     pokemonType: this.props.pokemonType
                 });
             } else if (this.state.activeButton == "Moves") {
-                var moves = {
-                    "pay day": "machine",
-                    "cut": "machine",
-                    "sand attack": "level 5",
-                    "tackle": "level 1",
-                    "body slam": "machine"
-                };
                 info = React.createElement(InfoMoves, {
-                    moves: moves
+                    moves: this.props.pokemonMoves
                 });
             }
 
@@ -438,13 +432,13 @@ function InfoAbout(props) {
             React.createElement(
                 "p",
                 null,
-                Math.round(props.weight / 10 * 100) / 100,
+                Math.round(parseInt(props.weight) / 10 * 100) / 100,
                 " kg"
             ),
             React.createElement(
                 "p",
                 null,
-                Math.round(props.weight / 10 * 2.20462 * 100) / 100,
+                Math.round(parseInt(props.weight) / 10 * 2.20462 * 100) / 100,
                 " lbs"
             ),
             React.createElement(
@@ -455,7 +449,7 @@ function InfoAbout(props) {
             React.createElement(
                 "p",
                 null,
-                props.base_experience
+                props.baseExperience
             ),
             React.createElement(
                 "p",
@@ -465,7 +459,7 @@ function InfoAbout(props) {
             React.createElement(
                 "p",
                 null,
-                props.base_happiness
+                props.baseHappiness
             ),
             React.createElement(
                 "p",
@@ -475,7 +469,7 @@ function InfoAbout(props) {
             React.createElement(
                 "p",
                 null,
-                props.capture_rate
+                props.captureRate
             )
         )
     );

@@ -19,6 +19,7 @@ export class Pokemon extends React.Component {
         // Get data from api and save it
         pokemonData.baseExperience = data.base_experience
         pokemonData.height = data.height
+        pokemonData.weight = data.weight
         pokemonData.name = data.name
         pokemonData.sprite = data.sprites.front_default
         pokemonData.type = data.types[0].type.name
@@ -132,7 +133,7 @@ export class Pokemon extends React.Component {
             return (
                 <section className="pokemon">
                     <Background 
-                        pokemonType="steel" 
+                        pokemonType={this.state.pokemonData.type}
                     />
                     <ArrowButton
                         arrowType="back"
@@ -141,18 +142,26 @@ export class Pokemon extends React.Component {
                         arrowType="next"
                     />
                     <Name
-                        pokemonName = "steelix"
-                        pokemonId = "208"
-                        pokemonType = "steel"
+                        pokemonName = {this.state.pokemonData.name}
+                        pokemonId = {this.state.pokemonData.pokemonId}
+                        pokemonType = {this.state.pokemonData.type}
                     />
                     <Sprite
-                        sprite="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/208.png"
+                        sprite={this.state.pokemonData.sprite}
                     />
                     <TypeTag
-                        pokemonType = "steel"
+                        pokemonType = {this.state.pokemonData.type}
                     />
                     <Details
-                        pokemonType = "steel"
+                        pokemonType = {this.state.pokemonData.type}
+                        pokemonDescription = {this.state.pokemonData.description}
+                        pokemonHeight = {this.state.pokemonData.height}
+                        pokemonWeight = {this.state.pokemonData.weight}
+                        pokemonBaseExperience = {this.state.pokemonData.baseExperience}
+                        pokemonBaseHappiness = {this.state.pokemonData.baseHappiness}
+                        pokemonCaptureRate = {this.state.pokemonData.captureRate}
+                        pokemonStats = {this.state.pokemonData.stats}
+                        pokemonMoves = {this.state.pokemonData.moves}
                     />
                 </section>
             )
@@ -253,37 +262,22 @@ class Details extends React.Component {
         let info
         if (this.state.activeButton == "About") {
             info = <InfoAbout
-                description="When several of\nthese POKéMON\ngather, their\u000celectricity could\nbuild and cause\nlightning storms."
-                height="7"
-                weight="69"
-                base_experience="64"
-                base_happiness="50"
-                capture_rate="45"
+                description={this.props.pokemonDescription}
+                height={this.props.pokemonHeight}
+                weight={this.props.pokemonWeight}
+                baseExperience={this.props.pokemonBaseExperience}
+                baseHappiness={this.props.pokemonBaseHappiness}
+                captureRate={this.props.pokemonCaptureRate}
 
             />
         } else if (this.state.activeButton == "Stats") {
-            const stats = {
-                hp: 50,
-                atk: 100,
-                def: 150,
-                satk: 200,
-                sdef: 100,
-                spd: 50
-            }
             info = <InfoStats
-                stats={stats}
+                stats={this.props.pokemonStats}
                 pokemonType={this.props.pokemonType}
             />
         } else if (this.state.activeButton == "Moves") {
-            const moves = {
-                "pay day": "machine",
-                "cut": "machine",
-                "sand attack": "level 5",
-                "tackle": "level 1",
-                "body slam": "machine",
-            }
             info = <InfoMoves
-                moves={moves}
+                moves={this.props.pokemonMoves}
             />
         }
 
@@ -364,31 +358,31 @@ function InfoAbout (props) {
                     Weight
                 </p>
                 <p>
-                    {Math.round(props.weight/10*100)/100} kg
+                    {Math.round(parseInt(props.weight)/10*100)/100} kg
                 </p>
                 <p>
-                    {Math.round(props.weight/10*2.20462*100)/100} lbs
+                    {Math.round(parseInt(props.weight)/10*2.20462*100)/100} lbs
                 </p>
 
                 <p className="header columns-2">
                     Base experience
                 </p>
                 <p>
-                    {props.base_experience}
+                    {props.baseExperience}
                 </p>
 
                 <p className="header columns-2">
                     Base happiness
                 </p>
                 <p>
-                    {props.base_happiness}
+                    {props.baseHappiness}
                 </p>
 
                 <p className="header columns-2">
                     Capture rate
                 </p>
                 <p>
-                    {props.capture_rate}
+                    {props.captureRate}
                 </p>
             </div>
         </div>
