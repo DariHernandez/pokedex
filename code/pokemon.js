@@ -27,8 +27,15 @@ export var Pokemon = function (_React$Component) {
             pokemonData.weight = data.weight;
             pokemonData.name = data.name;
             pokemonData.sprite = data.sprites.front_default;
-            pokemonData.type = data.types[0].type.name;
             pokemonData.pokemonId = data.id;
+
+            // Get main types
+            pokemonData.type = data.types[0].type.name;
+            if (data.types.length > 1) {
+                pokemonData.typeSeconday = data.types[1].type.name;
+            } else {
+                pokemonData.typeSeconday = null;
+            }
 
             // Get and format moves
             pokemonData.moves = {};
@@ -219,8 +226,9 @@ export var Pokemon = function (_React$Component) {
                     React.createElement(Sprite, {
                         sprite: this.state.sprite
                     }),
-                    React.createElement(TypeTag, {
-                        pokemonType: this.state.type
+                    React.createElement(TypeTags, {
+                        pokemonType: this.state.type,
+                        pokemonTypeSeconday: this.state.typeSeconday
                     }),
                     React.createElement(Details, {
                         pokemonType: this.state.type,
@@ -370,16 +378,27 @@ var Sprite = function (_React$Component2) {
     return Sprite;
 }(React.Component);
 
-function TypeTag(props) {
+function TypeTags(props) {
+
+    var typeTags = [];
+    typeTags.push(React.createElement(
+        "span",
+        { className: "text-shadow", pokecolor: props.pokemonType, key: props.pokemonType },
+        props.pokemonType
+    ));
+    if (props.pokemonTypeSeconday) {
+        typeTags.push(React.createElement(
+            "span",
+            { className: "text-shadow", pokecolor: props.pokemonTypeSeconday, key: props.pokemonTypeSeconday },
+            props.pokemonTypeSeconday
+        ));
+    }
+
     // Show the pokemon name
     return React.createElement(
         "div",
-        { className: "type-tag" },
-        React.createElement(
-            "span",
-            { className: "text-shadow", pokecolor: props.pokemonType },
-            props.pokemonType
-        )
+        { className: "type-tags" },
+        typeTags
     );
 }
 

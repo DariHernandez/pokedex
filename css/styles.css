@@ -555,15 +555,15 @@ section.results-grid .card img {
   z-index: -1;
   filter: blur(8px);
 }
-.pokemon .pokemon-data .type-tag {
+.pokemon .pokemon-data .type-tags {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.pokemon .pokemon-data .type-tag span {
+.pokemon .pokemon-data .type-tags span {
   padding: 5px 25px;
-  margin: 0 auto;
+  margin: 0 10px;
   text-transform: capitalize;
   width: auto;
   border-radius: 50px;

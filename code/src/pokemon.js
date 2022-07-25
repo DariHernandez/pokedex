@@ -38,8 +38,17 @@ export class Pokemon extends React.Component {
         pokemonData.weight = data.weight
         pokemonData.name = data.name
         pokemonData.sprite = data.sprites.front_default
-        pokemonData.type = data.types[0].type.name
         pokemonData.pokemonId = data.id
+        
+        // Get main types
+        pokemonData.type = data.types[0].type.name
+        if (data.types.length > 1) {
+            pokemonData.typeSeconday = data.types[1].type.name
+        } else {
+            pokemonData.typeSeconday = null
+        }
+
+
 
         // Get and format moves
         pokemonData.moves = {}
@@ -170,8 +179,9 @@ export class Pokemon extends React.Component {
                     <Sprite
                         sprite={this.state.sprite}
                     />
-                    <TypeTag
+                    <TypeTags
                         pokemonType = {this.state.type}
+                        pokemonTypeSeconday = {this.state.typeSeconday}
                     />
                     <Details
                         pokemonType = {this.state.type}
@@ -273,13 +283,27 @@ class Sprite extends React.Component {
     }
 }
 
-function TypeTag (props) {
+function TypeTags (props) {
+
+    const typeTags = []
+    typeTags.push (
+        <span className="text-shadow" pokecolor={props.pokemonType} key={props.pokemonType}>
+            {props.pokemonType}
+        </span>
+    )
+    if (props.pokemonTypeSeconday) {
+        typeTags.push (
+            <span className="text-shadow" pokecolor={props.pokemonTypeSeconday} key={props.pokemonTypeSeconday}>
+                {props.pokemonTypeSeconday}
+            </span>
+        )
+    }
+
+
     // Show the pokemon name
     return (
-        <div className="type-tag">
-            <span className="text-shadow" pokecolor={props.pokemonType}>
-                {props.pokemonType}
-            </span>
+        <div className="type-tags">
+            {typeTags}
         </div>
     )
 }
