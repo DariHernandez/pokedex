@@ -467,6 +467,10 @@ section.results-grid .card img {
   filter: blur(1px);
 }
 
+.pokemon .loading {
+  width: 100%;
+  margin: 80px auto;
+}
 .pokemon .pokemon-data {
   position: relative;
   width: calc(100% - 30px);
@@ -474,10 +478,6 @@ section.results-grid .card img {
   overflow-y: clip;
   padding: 0 15px;
   padding-bottom: 20px;
-}
-.pokemon .pokemon-data .loading {
-  width: 100%;
-  margin: 80px auto;
 }
 .pokemon .pokemon-data .background {
   position: absolute;

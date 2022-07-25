@@ -290,7 +290,6 @@ function Name(props) {
     } else if (id_formated.length == 3) {
         id_formated = "#" + id_formated;
     }
-    console.log(id_formated.length);
 
     // Show pokemon name
     return React.createElement(
