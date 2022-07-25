@@ -228,7 +228,7 @@ function ArrowButton (props) {
 
 function Name (props) {
     // Format pokemon id number for use 3 digits
-    let id_formated = props.pokemonId
+    let id_formated = String(props.pokemonId)
     if (id_formated.length == 1) {
         id_formated = `#00${id_formated}`
     } else if (id_formated.length == 2) {
@@ -236,6 +236,7 @@ function Name (props) {
     } else if (id_formated.length == 3) {
         id_formated = `#${id_formated}`
     }
+    console.log (id_formated.length)
 
     // Show pokemon name
     return (

@@ -159,8 +159,7 @@ h1, h2, h3, h4, h5, h6, .title {
   background-color: rgba(68, 139, 149, 0.5) !important;
 }
 [pokecolor]:not(progress)[pokecolor=electric], [pokecolor]:not(progress)[pokecolor=yellow] {
-  background-color: rgba(204, 204, 37, 0.5) !important;
-  color: black;
+  background-color: rgba(169, 169, 46, 0.5) !important;
 }
 [pokecolor]:not(progress)[pokecolor=fairy] {
   background-color: rgba(234, 19, 105, 0.5) !important;
@@ -184,8 +183,7 @@ h1, h2, h3, h4, h5, h6, .title {
   background-color: rgba(169, 112, 44, 0.5) !important;
 }
 [pokecolor]:not(progress)[pokecolor=ice], [pokecolor]:not(progress)[pokecolor=waters-edge], [pokecolor]:not(progress)[pokecolor=water2] {
-  background-color: rgba(134, 210, 245, 0.5) !important;
-  color: black;
+  background-color: rgba(46, 134, 174, 0.5) !important;
 }
 [pokecolor]:not(progress)[pokecolor=normal], [pokecolor]:not(progress)[pokecolor=humanshape], [pokecolor]:not(progress)[pokecolor=rough-terrain] {
   background-color: rgba(117, 81, 91, 0.5) !important;
