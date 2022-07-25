@@ -375,7 +375,12 @@ function Main(props) {
     // Pokemon screen
   } else if (currentScreen == "pokemon") {
     return React.createElement(MainPokemon, {
-      pokemonId: props.pokemonId
+      currentScreen: currentScreen,
+      pokemonId: props.pokemonId,
+      handleChangeSearch: props.handleChangeSearch,
+      handleClickSearch: props.handleClickSearch,
+      searchValue: props.searchValue,
+      handleClickGoBack: props.handleClickGoBack
     });
   }
 }
@@ -470,9 +475,20 @@ function MainFilter(props) {
 }
 
 function MainPokemon(props) {
-  return React.createElement(Pokemon, {
-    pokemonId: props.pokemonId
-  });
+  return React.createElement(
+    "main",
+    { className: props.currentScreen.replace(" ", "-") },
+    React.createElement(TopBar, {
+      handleChangeSearch: props.handleChangeSearch,
+      handleClickSearch: props.handleClickSearch,
+      searchValue: props.searchValue,
+      currentScreen: props.currentScreen,
+      handleClickGoBack: props.handleClickGoBack
+    }),
+    React.createElement(Pokemon, {
+      pokemonId: props.pokemonId
+    })
+  );
 }
 
 // render button

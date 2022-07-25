@@ -8,7 +8,7 @@ export function TopBar(props) {
       sectionTitle: props.currentScreen,
       handleClickGoBack: props.handleClickGoBack
     });
-  } else if (["types", "generations", "egg groups", "colors", "habitats"].includes(props.currentScreen)) {
+  } else if (["types", "generations", "egg groups", "colors", "habitats", "pokemon"].includes(props.currentScreen)) {
     // Only TopBar for filter pages
     return React.createElement(
       "section",

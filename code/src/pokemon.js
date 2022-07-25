@@ -148,7 +148,7 @@ export class Pokemon extends React.Component {
 
             // Show pokemon dat
             return (
-                <section className="pokemon">
+                <section className="pokemon-data">
                     <Background 
                         pokemonType={this.state.type}
                     />

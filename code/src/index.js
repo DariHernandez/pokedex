@@ -314,7 +314,12 @@ function Main (props) {
   // Pokemon screen
   } else if (currentScreen == "pokemon") {
     return <MainPokemon
+      currentScreen={currentScreen}
       pokemonId={props.pokemonId}
+      handleChangeSearch={props.handleChangeSearch}
+      handleClickSearch={props.handleClickSearch}
+      searchValue={props.searchValue}
+      handleClickGoBack={props.handleClickGoBack}
     />
   }
 }
@@ -403,9 +408,20 @@ function MainFilter (props) {
 }
 
 function MainPokemon (props) {
-  return <Pokemon
-    pokemonId = {props.pokemonId}
-  />
+  return (
+    <main className={props.currentScreen.replace(" ", "-")}>
+      <TopBar
+        handleChangeSearch={props.handleChangeSearch}
+        handleClickSearch={props.handleClickSearch}
+        searchValue={props.searchValue}
+        currentScreen = {props.currentScreen}
+        handleClickGoBack={props.handleClickGoBack}
+      />
+      <Pokemon
+        pokemonId = {props.pokemonId}
+      />
+    </main>
+  )
 }
 
 // render button

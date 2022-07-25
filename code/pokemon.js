@@ -193,7 +193,7 @@ export var Pokemon = function (_React$Component) {
                 // Show pokemon dat
                 return React.createElement(
                     "section",
-                    { className: "pokemon" },
+                    { className: "pokemon-data" },
                     React.createElement(Background, {
                         pokemonType: this.state.type
                     }),

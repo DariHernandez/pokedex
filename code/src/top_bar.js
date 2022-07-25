@@ -10,7 +10,7 @@ export function TopBar (props) {
             handleClickGoBack={props.handleClickGoBack}
         />
     )
-  } else if (["types", "generations", "egg groups", "colors", "habitats"].includes(props.currentScreen)) {
+  } else if (["types", "generations", "egg groups", "colors", "habitats", "pokemon"].includes(props.currentScreen)) {
     // Only TopBar for filter pages
     return (
       <section className="top-bar">
