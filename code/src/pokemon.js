@@ -5,16 +5,32 @@ export class Pokemon extends React.Component {
         super (props)
         this.state = {
             isLoading: true,
-            pokemonData: {
-                pokemonId: 151,
-            },
+            pokemonId: 10,
         }
+    }
+
+    goPokemon (goTo=1) {
+        // Go to next pokemon in pokedex
+
+        // Update pokemon id
+        let pokemonId = this.state.pokemonId
+        pokemonId+=goTo
+
+        // set sprite image to loading
+        const sprites = document.querySelectorAll (".sprites > img")
+        for (const sprite of sprites) {
+            sprite.setAttribute ("src", "./imgs/loading.gif")
+        }
+
+        // Update component
+        getPokemon (this.updatePokemonData, pokemonId)
+        getPokemonSpecies (this.updatePokemonDataSpacies, pokemonId)
     }
 
     updatePokemonData = (data) => {
 
         // Get component current data
-        let pokemonData = this.state.pokemonData
+        let pokemonData = this.state
 
         // Get data from api and save it
         pokemonData.baseExperience = data.base_experience
@@ -23,6 +39,7 @@ export class Pokemon extends React.Component {
         pokemonData.name = data.name
         pokemonData.sprite = data.sprites.front_default
         pokemonData.type = data.types[0].type.name
+        pokemonData.pokemonId = data.id
 
         // Get and format moves
         pokemonData.moves = {}
@@ -69,7 +86,7 @@ export class Pokemon extends React.Component {
         // Update state
         let newState = {}
         newState["pokemonData"] = pokemonData
-        pokemonData = this.state.pokemonData
+        pokemonData = this.state
 
         // Stop loading if all api calls are done
         if ("baseHappiness" in pokemonData) {
@@ -83,7 +100,7 @@ export class Pokemon extends React.Component {
     updatePokemonDataSpacies = (data) => {
 
         // Get component current data
-        let pokemonData = this.state.pokemonData
+        let pokemonData = this.state
 
         // Get data from api and save it
         pokemonData.baseHappiness = data.base_happiness
@@ -100,7 +117,7 @@ export class Pokemon extends React.Component {
         // Update state
         let newState = {}
         newState["pokemonData"] = pokemonData
-        pokemonData = this.state.pokemonData
+        pokemonData = this.state
 
         // Stop loading if all api calls are done
         if ("baseExperience" in pokemonData) {
@@ -112,8 +129,8 @@ export class Pokemon extends React.Component {
     }
 
     componentDidMount () {
-        getPokemon (this.updatePokemonData, this.state.pokemonData.pokemonId)
-        getPokemonSpecies (this.updatePokemonDataSpacies, this.state.pokemonData.pokemonId)
+        getPokemon (this.updatePokemonData, this.state.pokemonId)
+        getPokemonSpecies (this.updatePokemonDataSpacies, this.state.pokemonId)
     }
 
     render () {
@@ -133,35 +150,37 @@ export class Pokemon extends React.Component {
             return (
                 <section className="pokemon">
                     <Background 
-                        pokemonType={this.state.pokemonData.type}
+                        pokemonType={this.state.type}
                     />
                     <ArrowButton
                         arrowType="back"
+                        onClick = {() => this.goPokemon(-1)}
                     />
                     <ArrowButton
                         arrowType="next"
+                        onClick = {() => this.goPokemon(+1)}
                     />
                     <Name
-                        pokemonName = {this.state.pokemonData.name}
-                        pokemonId = {this.state.pokemonData.pokemonId}
-                        pokemonType = {this.state.pokemonData.type}
+                        pokemonName = {this.state.name}
+                        pokemonId = {this.state.pokemonId}
+                        pokemonType = {this.state.type}
                     />
                     <Sprite
-                        sprite={this.state.pokemonData.sprite}
+                        sprite={this.state.sprite}
                     />
                     <TypeTag
-                        pokemonType = {this.state.pokemonData.type}
+                        pokemonType = {this.state.type}
                     />
                     <Details
-                        pokemonType = {this.state.pokemonData.type}
-                        pokemonDescription = {this.state.pokemonData.description}
-                        pokemonHeight = {this.state.pokemonData.height}
-                        pokemonWeight = {this.state.pokemonData.weight}
-                        pokemonBaseExperience = {this.state.pokemonData.baseExperience}
-                        pokemonBaseHappiness = {this.state.pokemonData.baseHappiness}
-                        pokemonCaptureRate = {this.state.pokemonData.captureRate}
-                        pokemonStats = {this.state.pokemonData.stats}
-                        pokemonMoves = {this.state.pokemonData.moves}
+                        pokemonType = {this.state.type}
+                        pokemonDescription = {this.state.description}
+                        pokemonHeight = {this.state.height}
+                        pokemonWeight = {this.state.weight}
+                        pokemonBaseExperience = {this.state.baseExperience}
+                        pokemonBaseHappiness = {this.state.baseHappiness}
+                        pokemonCaptureRate = {this.state.captureRate}
+                        pokemonStats = {this.state.stats}
+                        pokemonMoves = {this.state.moves}
                     />
                 </section>
             )
@@ -189,7 +208,10 @@ function Background (props) {
 function ArrowButton (props) {
     // Button for go to the next or last pokemon
     return (
-        <button className={`btn arrow pokemon ${props.arrowType}`}>
+        <button 
+            className={`btn arrow pokemon ${props.arrowType}`}
+            onClick={props.onClick}
+            >
             <img src="./imgs/arrow-dark.svg" />
         </button>
     )

@@ -19,7 +19,7 @@ export var Pokemon = function (_React$Component) {
         _this.updatePokemonData = function (data) {
 
             // Get component current data
-            var pokemonData = _this.state.pokemonData;
+            var pokemonData = _this.state;
 
             // Get data from api and save it
             pokemonData.baseExperience = data.base_experience;
@@ -28,6 +28,7 @@ export var Pokemon = function (_React$Component) {
             pokemonData.name = data.name;
             pokemonData.sprite = data.sprites.front_default;
             pokemonData.type = data.types[0].type.name;
+            pokemonData.pokemonId = data.id;
 
             // Get and format moves
             pokemonData.moves = {};
@@ -74,7 +75,7 @@ export var Pokemon = function (_React$Component) {
             // Update state
             var newState = {};
             newState["pokemonData"] = pokemonData;
-            pokemonData = _this.state.pokemonData;
+            pokemonData = _this.state;
 
             // Stop loading if all api calls are done
             if ("baseHappiness" in pokemonData) {
@@ -88,7 +89,7 @@ export var Pokemon = function (_React$Component) {
         _this.updatePokemonDataSpacies = function (data) {
 
             // Get component current data
-            var pokemonData = _this.state.pokemonData;
+            var pokemonData = _this.state;
 
             // Get data from api and save it
             pokemonData.baseHappiness = data.base_happiness;
@@ -105,7 +106,7 @@ export var Pokemon = function (_React$Component) {
             // Update state
             var newState = {};
             newState["pokemonData"] = pokemonData;
-            pokemonData = _this.state.pokemonData;
+            pokemonData = _this.state;
 
             // Stop loading if all api calls are done
             if ("baseExperience" in pokemonData) {
@@ -118,22 +119,65 @@ export var Pokemon = function (_React$Component) {
 
         _this.state = {
             isLoading: true,
-            pokemonData: {
-                pokemonId: 151
-            }
+            pokemonId: 10
         };
         return _this;
     }
 
     _createClass(Pokemon, [{
+        key: "goPokemon",
+        value: function goPokemon() {
+            var goTo = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+
+            // Go to next pokemon in pokedex
+
+            // Update pokemon id
+            var pokemonId = this.state.pokemonId;
+            pokemonId += goTo;
+
+            // set sprite image to loading
+            var sprites = document.querySelectorAll(".sprites > img");
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = sprites[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var sprite = _step.value;
+
+                    sprite.setAttribute("src", "./imgs/loading.gif");
+                }
+
+                // Update component
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
+            getPokemon(this.updatePokemonData, pokemonId);
+            getPokemonSpecies(this.updatePokemonDataSpacies, pokemonId);
+        }
+    }, {
         key: "componentDidMount",
         value: function componentDidMount() {
-            getPokemon(this.updatePokemonData, this.state.pokemonData.pokemonId);
-            getPokemonSpecies(this.updatePokemonDataSpacies, this.state.pokemonData.pokemonId);
+            getPokemon(this.updatePokemonData, this.state.pokemonId);
+            getPokemonSpecies(this.updatePokemonDataSpacies, this.state.pokemonId);
         }
     }, {
         key: "render",
         value: function render() {
+            var _this2 = this;
+
             // Show loading spinner
             if (this.state.isLoading) {
                 return React.createElement(
@@ -151,35 +195,41 @@ export var Pokemon = function (_React$Component) {
                     "section",
                     { className: "pokemon" },
                     React.createElement(Background, {
-                        pokemonType: this.state.pokemonData.type
+                        pokemonType: this.state.type
                     }),
                     React.createElement(ArrowButton, {
-                        arrowType: "back"
+                        arrowType: "back",
+                        onClick: function onClick() {
+                            return _this2.goPokemon(-1);
+                        }
                     }),
                     React.createElement(ArrowButton, {
-                        arrowType: "next"
+                        arrowType: "next",
+                        onClick: function onClick() {
+                            return _this2.goPokemon(+1);
+                        }
                     }),
                     React.createElement(Name, {
-                        pokemonName: this.state.pokemonData.name,
-                        pokemonId: this.state.pokemonData.pokemonId,
-                        pokemonType: this.state.pokemonData.type
+                        pokemonName: this.state.name,
+                        pokemonId: this.state.pokemonId,
+                        pokemonType: this.state.type
                     }),
                     React.createElement(Sprite, {
-                        sprite: this.state.pokemonData.sprite
+                        sprite: this.state.sprite
                     }),
                     React.createElement(TypeTag, {
-                        pokemonType: this.state.pokemonData.type
+                        pokemonType: this.state.type
                     }),
                     React.createElement(Details, {
-                        pokemonType: this.state.pokemonData.type,
-                        pokemonDescription: this.state.pokemonData.description,
-                        pokemonHeight: this.state.pokemonData.height,
-                        pokemonWeight: this.state.pokemonData.weight,
-                        pokemonBaseExperience: this.state.pokemonData.baseExperience,
-                        pokemonBaseHappiness: this.state.pokemonData.baseHappiness,
-                        pokemonCaptureRate: this.state.pokemonData.captureRate,
-                        pokemonStats: this.state.pokemonData.stats,
-                        pokemonMoves: this.state.pokemonData.moves
+                        pokemonType: this.state.type,
+                        pokemonDescription: this.state.description,
+                        pokemonHeight: this.state.height,
+                        pokemonWeight: this.state.weight,
+                        pokemonBaseExperience: this.state.baseExperience,
+                        pokemonBaseHappiness: this.state.baseHappiness,
+                        pokemonCaptureRate: this.state.captureRate,
+                        pokemonStats: this.state.stats,
+                        pokemonMoves: this.state.moves
                     })
                 );
             }
@@ -213,7 +263,10 @@ function ArrowButton(props) {
     // Button for go to the next or last pokemon
     return React.createElement(
         "button",
-        { className: "btn arrow pokemon " + props.arrowType },
+        {
+            className: "btn arrow pokemon " + props.arrowType,
+            onClick: props.onClick
+        },
         React.createElement("img", { src: "./imgs/arrow-dark.svg" })
     );
 }
@@ -260,28 +313,28 @@ var Sprite = function (_React$Component2) {
         value: function componentDidMount() {
             // Set image height
             var sprites = document.querySelectorAll(".sprites > img");
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
 
             try {
-                for (var _iterator = sprites[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                    var sprite = _step.value;
+                for (var _iterator2 = sprites[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                    var sprite = _step2.value;
 
                     var width = sprite.style.width;
                     sprite.style.height = width;
                 }
             } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
+                _didIteratorError2 = true;
+                _iteratorError2 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
-                        _iterator.return();
+                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                        _iterator2.return();
                     }
                 } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
+                    if (_didIteratorError2) {
+                        throw _iteratorError2;
                     }
                 }
             }
@@ -327,12 +380,12 @@ var Details = function (_React$Component3) {
     function Details(props) {
         _classCallCheck(this, Details);
 
-        var _this3 = _possibleConstructorReturn(this, (Details.__proto__ || Object.getPrototypeOf(Details)).call(this, props));
+        var _this4 = _possibleConstructorReturn(this, (Details.__proto__ || Object.getPrototypeOf(Details)).call(this, props));
 
-        _this3.state = {
+        _this4.state = {
             activeButton: "About"
         };
-        return _this3;
+        return _this4;
     }
 
     _createClass(Details, [{
@@ -346,7 +399,7 @@ var Details = function (_React$Component3) {
     }, {
         key: "render",
         value: function render() {
-            var _this4 = this;
+            var _this5 = this;
 
             // Select correct info to show
             var info = void 0;
@@ -383,7 +436,7 @@ var Details = function (_React$Component3) {
                         pokemonType: this.props.pokemonType,
                         activeButton: this.state.activeButton,
                         onClick: function onClick(newButton) {
-                            return _this4.handleUpdateActiveButton(newButton);
+                            return _this5.handleUpdateActiveButton(newButton);
                         }
                     }),
                     React.createElement(DetailsButton, {
@@ -392,7 +445,7 @@ var Details = function (_React$Component3) {
                         pokemonType: this.props.pokemonType,
                         activeButton: this.state.activeButton,
                         onClick: function onClick(newButton) {
-                            return _this4.handleUpdateActiveButton(newButton);
+                            return _this5.handleUpdateActiveButton(newButton);
                         }
                     }),
                     React.createElement(DetailsButton, {
@@ -401,7 +454,7 @@ var Details = function (_React$Component3) {
                         pokemonType: this.props.pokemonType,
                         activeButton: this.state.activeButton,
                         onClick: function onClick(newButton) {
-                            return _this4.handleUpdateActiveButton(newButton);
+                            return _this5.handleUpdateActiveButton(newButton);
                         }
                     })
                 ),
