@@ -229,6 +229,15 @@ header.home .content .title {
   margin-left: 20px;
 }
 
+.gallery {
+  width: 100%;
+  margin-top: 50px;
+}
+.gallery img {
+  width: 95%;
+  padding: 0 2.5%;
+}
+
 main section.top-bar {
   width: 100%;
   background-color: #EB1D36;

@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pokedex Pro</title>
 
     <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/splide.min.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,6 +18,37 @@
     <div id="root">
     
     </div>
+
+    <section class="splide gallery" aria-label="pokemon wallpapers gallery">
+        <div class="splide__track">
+            <ul class="splide__list">
+                <li class="splide__slide">
+                    <img src="./imgs/wallpapers/2.jpg" alt="wallpaper image">
+                </li>
+                <li class="splide__slide">
+                    <img src="./imgs/wallpapers/3.jpg" alt="wallpaper image">
+                </li>
+                <li class="splide__slide">
+                    <img src="./imgs/wallpapers/4.jpg" alt="wallpaper image">
+                </li>
+                <li class="splide__slide">
+                    <img src="./imgs/wallpapers/5.jpg" alt="wallpaper image">
+                </li>
+                <li class="splide__slide">
+                    <img src="./imgs/wallpapers/6.jpg" alt="wallpaper image">
+                </li>
+                <li class="splide__slide">
+                    <img src="./imgs/wallpapers/7.jpg" alt="wallpaper image">
+                </li>
+                <li class="splide__slide">
+                    <img src="./imgs/wallpapers/8.jpg" alt="wallpaper image">
+                </li>
+                <li class="splide__slide">
+                    <img src="./imgs/wallpapers/9.jpg" alt="wallpaper image">
+                </li>
+            </ul>
+        </div>
+    </section>
     
     <!-- Load React. -->
     <!-- Note: when deploy react, reemplace "development.js" cwith "production.min.js". -->
@@ -26,5 +58,7 @@
     <!-- Load React component -->
     <script src="./code/index.js" type="module"></script>
     <script src="./code/pokeapi.js" type="module"></script>
+    <script src="./code/splide.min.js"></script>
+    <script src="./code/gallery.js" type="module"></script>
 </body>
 </html>
