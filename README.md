@@ -90,8 +90,6 @@ Pokedex connected to the [PokeAPI](https://pokeapi.co/), with advanced filters, 
 [![Web page Screenshot][ss-home-mobile]](https://darideveloper.github.io/pokedex-pro-react/)
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 ### Filters
 
 #### By color
@@ -144,11 +142,6 @@ Pokedex connected to the [PokeAPI](https://pokeapi.co/), with advanced filters, 
 </a>
 </div>
 
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- GETTING STARTED -->
 ## Getting Started
 
@@ -163,15 +156,10 @@ To get a local copy up and running follow these simple steps:
    ```
 2. Open "index.html" with live server (visual studio code extension), xampp or any other server.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- USAGE EXAMPLES -->
 ## Usage
 
 In the home page you can select the filters you want to apply to the search, then you can search for a pokemon by name, or you can search for all the pokemon that match the name you have typed.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- ROADMAP -->
@@ -212,17 +200,12 @@ In the home page you can select the filters you want to apply to the search, the
 
 See the [open issues](https://github.com/darideveloper/pokedex-pro-react/issues) for a full list of proposed features (and known issues).
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- LICENSE -->
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- CONTACT -->
@@ -231,9 +214,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 Darideveloper - [@developerdari](https://twitter.com/developerdari) - darideveloper@gmail.com.com
 
 Project Link: [https://github.com/darideveloper/pokedex-pro-react](https://github.com/darideveloper/pokedex-pro-react)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- MARKDOWN LINKS & ./imgs/ -->
@@ -266,3 +246,5 @@ Project Link: [https://github.com/darideveloper/pokedex-pro-react](https://githu
 [fiverr-url]: https://www.fiverr.com/darideveloper
 [gmail-shield]: https://img.shields.io/badge/-gmail-black.svg?style=for-the-badge&logo=gmail&colorB=555&logoColor=white
 [fiverr-shield]: https://img.shields.io/badge/-fiverr-black.svg?style=for-the-badge&logo=fiverr&colorB=555&logoColor=white
+
+<span>Last code update: <time datetime="2022-11-29" class="last-update">2022-11-29</time>
