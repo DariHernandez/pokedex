@@ -247,4 +247,4 @@ Project Link: [https://github.com/darideveloper/pokedex-pro-react](https://githu
 [gmail-shield]: https://img.shields.io/badge/-gmail-black.svg?style=for-the-badge&logo=gmail&colorB=555&logoColor=white
 [fiverr-shield]: https://img.shields.io/badge/-fiverr-black.svg?style=for-the-badge&logo=fiverr&colorB=555&logoColor=white
 
-<span>Last code update: <time datetime="2022-11-29" class="last-update">2022-11-29</time>
+<span>Last code update: <time datetime="2022-09-11" class="last-update">2022-09-11</time>
