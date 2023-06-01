@@ -61,53 +61,53 @@ Project type: **personal's project**
 
 # Details
 
-Pokedex connected to the PokeAPI, with advanced filters, made with react\r
-\r
+Pokedex connected to the PokeAPI, with advanced filters, made with react
+
 In the home page you can select the filters you want to apply to the search, then you can search for a pokemon by name, or you can search for all the pokemon that match the name you have typed.
 
 # Install
 
-Clone the repo\r
-   \\`\\`\\`sh\r
-   git clone https://github.com/darideveloper/pokedex-pro-react.git\r
-   \\`\\`\\`
+Clone the repo
+   ```sh
+   git clone https://github.com/darideveloper/pokedex-pro-react.git
+   ```
 
 # Run
 
-Open \\\"index.html\\\" with live server (visual studio code extension), xampp or any other server.
+Open "index.html" with live server (visual studio code extension), xampp or any other server.
 
 # Roadmap
 
-- [x] Desktop\r
-- [x] Mobile\r
-- [x] Get pokemons from pokeapi\r
-- [x] Home page\r
-  - [x] Filters buttons\r
-  - [x] Search bar\r
-    - [ ] Serach by id\r
-- [x] Gallery\r
-- [x] Filters\r
-  - [x] pokemon type\r
-  - [x] pokemon generation\r
-  - [x] pokemon egg group\r
-  - [x] pokemon color\r
-  - [x] pokemon habitats\r
-- [x] Results page\r
-  - [x] Using filters\r
-  - [x] Searching in all pokemon\r
-  - [x] Pagination\r
-  - [x] Pokemon id\r
-  - [x] Pokemon name\r
-  - [x] Pokemon image  \r
-    - [x] Loading image animation\r
-- [x] Details page\r
-  - [x] Arrow for go next and back in pokemon page\r
-  - [x] Pokemon image\r
-  - [x] Pokemon description\r
-  - [x] Pokemon stats\r
-  - [x] Pokemon moves\r
-  - [x] Pokemon types\r
-  - [x] Loading image animation\r
+- [x] Desktop
+- [x] Mobile
+- [x] Get pokemons from pokeapi
+- [x] Home page
+  - [x] Filters buttons
+  - [x] Search bar
+    - [ ] Serach by id
+- [x] Gallery
+- [x] Filters
+  - [x] pokemon type
+  - [x] pokemon generation
+  - [x] pokemon egg group
+  - [x] pokemon color
+  - [x] pokemon habitats
+- [x] Results page
+  - [x] Using filters
+  - [x] Searching in all pokemon
+  - [x] Pagination
+  - [x] Pokemon id
+  - [x] Pokemon name
+  - [x] Pokemon image  
+    - [x] Loading image animation
+- [x] Details page
+  - [x] Arrow for go next and back in pokemon page
+  - [x] Pokemon image
+  - [x] Pokemon description
+  - [x] Pokemon stats
+  - [x] Pokemon moves
+  - [x] Pokemon types
+  - [x] Loading image animation
   - [x] Dinamic background color baseed in pokemon type
 
 
