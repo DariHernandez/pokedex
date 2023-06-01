@@ -1,250 +1,113 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
-<a name="readme-top"></a>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
+<div><a href='https://github.com/github.com/darideveloper/blob/master/LICENSE' target='_blank'>
+            <img src='https://img.shields.io/github/license/github.com/darideveloper.svg?style=for-the-badge' alt='MIT License' height='30px'/>
+        </a><a href='https://www.linkedin.com/in/francisco-dari-hernandez-6456b6181/' target='_blank'>
+                <img src='https://img.shields.io/static/v1?style=for-the-badge&message=LinkedIn&color=0A66C2&logo=LinkedIn&logoColor=FFFFFF&label=' alt='Linkedin' height='30px'/>
+            </a><a href='https://t.me/darideveloper' target='_blank'>
+                <img src='https://img.shields.io/static/v1?style=for-the-badge&message=Telegram&color=26A5E4&logo=Telegram&logoColor=FFFFFF&label=' alt='Telegram' height='30px'/>
+            </a><a href='https://github.com/darideveloper' target='_blank'>
+                <img src='https://img.shields.io/static/v1?style=for-the-badge&message=GitHub&color=181717&logo=GitHub&logoColor=FFFFFF&label=' alt='Github' height='30px'/>
+            </a><a href='https://www.fiverr.com/darideveloper?up_rollout=true' target='_blank'>
+                <img src='https://img.shields.io/static/v1?style=for-the-badge&message=Fiverr&color=222222&logo=Fiverr&logoColor=1DBF73&label=' alt='Fiverr' height='30px'/>
+            </a><a href='https://discord.com/users/992019836811083826' target='_blank'>
+                <img src='https://img.shields.io/static/v1?style=for-the-badge&message=Discord&color=5865F2&logo=Discord&logoColor=FFFFFF&label=' alt='Discord' height='30px'/>
+            </a><a href='mailto:darideveloper@gmail.com?subject=Hello Dari Developer' target='_blank'>
+                <img src='https://img.shields.io/static/v1?style=for-the-badge&message=Gmail&color=EA4335&logo=Gmail&logoColor=FFFFFF&label=' alt='Gmail' height='30px'/>
+            </a></div><div align='center'><br><br><img src='https://raw.githubusercontent.com/darideveloper/pokedex-pro-react/53aa5b61e03ad8917d8d4c85dac8fd698068c5ed/imgs/pokeball.svg' alt='Pokedex Pro React' height='80px'/>
 
+# Pokedex Pro React
 
+Visit at: **[darideveloper.github.io/pokedex-pro-react](https://darideveloper.github.io/pokedex-pro-react/)**
 
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-[![Fiverr][fiverr-shield]][fiverr-url]
-[![Gmail][gmail-shield]][gmail-url]
+Pokedex with advanced filters, made with react
 
+Start date: **2022-07-06**
 
+Last update: **2023-05-07**
 
-<!-- PROJECT LOGO -->
-<br />
-<div align="center">
-  <a href="https://github.com/darideveloper/pokedex-pro-react">
-    <img src="./imgs/favicon.png" alt="Logo" width="80" height="80">
-  </a>
+Project type: **personal's project**
 
-<h3 align="center">Pokedex Pro</h3>
+</div><br><details>
+            <summary>Table of Contents</summary>
+            <ol>
+<li><a href='#buildwith'>Build With</a></li>
+<li><a href='#media'>Media</a></li>
+<li><a href='#details'>Details</a></li>
+<li><a href='#install'>Install</a></li>
+<li><a href='#run'>Run</a></li>
+<li><a href='#roadmap'>Roadmap</a></li></ol>
+        </details><br>
 
-  <p align="center">
-    Pokedex with advanced filters, made with react
-    <br />
-    <a href="https://github.com/darideveloper/pokedex-pro-react"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://darideveloper.github.io/pokedex-pro-react/">View Demo</a>
-    ·
-    <a href="https://github.com/darideveloper/pokedex-pro-react/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/darideveloper/pokedex-pro-react/issues">Request Feature</a>
-  </p>
-</div>
+# Build with
 
+<div align='center'><a href='https://developer.mozilla.org/en-US/docs/Web/HTML' target='_blank'> <img src='https://i.imgur.com/OitgDfl.jpeg' alt='HTML + CSS' title='HTML + CSS' height='50px'/> </a><a href='https://react.dev/' target='_blank'> <img src='https://cdn.svgporn.com/logos/react.svg' alt='React' title='React' height='50px'/> </a><a href='https://sass-lang.com/' target='_blank'> <img src='https://cdn.svgporn.com/logos/sass.svg' alt='Sass' title='Sass' height='50px'/> </a><a href='https://www.w3schools.com/js/js_es6.asp' target='_blank'> <img src='https://cdn.svgporn.com/logos/javascript.svg' alt='JavaScript' title='JavaScript' height='50px'/> </a></div>
 
+# Media
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ol>
-</details>
+![home desktop](https://github.com/darideveloper/pokedex-pro-react/raw/master/imgs/screenshots/home_desktop.png)
 
+![home mobile](https://github.com/darideveloper/pokedex-pro-react/raw/master/imgs/screenshots/home_mobile.png)
 
+![filter by color](https://github.com/darideveloper/pokedex-pro-react/raw/master/imgs/screenshots/filter_color.png)
 
-<!-- ABOUT THE PROJECT -->
-## About The Project
+![filter by group](https://github.com/darideveloper/pokedex-pro-react/raw/master/imgs/screenshots/filter_eggs.png)
 
-Pokedex connected to the [PokeAPI](https://pokeapi.co/), with advanced filters, made with react
+![filter by generation](https://github.com/darideveloper/pokedex-pro-react/raw/master/imgs/screenshots/filter_generation.png)
 
-### Home - Desktop
+![filter by type](https://github.com/darideveloper/pokedex-pro-react/raw/master/imgs/screenshots/filter_types.png)
 
-[![Web page Screenshot][ss-home-desktop]](https://darideveloper.github.io/pokedex-pro-react/)
+![results](https://github.com/darideveloper/pokedex-pro-react/raw/master/imgs/screenshots/results_1.png)
 
-### Home - Mobile
+![details](https://github.com/darideveloper/pokedex-pro-react/raw/master/imgs/screenshots/details.png)
 
-[![Web page Screenshot][ss-home-mobile]](https://darideveloper.github.io/pokedex-pro-react/)
+# Details
 
-
-### Filters
-
-#### By color
-
-[![Web page Screenshot][ss-filter-color]](https://darideveloper.github.io/pokedex-pro-react/)
-
-#### By egg group
-
-[![Web page Screenshot][ss-filter-eggs]](https://darideveloper.github.io/pokedex-pro-react/)
-
-#### By generation
-  
-[![Web page Screenshot][ss-filter-generations]](https://darideveloper.github.io/pokedex-pro-react/)
-
-#### By type
-
-[![Web page Screenshot][ss-filter-types]](https://darideveloper.github.io/pokedex-pro-react/)
-
-### Results
-
-#### Searching with filter
-
-[![Web page Screenshot][ss-results-1]](https://darideveloper.github.io/pokedex-pro-react/)
-
-#### Searching without filter
-
-[![Web page Screenshot][ss-results-2]](https://darideveloper.github.io/pokedex-pro-react/)
-
-#### Details
-
-[![Web page Screenshot][ss-details]](https://darideveloper.github.io/pokedex-pro-react/)
-
-### Build with
-
-<div>
-<a href="https://developer.mozilla.org/es/docs/Web/HTML">
-  <img src="https://cdn.svgporn.com/logos/html-5.svg" width="50" alt="html5" title="html5">
-</a>
-<a href="https://developer.mozilla.org/es/docs/Web/CSS">
-  <img src="https://cdn.svgporn.com/logos/css-3.svg" width="50" alt="css3" title="css3">
-</a>
-<a href="https://developer.mozilla.org/es/docs/Web/javascript">
-  <img src="https://cdn.svgporn.com/logos/javascript.svg" width="50" alt="javascript" title="javascript">
-</a>
-<a href="https://sass-lang.com/">
-  <img src="https://cdn.svgporn.com/logos/sass.svg" width="50" alt="sass" title="sass">
-</a>
-<a href="https://es.reactjs.org/">
-  <img src="https://cdn.svgporn.com/logos/react.svg" width="50" alt="react" title="react">
-</a>
-</div>
-
-<!-- GETTING STARTED -->
-## Getting Started
-
-To get a local copy up and running follow these simple steps:
-
-
-### Installation
-
-1. Clone the repo
-   ```sh
-   git clone https://github.com/darideveloper/pokedex-pro-react.git
-   ```
-2. Open "index.html" with live server (visual studio code extension), xampp or any other server.
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
+Pokedex connected to the PokeAPI, with advanced filters, made with react\r
+\r
 In the home page you can select the filters you want to apply to the search, then you can search for a pokemon by name, or you can search for all the pokemon that match the name you have typed.
 
+# Install
 
-<!-- ROADMAP -->
-## Roadmap
+Clone the repo\r
+   \\`\\`\\`sh\r
+   git clone https://github.com/darideveloper/pokedex-pro-react.git\r
+   \\`\\`\\`
 
-- [x] Desktop
-- [x] Mobile
-- [x] Get pokemons from pokeapi
-- [x] Home page
-  - [x] Filters buttons
-  - [x] Search bar
-    - [ ] Serach by id
-- [x] Gallery
-- [x] Filters
-  - [x] pokemon type
-  - [x] pokemon generation
-  - [x] pokemon egg group
-  - [x] pokemon color
-  - [x] pokemon habitats
-- [x] Results page
-  - [x] Using filters
-  - [x] Searching in all pokemon
-  - [x] Pagination
-  - [x] Pokemon id
-  - [x] Pokemon name
-  - [x] Pokemon image  
-    - [x] Loading image animation
-- [x] Details page
-  - [x] Arrow for go next and back in pokemon page
-  - [x] Pokemon image
-  - [x] Pokemon description
-  - [x] Pokemon stats
-  - [x] Pokemon moves
-  - [x] Pokemon types
-  - [x] Loading image animation
-  - [x] Dinamic background color baseed in pokemon type 
+# Run
 
+Open \\\"index.html\\\" with live server (visual studio code extension), xampp or any other server.
 
-See the [open issues](https://github.com/darideveloper/pokedex-pro-react/issues) for a full list of proposed features (and known issues).
+# Roadmap
 
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
-
-<!-- CONTACT -->
-## Contact
-
-Darideveloper - [@developerdari](https://twitter.com/developerdari) - darideveloper@gmail.com.com
-
-Project Link: [https://github.com/darideveloper/pokedex-pro-react](https://github.com/darideveloper/pokedex-pro-react)
+- [x] Desktop\r
+- [x] Mobile\r
+- [x] Get pokemons from pokeapi\r
+- [x] Home page\r
+  - [x] Filters buttons\r
+  - [x] Search bar\r
+    - [ ] Serach by id\r
+- [x] Gallery\r
+- [x] Filters\r
+  - [x] pokemon type\r
+  - [x] pokemon generation\r
+  - [x] pokemon egg group\r
+  - [x] pokemon color\r
+  - [x] pokemon habitats\r
+- [x] Results page\r
+  - [x] Using filters\r
+  - [x] Searching in all pokemon\r
+  - [x] Pagination\r
+  - [x] Pokemon id\r
+  - [x] Pokemon name\r
+  - [x] Pokemon image  \r
+    - [x] Loading image animation\r
+- [x] Details page\r
+  - [x] Arrow for go next and back in pokemon page\r
+  - [x] Pokemon image\r
+  - [x] Pokemon description\r
+  - [x] Pokemon stats\r
+  - [x] Pokemon moves\r
+  - [x] Pokemon types\r
+  - [x] Loading image animation\r
+  - [x] Dinamic background color baseed in pokemon type
 
 
-<!-- MARKDOWN LINKS & ./imgs/ -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/darideveloper/pokedex-pro-react.svg?style=for-the-badge
-[contributors-url]: https://github.com/darideveloper/pokedex-pro-react/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/darideveloper/pokedex-pro-react.svg?style=for-the-badge
-[forks-url]: https://github.com/darideveloper/pokedex-pro-react/network/members
-[stars-shield]: https://img.shields.io/github/stars/darideveloper/pokedex-pro-react.svg?style=for-the-badge
-[stars-url]: https://github.com/darideveloper/pokedex-pro-react/stargazers
-[issues-shield]: https://img.shields.io/github/issues/darideveloper/pokedex-pro-react.svg?style=for-the-badge
-[issues-url]: https://github.com/darideveloper/pokedex-pro-react/issues
-[license-shield]: https://img.shields.io/github/license/darideveloper/pokedex-pro-react.svg?style=for-the-badge
-[license-url]: https://github.com/darideveloper/pokedex-pro-react/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://www.linkedin.com/in/francisco-dari-hernandez-6456b6181/
-
-[ss-filter-color]: ./imgs/screenshots/filter_color.png
-[ss-filter-eggs]: ./imgs/screenshots/filter_eggs.png
-[ss-filter-generations]: ./imgs/screenshots/filter_generation.png
-[ss-filter-habitats]: ./imgs/screenshots/filter_habitats.png
-[ss-filter-types]: ./imgs/screenshots/filter_types.png
-[ss-home-desktop]: ./imgs/screenshots/home_desktop.png
-[ss-home-mobile]: ./imgs/screenshots/home_mobile.png
-[ss-results-1]: ./imgs/screenshots/results_1.png
-[ss-results-2]: ./imgs/screenshots/results_2.png
-[ss-details]: ./imgs/screenshots/details.png
-
-[gmail-url]: mailto:darideveloper@gmail.com
-[fiverr-url]: https://www.fiverr.com/darideveloper
-[gmail-shield]: https://img.shields.io/badge/-gmail-black.svg?style=for-the-badge&logo=gmail&colorB=555&logoColor=white
-[fiverr-shield]: https://img.shields.io/badge/-fiverr-black.svg?style=for-the-badge&logo=fiverr&colorB=555&logoColor=white
-
-<span>Last code update: <time datetime="2022-09-11" class="last-update">2022-09-11</time>
